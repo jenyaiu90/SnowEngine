@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Window">
+      <UniqueIdentifier>{32c7e2df-a15d-4ea4-a19c-03300d6dc0bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Types">
+      <UniqueIdentifier>{cce0d441-d984-4c1f-a9ba-686516f62470}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Types\List">
+      <UniqueIdentifier>{7270ff49-c1de-4857-9c77-082f90ae631f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Layer">
+      <UniqueIdentifier>{18ee5dc5-ecf4-45fc-ac60-bcbd130798a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Layer\Level">
+      <UniqueIdentifier>{854b19e0-0fd5-4f40-bae0-49793a1fae28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Layer\Gui">
+      <UniqueIdentifier>{ce11cae4-bc06-47e6-927b-02e3bca01c79}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\SnowEngine.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\Window.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\Vectors.h">
+      <Filter>Source Files\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\ArrayList.h">
+      <Filter>Source Files\Types\List</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\LinkedList.h">
+      <Filter>Source Files\Types\List</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\List.h">
+      <Filter>Source Files\Types\List</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Layer\Gui\Gui.h">
+      <Filter>Source Files\Layer\Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Layer\Level\Level.h">
+      <Filter>Source Files\Layer\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Layer\Layer.h">
+      <Filter>Source Files\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\Comparator.h">
+      <Filter>Source Files\Types\List</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Window\Window.cpp">
+      <Filter>Source Files\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Types\Vectors.cpp">
+      <Filter>Source Files\Types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Layer\Gui\Gui.cpp">
+      <Filter>Source Files\Layer\Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Layer\Level\Level.cpp">
+      <Filter>Source Files\Layer\Level</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

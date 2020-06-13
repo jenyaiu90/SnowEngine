@@ -1,0 +1,95 @@
+    ////////////////////////////////////////
+   //         After by SnegirSoft        //
+  //                                    //
+ //  File: Window.h                    //
+////////////////////////////////////////
+
+////////////////////////////////////////////////////////////
+///	\file
+///	\brief The file with the declaration of the Window class.
+///	
+///	This file contains the declaration of the Window class.
+////////////////////////////////////////////////////////////
+
+#pragma once
+
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <mutex>
+
+#include "../Types/List/LinkedList.h"
+#include "../Types/Vectors.h"
+#include "../Layer/Level/Level.h"
+#include "../Layer/Gui/Gui.h"
+
+namespace snow
+{
+
+////////////////////////////////////////////////////////////
+///	\brief The class of window. A level or UI can be attached for window.
+///	
+///	A displayed window. You can set a resulution and expand it to full screen. Levels and UI`s can
+///	be attached for windows. For one window you can attach only one level and unlimited number of
+///	GUI`s. Each window uses its own thread for displaying.
+////////////////////////////////////////////////////////////
+class Window
+{
+public:
+
+	////////////////////////////////////////////////////////////
+	///	\brief The constuctor of Window. Allows to set a base characteristics.
+	///
+	///	This constructor creates a new window with passed base characteristics.
+	///	\param title Title that will be displayed in the top of the window.
+	///	\param resolution The resolution of the window in pixels, x is width, y is height.
+	///	\param isFullscreen Allows to set whether the window should be expanded to full screen.
+	///	The default value is <i>false</i>.
+	////////////////////////////////////////////////////////////
+	Window(const std::string& title, const Vector2i& resolution, bool isFullscreen=false);
+
+	////////////////////////////////////////////////////////////
+	///	\brief The destructor.
+	///	
+	///	The destructor closes the window (is it wasn`t closed earlier) and frees up the memory.
+	///	\warning After calling this destructor you won`t be able to use the level or GUI`s because
+	///	they will be deleted.
+	////////////////////////////////////////////////////////////
+	~Window();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Attaches the level for the window.
+	///	
+	///	Allows to attach the level for the window. After attaching the level will being displayed
+	///	in this window. Note that you can attach only one level to the window, if you attach a
+	///	second level, a first one will be detached.
+	///	\param level The level for attaching.
+	///	\param safeMode If <b>true</b>, you can`t attach a level for the window if that window has
+	///	already an attached level. The default value is <b>false</b>.
+	///	\return <b>true</b> if the level was successfully attached.
+	////////////////////////////////////////////////////////////
+	bool attach(Level& level, bool safeMode=false);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Attaches the GUI for the window.
+	///	
+	///	Allows to attach the GUI for the window. After attaching the GUI will being displayed in
+	///	this window on top of the level.
+	////////////////////////////////////////////////////////////
+	bool attach(Gui& gui);
+
+protected:
+	std::mutex windowMutex_;
+
+	sf::RenderWindow* window_;
+	std::string title_;
+	Vector2i resolution_;
+	bool isFullscreen_;
+
+	Level* level_;
+	LinkedList<Gui> guis_;
+
+	void startWindow(const std::string& title, const Vector2i& resolution, bool isFullscreen);
+	void windowCycle();
+};
+
+}

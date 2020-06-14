@@ -20,28 +20,24 @@
 //  Vector2i  //
 ////////////////
 
-snow::Vector2i::Vector2i()
+snow::Vector2i::Vector2i() :
+	x(0), y(0)
 {
-	x = 0;
-	y = 0;
 }
 
-snow::Vector2i::Vector2i(const snow::Vector2i& vector)
+snow::Vector2i::Vector2i(const snow::Vector2i& vector) :
+	x(vector.x), y(vector.y)
 {
-	x = vector.x;
-	y = vector.y;
 }
 
-snow::Vector2i::Vector2i(int x, int y)
+snow::Vector2i::Vector2i(int x, int y) :
+	x(x), y(y)
 {
-	this->x = x;
-	this->y = y;
 }
 
-snow::Vector2i::Vector2i(sf::Vector2i vector)
+snow::Vector2i::Vector2i(sf::Vector2i vector) :
+	x(vector.x), y(vector.y)
 {
-	x = vector.x;
-	y = vector.y;
 }
 
 snow::Vector2i::operator sf::Vector2i() const
@@ -157,40 +153,34 @@ float snow::Vector2i::getAngle() const
 //  Vector2f  //
 ////////////////
 
-snow::Vector2f::Vector2f()
+snow::Vector2f::Vector2f() :
+	x(0.f), y(0.f)
 {
-	x = 0.f;
-	y = 0.f;
 }
 
-snow::Vector2f::Vector2f(const Vector2f& vector)
+snow::Vector2f::Vector2f(const Vector2f& vector) :
+	x(0.f), y(0.f)
 {
-	x = vector.x;
-	y = vector.y;
 }
 
-snow::Vector2f::Vector2f(const Vector2i& vector)
+snow::Vector2f::Vector2f(const Vector2i& vector) :
+	x(static_cast<float>(vector.x)), y(static_cast<float>(vector.y))
 {
-	x = static_cast<float>(vector.x);
-	y = static_cast<float>(vector.y);
 }
 
-snow::Vector2f::Vector2f(float x, float y)
+snow::Vector2f::Vector2f(float x, float y) :
+	x(x), y(y)
 {
-	this->x = x;
-	this->y = y;
 }
 
-snow::Vector2f::Vector2f(int x, int y)
+snow::Vector2f::Vector2f(int x, int y) :
+	x(static_cast<float>(x)), y(static_cast<float>(y))
 {
-	this->x = static_cast<float>(x);
-	this->y = static_cast<float>(y);
 }
 
-snow::Vector2f::Vector2f(sf::Vector2f vector)
+snow::Vector2f::Vector2f(sf::Vector2f vector) :
+	x(vector.x), y(vector.y)
 {
-	x = vector.x;
-	y = vector.y;
 }
 
 snow::Vector2f::operator sf::Vector2f()
@@ -437,32 +427,24 @@ void snow::Vector2f::setAngle(float angle)
 //  Vector3i  //
 ////////////////
 
-snow::Vector3i::Vector3i()
+snow::Vector3i::Vector3i() :
+	x(0), y(0), z(0)
 {
-	x = 0;
-	y = 0;
-	z = 0;
 }
 
-snow::Vector3i::Vector3i(const snow::Vector3i& vector)
+snow::Vector3i::Vector3i(const snow::Vector3i& vector) :
+	x(vector.x), y(vector.y), z(vector.z)
 {
-	x = vector.x;
-	y = vector.y;
-	z = vector.z;
 }
 
-snow::Vector3i::Vector3i(int x, int y, int z)
+snow::Vector3i::Vector3i(int x, int y, int z) :
+	x(x), y(y), z(z)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
 }
 
-snow::Vector3i::Vector3i(sf::Vector3i vector)
+snow::Vector3i::Vector3i(sf::Vector3i vector) :
+	x(vector.x), y(vector.y), z(vector.z)
 {
-	x = vector.x;
-	y = vector.y;
-	z = vector.z;
 }
 
 snow::Vector3i::operator sf::Vector3i() const
@@ -588,46 +570,38 @@ float snow::Vector3i::getAngleZ() const
 //  Vector3f  //
 ////////////////
 
-snow::Vector3f::Vector3f()
+snow::Vector3f::Vector3f() :
+	x(0.f), y(0.f), z(0.f)
 {
-	x = 0.f;
-	y = 0.f;
-	z = 0.f;
 }
 
-snow::Vector3f::Vector3f(const Vector3f& vector)
+snow::Vector3f::Vector3f(const Vector3f& vector) :
+	x(vector.x), y(vector.y), z(vector.z)
 {
-	x = vector.x;
-	y = vector.y;
-	z = vector.z;
 }
 
-snow::Vector3f::Vector3f(const Vector3i& vector)
+snow::Vector3f::Vector3f(const Vector3i& vector) :
+	x(static_cast<float>(vector.x)),
+	y(static_cast<float>(vector.y)),
+	z(static_cast<float>(vector.z))
 {
-	x = static_cast<float>(vector.x);
-	y = static_cast<float>(vector.y);
-	z = static_cast<float>(vector.z);
 }
 
-snow::Vector3f::Vector3f(float x, float y, float z)
+snow::Vector3f::Vector3f(float x, float y, float z) :
+	x(x), y(y), z(z)
 {
-	this->x = x;
-	this->y = y;
-	this->z = z;
 }
 
-snow::Vector3f::Vector3f(int x, int y, int z)
+snow::Vector3f::Vector3f(int x, int y, int z) :
+	x(static_cast<float>(x)),
+	y(static_cast<float>(y)),
+	z(static_cast<float>(z))
 {
-	this->x = static_cast<float>(x);
-	this->y = static_cast<float>(y);
-	this->z = static_cast<float>(z);
 }
 
-snow::Vector3f::Vector3f(sf::Vector3f vector)
+snow::Vector3f::Vector3f(sf::Vector3f vector) :
+	x(vector.x), y(vector.y), z(vector.z)
 {
-	x = vector.x;
-	y = vector.y;
-	z = vector.z;
 }
 
 snow::Vector3f::operator sf::Vector3f()

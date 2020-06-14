@@ -252,13 +252,13 @@ private:
 // Below are the methods of the LinkedList.
 
 template<typename T>
-LinkedList<T>::LinkedList()
+LinkedList<T>::LinkedList() :
+	begin_(nullptr),
+	end_(nullptr),
+	size_(0),
+	iterator_(nullptr),
+	iteratorPos_(-1)
 {
-	begin_ = nullptr;
-	end_ = nullptr;
-	size_ = 0;
-	iterator_ = nullptr;
-	iteratorPos_ = -1;
 }
 
 template<typename T>

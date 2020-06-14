@@ -31,6 +31,14 @@ class Actor
 public:
 
 	////////////////////////////////////////////////////////////
+	///	\brief The constructor that sets a world position.
+	///	
+	///	This constructor sets a world position of the actor.
+	///	\param pos A world position. A default value is (0.0, 0.0).
+	////////////////////////////////////////////////////////////
+	Actor(Vector2f pos=Vector2f());
+
+	////////////////////////////////////////////////////////////
 	///	\brief This method is called every tick.
 	///	
 	///	A level or a GUI calls this method every tick. It calls the tick() method of actor`s

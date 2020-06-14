@@ -194,11 +194,9 @@ ArrayList<T>::ArrayList() :
 }
 
 template<typename T>
-ArrayList<T>::ArrayList(int size)
+ArrayList<T>::ArrayList(int size) :
+	size_(0), currentMax_(size), array_(new T[size])
 {
-	size_ = 0;
-	currentMax_ = size;
-	array_ = new T[size];
 }
 
 template<typename T>

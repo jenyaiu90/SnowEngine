@@ -20,11 +20,11 @@
 // public //
 ////////////
 
-snow::Window::Window(const std::string& title, const Vector2i& resolution, bool isFullscreen)
+snow::Window::Window(const std::string& title, const Vector2i& resolution, bool isFullscreen) :
+	title_(title),
+	resolution_(resolution),
+	isFullscreen_(isFullscreen)
 {
-	title_ = title;
-	resolution_ = resolution;
-	isFullscreen_ = isFullscreen;
 	std::thread windowThread(&snow::Window::startWindow, this, title, resolution, isFullscreen);
 	windowThread.detach();
 }

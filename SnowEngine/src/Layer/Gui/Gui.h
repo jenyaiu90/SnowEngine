@@ -27,6 +27,14 @@ namespace snow
 class Gui : public Layer
 {
 public:
+	////////////////////////////////////////////////////////////
+	///	\brief The constructor. Can set a priority.
+	///	
+	///	This constructor allows to set a priority. The GUI with lower priority is drawed later
+	/// to be on top of other one.
+	///	\return A pointer to IComparator.
+	////////////////////////////////////////////////////////////
+	Gui(int priority=0);
 
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the comparator of Gui.
@@ -46,7 +54,7 @@ public:
 
 protected:
 
-	int priority_; ///< Defines the order of drawing the GUI`s. The GUI`s with lower priority are
+	int priority_; ///< Defines the order of drawing the GUI`s. The GUI with lower priority is
 				   ///  drawed later to be on top of other one.
 
 	class GuiPriorityComparator : public IComparator<Gui>

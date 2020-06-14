@@ -12,3 +12,8 @@
 ////////////////////////////////////////////////////////////
 
 #include "Component.h"
+
+snow::Component::Component(Vector2f pos) :
+	position(pos)
+{
+}

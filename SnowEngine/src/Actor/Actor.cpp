@@ -13,6 +13,11 @@
 
 #include "Actor.h"
 
+snow::Actor::Actor(Vector2f pos) :
+	position(pos)
+{
+}
+
 void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 {
 	if (components.startIterate())

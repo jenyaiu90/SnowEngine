@@ -33,6 +33,14 @@ class Component
 public:
 
 	////////////////////////////////////////////////////////////
+	///	\brief The constructor that sets a relative position.
+	///	
+	///	This constructor sets a relative position of the component.
+	///	\param pos A relative position. A default value is (0.0, 0.0).
+	////////////////////////////////////////////////////////////
+	Component(Vector2f pos=Vector2f());
+
+	////////////////////////////////////////////////////////////
 	/// \brief The method that is called every tick.
 	///	
 	///	This method is called every tick by an Actor that the component is attached to. It isn`t
@@ -59,7 +67,7 @@ protected:
 	///	The position of the component. Note that it is position relative to the object that the
 	///	component is attached to.
 	////////////////////////////////////////////////////////////
-	snow::Vector2f position;
+	Vector2f position;
 
 };
 

@@ -16,6 +16,11 @@
 snow::Gui::GuiPriorityComparator snow::Gui::comparator_;
 snow::Gui::GuiPointerPriorityComparator snow::Gui::pointerComparator_;
 
+snow::Gui::Gui(int priority)
+{
+	priority_ = priority;
+}
+
 snow::IComparator<snow::Gui>* snow::Gui::getComparator()
 {
 	return &comparator_;

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Component\Component.h" />
     <ClInclude Include="src\Layer\Gui\Gui.h" />
     <ClInclude Include="src\Layer\Layer.h" />
     <ClInclude Include="src\Layer\Level\Level.h" />
@@ -31,7 +32,11 @@
     <ClInclude Include="src\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Actor\Actor.cpp" />
+    <ClCompile Include="src\Actor\Actor.h" />
+    <ClCompile Include="src\Component\Component.cpp" />
     <ClCompile Include="src\Layer\Gui\Gui.cpp" />
+    <ClCompile Include="src\Layer\Layer.cpp" />
     <ClCompile Include="src\Layer\Level\Level.cpp" />
     <ClCompile Include="src\Types\Vectors.cpp" />
     <ClCompile Include="src\Window\Window.cpp" />

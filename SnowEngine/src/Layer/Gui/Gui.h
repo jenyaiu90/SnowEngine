@@ -24,25 +24,25 @@ namespace snow
 ///	
 ///	This class can be used for creating, management and displaying GUI.
 ////////////////////////////////////////////////////////////
-class Gui : public ILayer
+class Gui : public Layer
 {
 public:
 
 	////////////////////////////////////////////////////////////
-	///	\brief The method for displaying the GUI.
-	///	
-	///	Draws the GUI on the passed window.
-	///	\param window The window for drawing (uses an SMFL window).
-	////////////////////////////////////////////////////////////
-	void draw(sf::RenderWindow& window) override;
-
-	////////////////////////////////////////////////////////////
-	///	\brief Returns the comparator.
+	///	\brief Returns the comparator of Gui.
 	///	
 	///	This method returns the comparator that compares priorities of GUI`s.
 	///	\return A pointer to IComparator.
 	////////////////////////////////////////////////////////////
 	static IComparator<Gui>* getComparator();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the comparator of Gui*.
+	///	
+	///	This method returns the comparator that compares priorities of GUI`s (Gui*).
+	///	\return A pointer to IComparator.
+	////////////////////////////////////////////////////////////
+	static IComparator<Gui*>* getPointerComparator();
 
 protected:
 
@@ -55,7 +55,15 @@ protected:
 		int compare(const Gui& first, const Gui& second) override;
 	};
 
+	class GuiPointerPriorityComparator : public IComparator<Gui*>
+	{
+		typedef Gui* GuiPointer; // I really don`t know why it works but it works. I hope...
+	public:
+		int compare(const GuiPointer& first, const GuiPointer& second) override;
+	};
+
 	static GuiPriorityComparator comparator_;
+	static GuiPointerPriorityComparator pointerComparator_;
 };
 
 }

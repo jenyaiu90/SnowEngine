@@ -27,6 +27,12 @@
     <Filter Include="Source Files\Layer\Gui">
       <UniqueIdentifier>{ce11cae4-bc06-47e6-927b-02e3bca01c79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Actor">
+      <UniqueIdentifier>{da53aaf1-ff63-4a97-bbcb-1bc7364527cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Component">
+      <UniqueIdentifier>{df09b4b9-429b-48ca-a2e9-5079749850e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SnowEngine.h">
@@ -59,6 +65,9 @@
     <ClInclude Include="src\Types\List\Comparator.h">
       <Filter>Source Files\Types\List</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Component.h">
+      <Filter>Source Files\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -72,6 +81,18 @@
     </ClCompile>
     <ClCompile Include="src\Layer\Level\Level.cpp">
       <Filter>Source Files\Layer\Level</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Actor\Actor.h">
+      <Filter>Source Files\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Actor\Actor.cpp">
+      <Filter>Source Files\Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Component.cpp">
+      <Filter>Source Files\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Layer\Layer.cpp">
+      <Filter>Source Files\Layer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

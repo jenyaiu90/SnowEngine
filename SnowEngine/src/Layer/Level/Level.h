@@ -25,17 +25,10 @@ namespace snow
 ///	one level. If you need a level with other behavior, you may create a custom level: a new class
 ///	that is inherited from Level class.
 ////////////////////////////////////////////////////////////
-class Level : public ILayer
+class Level : public Layer
 {
 public:
 
-	////////////////////////////////////////////////////////////
-	///	\brief The method for displaying the GUI.
-	///	
-	///	Draws the GUI on the passed window.
-	///	\param window The window for drawing (uses an SMFL window).
-	////////////////////////////////////////////////////////////
-	void draw(sf::RenderWindow& window) override;
 };
 
 }

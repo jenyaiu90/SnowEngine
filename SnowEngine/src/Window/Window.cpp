@@ -61,7 +61,7 @@ bool snow::Window::attach(Level& level, bool safeMode)
 
 bool snow::Window::attach(Gui& gui)
 {
-	return guis_.add(gui, *Gui::getComparator());
+	return guis_.add(&gui, *Gui::getPointerComparator());
 }
 
 ///////////////
@@ -102,15 +102,14 @@ void snow::Window::windowCycle()
 		window_->clear();
 		if (level_ != nullptr)
 		{
-			level_->draw(*window_);
+			level_->tick(delta, *window_);
 		}
 
-		if (!guis_.isEmpty())
+		if (guis_.startIterate())
 		{
-			guis_.startIterate();
 			do
 			{
-				guis_.getIterator().draw(*window_);
+				guis_.getIterator()->tick(delta, *window_);
 			} while (guis_.iterateNext());
 			guis_.stopIterate();
 		}

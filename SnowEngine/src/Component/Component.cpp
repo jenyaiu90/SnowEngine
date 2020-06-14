@@ -1,14 +1,14 @@
     ////////////////////////////////////////
    //         After by SnegirSoft        //
   //                                    //
- //  File: Level.cpp                   //
+ //  File: Component.cpp               //
 ////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////
 ///	\file
-///	\brief The file with the definitions for the Level class.
+/// \brief The file for the Component class.
 ///	
-///	In this file there are the definitions of the methods of the Level class.
+///	This file contains the definition of the methods of the Component class.
 ////////////////////////////////////////////////////////////
 
-#include "Level.h"
+#include "Component.h"

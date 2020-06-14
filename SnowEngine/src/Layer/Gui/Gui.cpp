@@ -14,18 +14,24 @@
 #include "Gui.h"
 
 snow::Gui::GuiPriorityComparator snow::Gui::comparator_;
-
-void snow::Gui::draw(sf::RenderWindow& window)
-{
-
-}
+snow::Gui::GuiPointerPriorityComparator snow::Gui::pointerComparator_;
 
 snow::IComparator<snow::Gui>* snow::Gui::getComparator()
 {
 	return &comparator_;
 }
 
+snow::IComparator<snow::Gui*>* snow::Gui::getPointerComparator()
+{
+	return &pointerComparator_;
+}
+
 int snow::Gui::GuiPriorityComparator::compare(const Gui& first, const Gui& second)
 {
 	return first.priority_ - second.priority_;
+}
+
+int snow::Gui::GuiPointerPriorityComparator::compare(const GuiPointer& first, const GuiPointer& second)
+{
+	return (*first).priority_ - (*second).priority_;
 }

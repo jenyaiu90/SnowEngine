@@ -286,7 +286,10 @@ LinkedList<T>::~LinkedList()
 	}
 	else
 	{
-		delete begin_;
+		if (begin_ != nullptr)
+		{
+			delete begin_;
+		}
 	}
 }
 
@@ -536,7 +539,7 @@ T& LinkedList<T>::operator[](int pos) const
 template<typename T>
 LinkedList<T> LinkedList<T>::operator=(const LinkedList<T>& list)
 {
-	~LinkedList();
+	LinkedList::~LinkedList();
 	iterator_ = nullptr;
 	iteratorPos_ = -1;
 	for (Note* p = list.begin_; p != nullptr; p = p->next)

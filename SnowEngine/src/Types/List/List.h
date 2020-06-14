@@ -6,9 +6,9 @@
 
 ////////////////////////////////////////////////////////////
 ///	\file
-///	\brief File for the List interface.
+///	\brief File for the IList interface.
 ///
-///	In this file the List interface is declares ans defined.
+///	In this file the IList interface is declares ans defined.
 ////////////////////////////////////////////////////////////
 
 #pragma once

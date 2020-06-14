@@ -86,7 +86,7 @@ protected:
 	bool isFullscreen_;
 
 	Level* level_;
-	LinkedList<Gui> guis_;
+	LinkedList<Gui*> guis_;
 
 	void startWindow(const std::string& title, const Vector2i& resolution, bool isFullscreen);
 	void windowCycle();

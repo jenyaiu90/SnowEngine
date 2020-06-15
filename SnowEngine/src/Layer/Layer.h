@@ -33,7 +33,7 @@ public:
 	///	the layer. You may override it but it is recommended to call parent`s method in your
 	///	override:
 	/// \code
-	///		void tick(const int& delta) override;
+	///		void tick(const int& delta) override
 	///		{
 	///			__super::tick(delta);
 	///			// Do what you need
@@ -46,17 +46,25 @@ public:
 	////////////////////////////////////////////////////////////
 	virtual void tick(const int& delta, sf::RenderWindow& window);
 
-protected:
-
 	////////////////////////////////////////////////////////////
 	///	\brief Spawns an actor to the layer.
 	///	
 	///	Spawns a passed actor in the layer. Note that SnowEngine calls the actors` tick() method
-	///	sequentially starting from a one that was added earlier.
+	///	sequentially starting from a one that was added earlier. If you need to override this
+	///	method, it is recommended to call parent`s method:
+	///	\code
+	///		bool spawnActor(Actor& actor) override
+	///		{
+	///			__super::spawnActor(actor);
+	///			// Do what you need.
+	///		}
+	///	\endcode
+	///	\warning This method should be called only by an actor. It isn`t recommended to use it in
+	///	your code.
 	///	\param actor An actor to spawn.
 	///	\return <b>true</b> if the actor was successfully spawned.
 	////////////////////////////////////////////////////////////
-	bool spawn(Actor& actor);
+	virtual bool spawnActor(Actor* actor);
 
 private:
 

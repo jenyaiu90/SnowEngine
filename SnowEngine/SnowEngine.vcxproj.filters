@@ -33,6 +33,9 @@
     <Filter Include="Source Files\Component">
       <UniqueIdentifier>{df09b4b9-429b-48ca-a2e9-5079749850e4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Component\Audio">
+      <UniqueIdentifier>{edc2b14d-0a83-4c76-8c8e-80ac055e665a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SnowEngine.h">
@@ -68,6 +71,12 @@
     <ClInclude Include="src\Component\Component.h">
       <Filter>Source Files\Component</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Audio\SoundComponent.h">
+      <Filter>Source Files\Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Audio\MusicComponent.h">
+      <Filter>Source Files\Component\Audio</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -93,6 +102,12 @@
     </ClCompile>
     <ClCompile Include="src\Layer\Layer.cpp">
       <Filter>Source Files\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Audio\SoundComponent.cpp">
+      <Filter>Source Files\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Audio\MusicComponent.cpp">
+      <Filter>Source Files\Component\Audio</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

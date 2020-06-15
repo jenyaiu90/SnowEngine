@@ -13,7 +13,6 @@
 
 #include "Component.h"
 
-snow::Component::Component(Vector2f pos) :
-	position(pos)
-{
-}
+const std::string snow::Component::SOUNDS_PATH = "res/sounds/";
+const std::string snow::Component::MUSIC_PATH = "res/music/";
+const std::string snow::Component::TEXTURES_PATH = "res/textures/";

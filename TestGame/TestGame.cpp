@@ -1,12 +1,11 @@
 #include <conio.h>
 #include "SnowEngine.h"
+#include "Component/Audio/MusicComponent.h"
+#include <SFML/Audio.hpp>
+#include <windows.h>
 
 int main()
 {
-	snow::Window window("Hello", snow::Vector2i(800, 600));
-
-	snow::Gui gui;
-	window.attach(gui);
 
 	_getch();
 }

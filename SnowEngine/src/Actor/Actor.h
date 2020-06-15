@@ -13,12 +13,12 @@
 
 #pragma once
 
-#include "../Types/Vectors.h"
-#include "../Types/List/LinkedList.h"
 #include "../Component/Component.h"
 
 namespace snow
 {
+
+class Layer;
 
 ////////////////////////////////////////////////////////////
 ///	\brief The class of any displayable object.
@@ -31,12 +31,13 @@ class Actor
 public:
 
 	////////////////////////////////////////////////////////////
-	///	\brief The constructor that sets a world position.
+	///	\brief The constructor that sets a world position and spawns the actor.
 	///	
 	///	This constructor sets a world position of the actor.
+	///	\param layer A layer where the actor will be spawned.
 	///	\param pos A world position. A default value is (0.0, 0.0).
 	////////////////////////////////////////////////////////////
-	Actor(Vector2f pos=Vector2f());
+	Actor(Layer* layer, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
 	///	\brief This method is called every tick.
@@ -58,6 +59,17 @@ public:
 	////////////////////////////////////////////////////////////
 	virtual void tick(const int& delta, sf::RenderWindow& window);
 
+	////////////////////////////////////////////////////////////
+	///	\brief Attach a component to the actor.
+	///	
+	///	Attaches a passed component to the actor. This method should be called only from component.
+	///	It isn`t recommended to use it in your code. Note that SnowEngine calls the components`
+	///	tick() method sequentially starting from a one that was added earlier.
+	///	\param component A component to attaching.
+	///	\return <b>true</b> if the component was successfully attached.
+	////////////////////////////////////////////////////////////
+	bool attachComponent(Component* component);
+
 protected:
 
 	////////////////////////////////////////////////////////////
@@ -67,32 +79,11 @@ protected:
 	////////////////////////////////////////////////////////////
 	Vector2f position;
 
-	////////////////////////////////////////////////////////////
-	///	\brief Attach a component to the actor.
-	///	
-	///	Attaches a passed component to the actor. It is recommended to attach components in the
-	///	constructor of your custom actor:
-	///	\code
-	///		class ExampleActor : public snow::Actor
-	///		{
-	///		public:
-	///			ExampleActor()
-	///			{
-	///				snow::TextComponent textComponent; // Example component
-	///				attach(textComponent); // Attaching the component to the actor
-	///			}
-	///		};
-	///	\endcode
-	///	Note that SnowEngine calls the components` tick() method sequentially starting from a one
-	///	that was added earlier.
-	///	\param component A component to attaching.
-	///	\return <b>true</b> if the component was successfully attached.
-	////////////////////////////////////////////////////////////
-	bool attach(Component& component);
-
 private:
 
-	LinkedList<Component*> components;
+	bool isSpawned_;
+	LinkedList<Component*> components_;
+
 };
 
 }

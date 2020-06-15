@@ -14,11 +14,14 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <string>
 #include "../Types/Vectors.h"
 #include "../Types/List/LinkedList.h"
 
 namespace snow
 {
+
+class Actor;
 
 ////////////////////////////////////////////////////////////
 /// \brief The abstract Component class.
@@ -32,13 +35,17 @@ class Component
 {
 public:
 
+	static const std::string SOUNDS_PATH;	///< Path to sounds folder.
+	static const std::string MUSIC_PATH;	///< Path to music folder.
+	static const std::string TEXTURES_PATH;	///< Path to textures folder.
+
 	////////////////////////////////////////////////////////////
-	///	\brief The constructor that sets a relative position.
+	///	\brief The constructor that sets a relative position and attaches the component to actor.
 	///	
-	///	This constructor sets a relative position of the component.
+	///	This constructor sets a relative position of the component and attached
 	///	\param pos A relative position. A default value is (0.0, 0.0).
 	////////////////////////////////////////////////////////////
-	Component(Vector2f pos=Vector2f());
+	Component(Actor* actor, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
 	/// \brief The method that is called every tick.

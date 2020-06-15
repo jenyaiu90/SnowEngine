@@ -31,7 +31,13 @@ void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 	}
 }
 
-bool snow::Layer::spawn(snow::Actor& actor)
+bool snow::Layer::spawnActor(snow::Actor* actor)
 {
-	return actors.add(&actor);
+	return actors.add(actor);
+}
+
+snow::Actor::Actor(Layer* layer, Vector2f pos) :
+	position(pos)
+{
+	layer->spawnActor(this);
 }

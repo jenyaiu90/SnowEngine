@@ -13,32 +13,33 @@
 
 #include "Actor.h"
 
-snow::Actor::Actor(Vector2f pos) :
-	position(pos)
-{
-}
-
 void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 {
-	if (components.startIterate())
+	if (isSpawned_ && components_.startIterate())
 	{
 		do
 		{
-			if (components.getIterator() != nullptr)
+			if (components_.getIterator() != nullptr)
 			{
-				components.getIterator()->tick(delta, window);
+				components_.getIterator()->tick(delta, window);
 			}
 			else
 			{
-				components.remove(components.getIteratorPosition());
+				components_.remove(components_.getIteratorPosition());
 			}
-		} while (components.iterateNext());
-		components.stopIterate();
+		} while (components_.iterateNext());
+		components_.stopIterate();
 	}
 }
 
-bool snow::Actor::attach(snow::Component& component)
+bool snow::Actor::attachComponent(snow::Component* component)
 {
-	components.add(&component);
+	components_.add(component);
 	return true;
+}
+
+snow::Component::Component(snow::Actor* actor, snow::Vector2f pos) :
+	position(pos)
+{
+	actor->attachComponent(this);
 }

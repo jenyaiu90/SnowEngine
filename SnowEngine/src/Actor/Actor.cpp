@@ -24,13 +24,13 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 			((destination->x - position.x < 0 ^ destination->x - newPos.x < 0) ||
 			(destination->y - position.y < 0 ^ destination->y - newPos.y < 0)))
 		{
-			position = *destination;
+			setPosition(*destination);
 			delete destination;
 			speed = snow::Vector2f(0.f, 0.f);
 		}
 		else
 		{
-			position = newPos;
+			setPosition(newPos);
 		}
 	}
 
@@ -60,7 +60,7 @@ void snow::Actor::move(snow::Vector2f to, int time)
 {
 	if (time == 0)
 	{
-		position = to;
+		setPosition(to);
 	}
 	else
 	{
@@ -70,6 +70,26 @@ void snow::Actor::move(snow::Vector2f to, int time)
 			delete destination;
 		}
 		destination = new snow::Vector2f(to);
+	}
+}
+
+void snow::Actor::setPosition(Vector2f position)
+{
+	this->position = position;
+	if (components_.startIterate())
+	{
+		do
+		{
+			if (components_.getIterator() != nullptr)
+			{
+				components_.getIterator()->actorMove(position);
+			}
+			else
+			{
+				components_.remove(components_.getIteratorPosition());
+			}
+		} while (components_.iterateNext());
+		components_.stopIterate();
 	}
 }
 

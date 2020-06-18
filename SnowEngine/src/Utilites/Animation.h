@@ -65,7 +65,7 @@ public:
 	///	\endcode
 	///	Now we can use this animation to move an actor:
 	///	\code
-	///		// In the other thread (not obligatory)
+	///		// In the other thread (for example, not obligatory)
 	///		// actor is the target actor
 	///		sf::Clock clock; // An SFML clock
 	///		int time = 0; // A time spending from start

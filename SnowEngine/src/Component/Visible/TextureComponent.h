@@ -32,12 +32,27 @@ public:
 	///	\brief The constructor of the TextureComponent.
 	///	
 	///	This constructor attaches new component to an actor, sets its relative position and a file
-	///	with a source texture.
+	///	with a source texture. It doesn`t set the texture rect.
 	///	\param actor An actor that the component will be attached to.
 	///	\param file A file with a source texture.
-	///	\param pos A position of the component relative to a base actor.
+	///	\param pos A position of the component relative to a base actor. The default value
+	///	is (0, 0).
 	////////////////////////////////////////////////////////////
 	TextureComponent(Actor* actor, const std::string& file, Vector2f pos=Vector2f());
+
+	////////////////////////////////////////////////////////////
+	///	\brief The constructor of the TextureComponent.
+	///	
+	///	This constructor attaches new component to an actor, sets its relative position, a file
+	///	with a source texture and the texture rect.
+	///	\param actor An actor that the component will be attached to.
+	///	\param file A file with a source texture.
+	///	\param textureRect A rectangle for texture.
+	///	\param pos A position of the component relative to a base actor. The default value
+	///	is (0, 0).
+	////////////////////////////////////////////////////////////
+	TextureComponent(Actor* actor, const std::string& file,
+					 IntRect textureRect, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
 	///	\brief Method that is called every tick.
@@ -55,6 +70,15 @@ public:
 	///	perfomance.
 	////////////////////////////////////////////////////////////
 	virtual void tick(const int& delta, sf::RenderWindow& window) override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief When actor moves.
+	///	
+	///	This method should be called when actor that the component is attached to is moved. It
+	///	changes the position of the sprite.
+	///	\param to The point that the actor was moved to.
+	////////////////////////////////////////////////////////////
+	virtual void actorMove(Vector2f to) override;
 
 private:
 

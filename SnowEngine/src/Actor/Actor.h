@@ -70,6 +70,14 @@ public:
 	Vector2f getPosition();
 
 	////////////////////////////////////////////////////////////
+	///	\brief Changes the actor`s position.
+	///	
+	///	This method lets you to change the actor`s position. Calls components` actorMove() method.
+	///	\position The new actor`s position.
+	////////////////////////////////////////////////////////////
+	virtual void setPosition(Vector2f position);
+
+	////////////////////////////////////////////////////////////
 	///	\brief Moves the actor.
 	///	
 	///	Allows to move the actor. Can do it with an animation.
@@ -77,7 +85,7 @@ public:
 	///	\param time The time it takes to move the actor in milliseconds. If 0, it will move
 	///	without an animation.
 	////////////////////////////////////////////////////////////
-	void move(Vector2f to, int time=0);
+	virtual void move(Vector2f to, int time=0);
 
 	////////////////////////////////////////////////////////////
 	///	\brief Attach a component to the actor.

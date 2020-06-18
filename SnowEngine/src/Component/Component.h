@@ -68,6 +68,15 @@ public:
 	virtual void tick(const int& delta, sf::RenderWindow& window) = 0;
 
 	////////////////////////////////////////////////////////////
+	///	\brief When actor moves.
+	///	
+	///	This method should be called when actor that the component is attached to is moved. It can,
+	///	for example, change a position of the sprite or do nothing.
+	///	\param to The point that the actor was moved to.
+	////////////////////////////////////////////////////////////
+	virtual void actorMove(Vector2f to) = 0;
+
+	////////////////////////////////////////////////////////////
 	///	\brief Returns component`s relative position.
 	///	
 	///	This method allows you to get component`s position relative to the base actor.

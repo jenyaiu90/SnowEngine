@@ -25,10 +25,21 @@ snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string& 
 	sprite_->setPosition(static_cast<sf::Vector2f>(position));
 }
 
+snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string & file,
+										 snow::IntRect textureRect, snow::Vector2f pos) :
+	TextureComponent(actor, file, pos)
+{
+	sprite_->setTextureRect(textureRect);
+}
+
 void snow::TextureComponent::tick(const int& delta, sf::RenderWindow& window)
 {
 	snow::Vector2f nps = getWorldPosition();
 	sf::Vector2f np = static_cast<sf::Vector2f>(nps);
 	sprite_->setPosition(np);
 	window.draw(*sprite_);
+}
+void snow::TextureComponent::actorMove(snow::Vector2f to)
+{
+	sprite_->setPosition(to + static_cast<sf::Vector2f>(position));
 }

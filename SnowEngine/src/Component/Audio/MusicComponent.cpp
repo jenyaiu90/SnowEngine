@@ -24,6 +24,10 @@ void snow::MusicComponent::tick(const int& delta, sf::RenderWindow& window)
 {
 }
 
+void snow::MusicComponent::actorMove(snow::Vector2f to)
+{
+}
+
 void snow::MusicComponent::play()
 {
 	music_.play();

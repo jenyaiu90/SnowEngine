@@ -2,6 +2,7 @@
 #include "SnowEngine.h"
 #include "Component/Visible/TextureComponent.h"
 #include <windows.h>
+#include <iostream>
 
 int main()
 {
@@ -13,7 +14,6 @@ int main()
 
 	Sleep(2000);
 	actor.move(snow::Vector2f(200, 200), 2000);
-	
 
 	_getch();
 }

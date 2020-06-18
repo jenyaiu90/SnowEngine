@@ -15,10 +15,15 @@
 #pragma once
 
 #include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 #include <stdexcept>
+
 
 namespace snow
 {
+
+typedef sf::IntRect IntRect;		///< You can use snow::IntRect instead of sf::IntRect.
+typedef sf::FloatRect FloatRect;	///< You can use snow::FloatRect instead of sf::FloatRect.
 
 ////////////////////////////////////////////////////////////
 ///	\brief A two-dimensional vector of integer

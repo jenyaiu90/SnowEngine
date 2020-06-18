@@ -15,25 +15,23 @@
 
 void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 {
-	if (actors.startIterate())
+	std::lock_guard<std::mutex> lock(actorsMutex_);
+	if (actors_.startIterate())
 	{
 		do
 		{
-			if (actors.getIterator() != nullptr)
+			if (actors_.getIterator() != nullptr)
 			{
-				actors.getIterator()->tick(delta, window);
+				actors_.getIterator()->tick(delta, window);
 			}
-			else
-			{
-				actors.remove(actors.getIteratorPosition());
-			}
-		} while (actors.iterateNext());
+		} while (actors_.iterateNext());
 	}
 }
 
 bool snow::Layer::spawnActor(snow::Actor* actor)
 {
-	return actors.add(actor);
+	std::lock_guard<std::mutex> lock(actorsMutex_);
+	return actors_.add(actor);
 }
 
 /////////////

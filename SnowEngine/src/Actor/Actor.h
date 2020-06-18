@@ -123,6 +123,7 @@ protected:
 
 private:
 
+	std::mutex componentsMutex_;
 	LinkedList<Component*> components_;
 
 };

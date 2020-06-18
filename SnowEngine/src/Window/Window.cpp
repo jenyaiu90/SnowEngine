@@ -100,7 +100,7 @@ void snow::Window::windowCycle()
 			}
 		}
 
-		windowMutex_.lock();
+		std::lock_guard<std::mutex> lock(windowMutex_);
 
 		window_->clear();
 		if (level_ != nullptr)
@@ -108,17 +108,22 @@ void snow::Window::windowCycle()
 			level_->tick(delta, *window_);
 		}
 
-		if (guis_.startIterate())
+		//guisMutex_ zone
 		{
-			do
+			std::lock_guard<std::mutex> lock(guisMutex_);
+			if (guis_.startIterate())
 			{
-				guis_.getIterator()->tick(delta, *window_);
-			} while (guis_.iterateNext());
-			guis_.stopIterate();
+				do
+				{
+					if (guis_.getIterator() != nullptr)
+					{
+						guis_.getIterator()->tick(delta, *window_);
+					}
+				} while (guis_.iterateNext());
+				guis_.stopIterate();
+			}
 		}
 
 		window_->display();
-
-		windowMutex_.unlock();
 	}
 }

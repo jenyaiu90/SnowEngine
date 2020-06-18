@@ -68,7 +68,8 @@ public:
 
 private:
 
-	LinkedList<Actor*> actors;
+	std::mutex actorsMutex_;
+	LinkedList<Actor*> actors_;
 
 };
 

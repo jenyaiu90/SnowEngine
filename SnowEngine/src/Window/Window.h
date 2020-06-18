@@ -78,6 +78,7 @@ public:
 
 protected:
 	std::mutex windowMutex_;
+	std::mutex guisMutex_;
 
 	sf::RenderWindow* window_;
 	std::string title_;

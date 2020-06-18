@@ -34,6 +34,7 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 		}
 	}
 
+	std::lock_guard<std::mutex> lock(componentsMutex_);
 	if (components_.startIterate())
 	{
 		do
@@ -41,10 +42,6 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 			if (components_.getIterator() != nullptr)
 			{
 				components_.getIterator()->tick(delta, window);
-			}
-			else
-			{
-				components_.remove(components_.getIteratorPosition());
 			}
 		} while (components_.iterateNext());
 		components_.stopIterate();
@@ -76,6 +73,7 @@ void snow::Actor::move(snow::Vector2f to, int time)
 void snow::Actor::setPosition(Vector2f position)
 {
 	this->position = position;
+	std::lock_guard<std::mutex> lock(componentsMutex_);
 	if (components_.startIterate())
 	{
 		do
@@ -84,10 +82,6 @@ void snow::Actor::setPosition(Vector2f position)
 			{
 				components_.getIterator()->actorMove(position);
 			}
-			else
-			{
-				components_.remove(components_.getIteratorPosition());
-			}
 		} while (components_.iterateNext());
 		components_.stopIterate();
 	}
@@ -95,7 +89,9 @@ void snow::Actor::setPosition(Vector2f position)
 
 bool snow::Actor::attachComponent(snow::Component* component)
 {
+	componentsMutex_.lock();
 	components_.add(component);
+	componentsMutex_.unlock();
 	return true;
 }
 

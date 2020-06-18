@@ -259,6 +259,7 @@ LinkedList<T>::LinkedList() :
 	iterator_(nullptr),
 	iteratorPos_(-1)
 {
+	iteratorPos_ = -1;
 }
 
 template<typename T>

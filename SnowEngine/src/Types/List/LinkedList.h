@@ -27,9 +27,9 @@ namespace snow
 ///	For fast passing through the list you can use a built-in iterator. Using a startIterate() method
 ///	sets iterator to the first element in the list. If the list is empty, this method returns
 ///	<b>false</b> Use an iterateNext() method for move the iterator to the next element. This method
-///	returns false if there is no next element. A getIterator() method returns a current element. A
-///	stopIterate() method clear the iterator. For example, for print all elements of the list, you
-///	can use the code below:
+///	returns <b>false</b> if there is no next element. A getIterator() method returns a current
+///	element. A stopIterate() method clear the iterator. For example, for print all elements of the
+///	list, you can use the code below:
 ///	\code
 ///		LinkedList<int> list;
 ///		... // Filling in the list
@@ -104,7 +104,7 @@ public:
 	///	\param item A new element.
 	///	\return <b>true</b> if an element was successfully added. Doesn`t clear the iterator.
 	////////////////////////////////////////////////////////////
-	bool add(const T& item) override;
+	virtual bool add(const T& item) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Adds a new element in the list with passed index.
@@ -114,7 +114,7 @@ public:
 	///	\param pos An index.
 	///	\return <b>true</b> if an element was successfullt added.
 	////////////////////////////////////////////////////////////
-	bool add(const T& item, int pos) override;
+	virtual bool add(const T& item, int pos) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Adds a new element without violating the sort of the list.
@@ -123,10 +123,10 @@ public:
 	///	passed comparator.
 	///	\param item An element to put.
 	///	\return <b>true</b> if an element was successfully added.
-	/// \warning Use this method only for sorted or empty list. The SnowEngine doesn`t controle
+	/// \warning Use this method only for sorted or empty list. The SnowEngine doesn`t control
 	///	this and work of this method for unsorted list may be wrong.
 	////////////////////////////////////////////////////////////
-	bool add(const T& item, IComparator<T>& comparator) override;
+	virtual bool add(const T& item, IComparator<T>& comparator) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Removes an element with passed index from the list.
@@ -135,7 +135,7 @@ public:
 	///	\param pos An index of removing element.
 	///	\return <b>true</b> if an element was successfully removed.
 	////////////////////////////////////////////////////////////
-	bool remove(int pos) override;
+	virtual bool remove(int pos) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief The method allows to fill the list with values from an array.
@@ -144,7 +144,7 @@ public:
 	///	\param array The pointer to the array to copy.
 	///	\param size The size of the array.
 	////////////////////////////////////////////////////////////
-	void sort(IComparator<T>& comparator) override;
+	virtual void sort(IComparator<T>& comparator) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief The method allows to fill the linked list with values from an array.
@@ -153,7 +153,7 @@ public:
 	///	\param array The pointer to the array to copy.
 	///	\param size The size of the array.
 	////////////////////////////////////////////////////////////
-	void fromArray(T* array, int size) override;
+	virtual void fromArray(T* array, int size) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Allows to get the array with values of the list.
@@ -171,7 +171,7 @@ public:
 	///	\return An address of the element.
 	///	\throws std::out_of_range if an index is out of bounds.
 	////////////////////////////////////////////////////////////
-	T& operator[](int pos) const override;
+	virtual T& operator[](int pos) const override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Copies a list.
@@ -225,7 +225,7 @@ public:
 	///	\return <b>false</b> if the iterator has reached the end of the list or the startIterate()
 	///	method wasn`t called.
 	////////////////////////////////////////////////////////////
-	bool iterateNext();
+	virtual bool iterateNext();
 
 	////////////////////////////////////////////////////////////
 	///	\brief Clears the iterator.
@@ -234,7 +234,7 @@ public:
 	////////////////////////////////////////////////////////////
 	void stopIterate();
 
-private:
+protected:
 	struct Note
 	{
 		Note* prev;

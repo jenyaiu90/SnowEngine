@@ -36,8 +36,13 @@ bool snow::Layer::spawnActor(snow::Actor* actor)
 	return actors.add(actor);
 }
 
+/////////////
+//  Actor  //
+/////////////
+
 snow::Actor::Actor(Layer* layer, Vector2f pos) :
-	position(pos)
+	position(pos),
+	components_()
 {
 	layer->spawnActor(this);
 }

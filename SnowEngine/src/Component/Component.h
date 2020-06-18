@@ -14,6 +14,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 #include "../Types/Vectors.h"
 #include "../Types/List/LinkedList.h"
@@ -66,6 +67,22 @@ public:
 	////////////////////////////////////////////////////////////
 	virtual void tick(const int& delta, sf::RenderWindow& window) = 0;
 
+	////////////////////////////////////////////////////////////
+	///	\brief Returns component`s relative position.
+	///	
+	///	This method allows you to get component`s position relative to the base actor.
+	///	\return The relative position as snow::Vector2f.
+	////////////////////////////////////////////////////////////
+	Vector2f getRelativePosition();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns component`s world position.
+	///	
+	///	This method lets you to get component`s world position.
+	///	\return The world position as snow::Vector2f.
+	////////////////////////////////////////////////////////////
+	Vector2f getWorldPosition();
+
 protected:
 
 	////////////////////////////////////////////////////////////
@@ -75,6 +92,10 @@ protected:
 	///	component is attached to.
 	////////////////////////////////////////////////////////////
 	Vector2f position;
+
+private:
+
+	Actor* actor_;
 
 };
 

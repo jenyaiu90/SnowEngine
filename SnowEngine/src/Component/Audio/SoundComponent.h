@@ -14,7 +14,6 @@
 #pragma once
 
 #include "../Component.h"
-#include <SFML/Audio.hpp>
 
 namespace snow
 {

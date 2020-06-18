@@ -36,6 +36,12 @@
     <Filter Include="Source Files\Component\Audio">
       <UniqueIdentifier>{edc2b14d-0a83-4c76-8c8e-80ac055e665a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Component\Visible">
+      <UniqueIdentifier>{8fae1c48-23fc-41fa-85d9-b01dd7b42847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilites">
+      <UniqueIdentifier>{bfb3fb41-f6cd-4c8e-b3f8-ec2b7655d890}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SnowEngine.h">
@@ -77,6 +83,15 @@
     <ClInclude Include="src\Component\Audio\MusicComponent.h">
       <Filter>Source Files\Component\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Visible\TextureComponent.h">
+      <Filter>Source Files\Component\Visible</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilites\Animation.h">
+      <Filter>Source Files\Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\CircularList.h">
+      <Filter>Source Files\Types\List</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -108,6 +123,9 @@
     </ClCompile>
     <ClCompile Include="src\Component\Audio\MusicComponent.cpp">
       <Filter>Source Files\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Visible\TextureComponent.cpp">
+      <Filter>Source Files\Component\Visible</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

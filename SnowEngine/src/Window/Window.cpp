@@ -13,6 +13,7 @@
 
 #include "Window.h"
 #include "../Types/List/ArrayList.h"
+#include <iostream>
 
 #include <thread>
 
@@ -80,8 +81,7 @@ void snow::Window::windowCycle()
 	sf::Clock clock;
 	while (window_->isOpen())
 	{
-		int delta = clock.getElapsedTime().asMilliseconds();
-		clock.restart();
+		int delta = clock.restart().asMilliseconds();
 
 		sf::Event event;
 		while (window_->pollEvent(event))

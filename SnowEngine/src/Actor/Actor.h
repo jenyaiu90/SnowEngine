@@ -14,6 +14,8 @@
 #pragma once
 
 #include "../Component/Component.h"
+#include <thread>
+#include <mutex>
 
 namespace snow
 {
@@ -60,6 +62,24 @@ public:
 	virtual void tick(const int& delta, sf::RenderWindow& window);
 
 	////////////////////////////////////////////////////////////
+	///	\brief Allows to get the world position.
+	///	
+	///	This method lets you to get actor`s position.
+	///	\return The world position as snow::Vector2f.
+	////////////////////////////////////////////////////////////
+	Vector2f getPosition();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Moves the actor.
+	///	
+	///	Allows to move the actor. Can do it with an animation.
+	///	\param to Sets a position that the actor will be moved to.
+	///	\param time The time it takes to move the actor in milliseconds. If 0, it will move
+	///	without an animation.
+	////////////////////////////////////////////////////////////
+	void move(Vector2f to, int time=0);
+
+	////////////////////////////////////////////////////////////
 	///	\brief Attach a component to the actor.
 	///	
 	///	Attaches a passed component to the actor. This method should be called only from component.
@@ -79,9 +99,22 @@ protected:
 	////////////////////////////////////////////////////////////
 	Vector2f position;
 
+	////////////////////////////////////////////////////////////
+	///	\brief The actor`s speed.
+	///	
+	///	The speed of the actor in px/ms.
+	////////////////////////////////////////////////////////////
+	Vector2f speed;
+
+	////////////////////////////////////////////////////////////
+	///	\brief The actor`s destination.
+	///	
+	///	The point that the actor moves to. If nullptr, the actor doesn`t have a destination.
+	////////////////////////////////////////////////////////////
+	Vector2f* destination;
+
 private:
 
-	bool isSpawned_;
 	LinkedList<Component*> components_;
 
 };

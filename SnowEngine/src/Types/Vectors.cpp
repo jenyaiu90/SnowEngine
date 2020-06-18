@@ -159,7 +159,7 @@ snow::Vector2f::Vector2f() :
 }
 
 snow::Vector2f::Vector2f(const Vector2f& vector) :
-	x(0.f), y(0.f)
+	x(vector.x), y(vector.y)
 {
 }
 

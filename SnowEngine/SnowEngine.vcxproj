@@ -22,15 +22,18 @@
     <ClInclude Include="src\Component\Audio\MusicComponent.h" />
     <ClInclude Include="src\Component\Audio\SoundComponent.h" />
     <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\Visible\TextureComponent.h" />
     <ClInclude Include="src\Layer\Gui\Gui.h" />
     <ClInclude Include="src\Layer\Layer.h" />
     <ClInclude Include="src\Layer\Level\Level.h" />
     <ClInclude Include="src\SnowEngine.h" />
     <ClInclude Include="src\Types\List\ArrayList.h" />
+    <ClInclude Include="src\Types\List\CircularList.h" />
     <ClInclude Include="src\Types\List\Comparator.h" />
     <ClInclude Include="src\Types\List\LinkedList.h" />
     <ClInclude Include="src\Types\List\List.h" />
     <ClInclude Include="src\Types\Vectors.h" />
+    <ClInclude Include="src\Utilites\Animation.h" />
     <ClInclude Include="src\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +42,7 @@
     <ClCompile Include="src\Component\Audio\MusicComponent.cpp" />
     <ClCompile Include="src\Component\Audio\SoundComponent.cpp" />
     <ClCompile Include="src\Component\Component.cpp" />
+    <ClCompile Include="src\Component\Visible\TextureComponent.cpp" />
     <ClCompile Include="src\Layer\Gui\Gui.cpp" />
     <ClCompile Include="src\Layer\Layer.cpp" />
     <ClCompile Include="src\Layer\Level\Level.cpp" />

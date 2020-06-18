@@ -14,7 +14,7 @@
 #include "Window.h"
 #include "../Types/List/ArrayList.h"
 #include <iostream>
-
+#include <chrono>
 #include <thread>
 
 ////////////
@@ -78,10 +78,13 @@ void snow::Window::startWindow(const std::string& title, const Vector2i& resolut
 
 void snow::Window::windowCycle()
 {
-	sf::Clock clock;
+	auto first_time = std::chrono::system_clock::now();
+	auto second_time = first_time;
 	while (window_->isOpen())
 	{
-		int delta = clock.restart().asMilliseconds();
+		second_time = std::chrono::system_clock::now();
+		int delta = (second_time - first_time).count() / 10000;
+		first_time = second_time;
 
 		sf::Event event;
 		while (window_->pollEvent(event))

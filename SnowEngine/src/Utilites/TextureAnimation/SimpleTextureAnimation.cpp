@@ -6,12 +6,11 @@
 
 #include "SimpleTextureAnimation.h"
 
-snow::SimpleTextureAnimation::SimpleTextureAnimation(sf::Sprite& sprite, int duration,
+snow::SimpleTextureAnimation::SimpleTextureAnimation(int duration,
 													 snow::Vector2i spriteSize,
 													 snow::Vector2i tilesCount,
 													 int tilesInLastRow,
 													 snow::Vector2i firstTile) :
-	TextureAnimation(sprite),
 	duration_(duration),
 	spriteSize_(spriteSize),
 	firstTile_(firstTile),
@@ -20,11 +19,14 @@ snow::SimpleTextureAnimation::SimpleTextureAnimation(sf::Sprite& sprite, int dur
 	timeCounter_(0),
 	currentRectPosition_(0, 0)
 {
-	sprite_->setTextureRect(IntRect(firstTile_, spriteSize_));
 }
 
 void snow::SimpleTextureAnimation::tick(const int& delta)
 {
+	if (sprite_ == nullptr)
+	{
+		return;
+	}
 	timeCounter_ += delta;
 	if (timeCounter_ >= duration_)
 	{
@@ -66,5 +68,8 @@ void snow::SimpleTextureAnimation::reset()
 	timeCounter_ = 0;
 	currentRectPosition_.x = 0;
 	currentRectPosition_.y = 0;
-	sprite_->setTextureRect(IntRect(firstTile_, spriteSize_));
+	if (sprite_ != nullptr)
+	{
+		sprite_->setTextureRect(IntRect(firstTile_, spriteSize_));
+	}
 }

@@ -25,7 +25,6 @@ public:
 	///	\brief The constructor of SimpleTextureAnimation (it doesn`t seem simple).
 	///	
 	///	Creates a new SimpleTextureAnimation object.
-	///	\param sprite The sprite that will be animated.
 	///	\param duration The duration of one animation frame.
 	///	\param spriteSize The size of one tile in pixels.
 	///	\param tilesCount x is the count of tiles in one row, y — in one column.
@@ -33,7 +32,7 @@ public:
 	///	\param firstTile The coordinates of the first tile in the tileset in pixels. The default
 	///	value is (0, 0).
 	////////////////////////////////////////////////////////////
-	SimpleTextureAnimation(sf::Sprite& sprite, int duration, Vector2i spriteSize,
+	SimpleTextureAnimation(int duration, Vector2i spriteSize,
 						   Vector2i tilesCount, int tilesInLastRow,
 						   Vector2i firstTile=snow::Vector2i(0, 0));
 

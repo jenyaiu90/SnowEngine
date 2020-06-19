@@ -19,14 +19,6 @@ namespace snow
 class TextureAnimation
 {
 public:
-
-	////////////////////////////////////////////////////////////
-	///	\brief A standart constructor of the TextureAnimation.
-	///	
-	///	This constructor creates a new TextureAnimation object and sets the sprite to it.
-	///	\param sprite The sprite that will be animated.
-	////////////////////////////////////////////////////////////
-	TextureAnimation(sf::Sprite& sprite);
 	
 	////////////////////////////////////////////////////////////
 	///	\brief Method that is calles every tick.
@@ -42,6 +34,22 @@ public:
 	///	Starts the animation from the begin.
 	////////////////////////////////////////////////////////////
 	virtual void reset() = 0;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets a sprite to animate.
+	///	
+	///	This methos allows to set a sprite that will be animated. If the sprite isn`t set, the
+	///	animation doesn`t work. If you use AnimationComponent, you shouldn`t set the sprite.
+	////////////////////////////////////////////////////////////
+	virtual void setSprite(sf::Sprite* sprite);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the pointer to the sprite.
+	///	
+	///	This method allows to get the pointer to the sprite that is animated by this
+	///	TextureAnimation.
+	////////////////////////////////////////////////////////////
+	virtual sf::Sprite* getSprite();
 
 protected:
 

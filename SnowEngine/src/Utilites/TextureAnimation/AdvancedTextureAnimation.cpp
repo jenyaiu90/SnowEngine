@@ -6,11 +6,9 @@
 
 #include "AdvancedTextureAnimation.h"
 
-snow::AdvancedTextureAnimation::AdvancedTextureAnimation(sf::Sprite& sprite,
-														 snow::Vector2i spriteSize,
+snow::AdvancedTextureAnimation::AdvancedTextureAnimation(snow::Vector2i spriteSize,
 														 snow::ArrayList<int> durations,
 														 snow::ArrayList<snow::Vector2i> tilePositions) :
-	TextureAnimation(sprite),
 	spriteSize_(spriteSize),
 	durations_(durations),
 	tilePositions_(tilePositions),
@@ -21,11 +19,14 @@ snow::AdvancedTextureAnimation::AdvancedTextureAnimation(sf::Sprite& sprite,
 	{
 		throw std::logic_error("durations and tilePositions have different sizes");
 	}
-	sprite_->setTextureRect(IntRect(tilePositions_[0], spriteSize_));
 }
 
 void snow::AdvancedTextureAnimation::tick(const int& delta)
 {
+	if (sprite_ == nullptr)
+	{
+		return;
+	}
 	timeCounter_ += delta;
 	if (timeCounter_ >= durations_[currentTile_])
 	{
@@ -46,5 +47,8 @@ void snow::AdvancedTextureAnimation::reset()
 {
 	timeCounter_ = 0;
 	currentTile_ = 0;
-	sprite_->setTextureRect(IntRect(tilePositions_[0], spriteSize_));
+	if (sprite_ != nullptr)
+	{
+		sprite_->setTextureRect(IntRect(tilePositions_[0], spriteSize_));
+	}
 }

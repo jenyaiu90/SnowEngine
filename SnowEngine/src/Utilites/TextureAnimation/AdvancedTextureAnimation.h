@@ -26,7 +26,6 @@ public:
 	///	\brief The constructor of SimpleTextureAnimation (it doesn`t seem simple).
 	///	
 	///	Creates a new SimpleTextureAnimation object.
-	///	\param sprite The sprite that will be animated.
 	///	\param spriteSize The size of one tile in pixels.
 	///	\param durations The array list with durations of tiles. durations[i] is a duration of the
 	///	i-th tile.
@@ -34,7 +33,7 @@ public:
 	///	of the i-th tile.
 	///	\throws std::logic_error if The durations` and tilePositions` sizes aren`t equal.
 	////////////////////////////////////////////////////////////
-	AdvancedTextureAnimation(sf::Sprite& sprite, Vector2i spriteSize, ArrayList<int> durations,
+	AdvancedTextureAnimation(Vector2i spriteSize, ArrayList<int> durations,
 							 ArrayList<Vector2i> tilePositions);
 
 	////////////////////////////////////////////////////////////

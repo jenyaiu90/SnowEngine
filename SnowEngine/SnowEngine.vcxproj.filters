@@ -104,6 +104,9 @@
     <ClInclude Include="src\Utilites\TextureAnimation\AdvancedTextureAnimation.h">
       <Filter>Source Files\Utilites\TextureAnimation</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Visible\AnimationComponent.h">
+      <Filter>Source Files\Component\Visible</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -147,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="src\Utilites\TextureAnimation\AdvancedTextureAnimation.cpp">
       <Filter>Source Files\Utilites\TextureAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Visible\AnimationComponent.cpp">
+      <Filter>Source Files\Component\Visible</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

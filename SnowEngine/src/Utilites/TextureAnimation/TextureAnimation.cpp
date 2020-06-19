@@ -6,7 +6,13 @@
 
 #include "TextureAnimation.h"
 
-snow::TextureAnimation::TextureAnimation(sf::Sprite& sprite) :
-	sprite_(&sprite)
+void snow::TextureAnimation::setSprite(sf::Sprite* sprite)
 {
+	sprite_ = sprite;
+	reset();
+}
+
+sf::Sprite* snow::TextureAnimation::getSprite()
+{
+	return sprite_;
 }

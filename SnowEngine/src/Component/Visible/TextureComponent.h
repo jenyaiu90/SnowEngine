@@ -155,12 +155,14 @@ public:
 	////////////////////////////////////////////////////////////
 	virtual void actorMove(Vector2f to) override;
 
+protected:
+
+	sf::Sprite* sprite_;	///< The displaying sprite.
+
 private:
 
 	std::string file_;
-
 	sf::Texture* texture_;
-	sf::Sprite* sprite_;
 
 };
 

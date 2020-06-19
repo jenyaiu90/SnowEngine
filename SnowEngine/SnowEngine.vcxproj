@@ -22,6 +22,7 @@
     <ClInclude Include="src\Component\Audio\MusicComponent.h" />
     <ClInclude Include="src\Component\Audio\SoundComponent.h" />
     <ClInclude Include="src\Component\Component.h" />
+    <ClInclude Include="src\Component\Visible\AnimationComponent.h" />
     <ClInclude Include="src\Component\Visible\TextureComponent.h" />
     <ClInclude Include="src\Layer\Gui\Gui.h" />
     <ClInclude Include="src\Layer\Layer.h" />
@@ -45,6 +46,7 @@
     <ClCompile Include="src\Component\Audio\MusicComponent.cpp" />
     <ClCompile Include="src\Component\Audio\SoundComponent.cpp" />
     <ClCompile Include="src\Component\Component.cpp" />
+    <ClCompile Include="src\Component\Visible\AnimationComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextureComponent.cpp" />
     <ClCompile Include="src\Layer\Gui\Gui.cpp" />
     <ClCompile Include="src\Layer\Layer.cpp" />

@@ -4,13 +4,6 @@
  //  File: Component.cpp               //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-/// \brief The file for the Component class.
-///	
-///	This file contains the definition of the methods of the Component class.
-////////////////////////////////////////////////////////////
-
 #include "Component.h"
 
 // I don`t know WHY I have to write this line but without it nothing works.

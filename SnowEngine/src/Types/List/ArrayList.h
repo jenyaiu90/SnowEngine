@@ -4,13 +4,6 @@
  //  File: ArrayList.h                 //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-///	\brief The file for ArrayList class.
-///	
-///	In this file there is the declaration and definition of the ArrayList class.
-////////////////////////////////////////////////////////////
-
 #pragma once
 
 #include "List.h"
@@ -200,9 +193,15 @@ ArrayList<T>::ArrayList(int size) :
 }
 
 template<typename T>
-ArrayList<T>::ArrayList(const ArrayList<T>& list)
+ArrayList<T>::ArrayList(const ArrayList<T>& list) :
+	currentMax_(list.size_),
+	array_(new T[list.size_]),
+	size_(list.size_)
 {
-	*this = list;
+	for (int i = 0; i < size_; i++)
+	{
+		array_[i] = list.array_[i];
+	}
 }
 
 template<typename T>
@@ -214,7 +213,10 @@ ArrayList<T>::ArrayList(T* array, int size)
 template<typename T>
 ArrayList<T>::~ArrayList()
 {
-	delete[] array_;
+	if (array_ != nullptr)
+	{
+		delete[] array_;
+	}
 }
 
 template<typename T>
@@ -293,6 +295,7 @@ bool ArrayList<T>::remove(int pos)
 			array_[i] = array_[i + 1];
 		}
 		size_--;
+		return true;
 	}
 }
 
@@ -350,7 +353,7 @@ T& ArrayList<T>::operator[](int pos) const
 template<typename T>
 ArrayList<T> ArrayList<T>::operator=(const ArrayList<T>& list)
 {
-	fromArray(list.toArray());
+	fromArray(list.toArray(), list.length());
 	return *this;
 }
 
@@ -358,7 +361,7 @@ template<typename T>
 void ArrayList<T>::expand()
 {
 	int oldMax = currentMax_;
-	currentMax_ += currentMax_ * 0.5;
+	currentMax_ += static_cast<int>(currentMax_ * 0.5);
 	T* newArray = new T[currentMax_];
 	for (int i = 0; i < oldMax; i++)
 	{

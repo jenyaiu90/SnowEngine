@@ -4,13 +4,6 @@
  //  File: MusicComponent.cpp          //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-///	\brief The source file of the MusicComponent class.
-///	
-///	This file contains the definitions of the methods of the MusicComponent class.
-////////////////////////////////////////////////////////////
-
 #include "MusicComponent.h"
 
 snow::MusicComponent::MusicComponent(snow::Actor* actor, const std::string& file) :

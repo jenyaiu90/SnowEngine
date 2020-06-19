@@ -4,13 +4,6 @@
  //  File: Gui.cpp                     //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-///	\brief The file with definition of the Gui class.
-///	
-///	This file contains the definitions of the methods of the Gui class.
-////////////////////////////////////////////////////////////
-
 #include "Gui.h"
 
 snow::Gui::GuiPriorityComparator snow::Gui::comparator_;

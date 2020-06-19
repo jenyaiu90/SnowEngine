@@ -1,7 +1,12 @@
     ////////////////////////////////////////
    //         After by SnegirSoft        //
   //                                    //
- //  File: Level.cpp                   //
+ //  File: TextureAnimation.cpp        //
 ////////////////////////////////////////
 
-#include "Level.h"
+#include "TextureAnimation.h"
+
+snow::TextureAnimation::TextureAnimation(sf::Sprite& sprite) :
+	sprite_(&sprite)
+{
+}

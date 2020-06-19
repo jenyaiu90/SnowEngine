@@ -4,14 +4,6 @@
  //  File: Types.h                     //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-///	\brief The vectors are declared in this file.
-///	
-///	This files contains the declarations of the SnowEngine vectors: Vector2i, Vector2f, Vector3i
-///	and Vector3f.
-////////////////////////////////////////////////////////////
-
 #pragma once
 
 #include <SFML/System.hpp>

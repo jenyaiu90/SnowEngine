@@ -42,6 +42,9 @@
     <Filter Include="Source Files\Utilites">
       <UniqueIdentifier>{bfb3fb41-f6cd-4c8e-b3f8-ec2b7655d890}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utilites\TextureAnimation">
+      <UniqueIdentifier>{2522bf2d-249d-4f5e-addb-f4b8744340a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SnowEngine.h">
@@ -92,6 +95,15 @@
     <ClInclude Include="src\Types\List\CircularList.h">
       <Filter>Source Files\Types\List</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utilites\TextureAnimation\TextureAnimation.h">
+      <Filter>Source Files\Utilites\TextureAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilites\TextureAnimation\SimpleTextureAnimation.h">
+      <Filter>Source Files\Utilites\TextureAnimation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utilites\TextureAnimation\AdvancedTextureAnimation.h">
+      <Filter>Source Files\Utilites\TextureAnimation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -126,6 +138,15 @@
     </ClCompile>
     <ClCompile Include="src\Component\Visible\TextureComponent.cpp">
       <Filter>Source Files\Component\Visible</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilites\TextureAnimation\SimpleTextureAnimation.cpp">
+      <Filter>Source Files\Utilites\TextureAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilites\TextureAnimation\TextureAnimation.cpp">
+      <Filter>Source Files\Utilites\TextureAnimation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilites\TextureAnimation\AdvancedTextureAnimation.cpp">
+      <Filter>Source Files\Utilites\TextureAnimation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

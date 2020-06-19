@@ -4,13 +4,6 @@
  //  File: Layer.cpp                   //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-///	\brief The file for the Layer class definition.
-///	
-///	This file contains the difinition of the mathods of the Layer class.
-////////////////////////////////////////////////////////////
-
 #include "Layer.h"
 
 void snow::Layer::tick(const int& delta, sf::RenderWindow& window)

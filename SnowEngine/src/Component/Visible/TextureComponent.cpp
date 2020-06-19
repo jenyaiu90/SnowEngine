@@ -4,13 +4,6 @@
  //  File: TextureComponent.cpp        //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-/// \brief The file for the TextureComponent class.
-///	
-///	This file contains the definition of the methods of the TextureComponent class.
-////////////////////////////////////////////////////////////
-
 #include "TextureComponent.h"
 
 snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string& file,

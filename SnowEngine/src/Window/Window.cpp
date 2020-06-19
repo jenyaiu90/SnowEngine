@@ -4,13 +4,6 @@
  //  File: Window.cpp                  //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-///	\brief The file with the definition of the Window class.
-///
-///	In this file there is the definition of the methods of the Window class.
-////////////////////////////////////////////////////////////
-
 #include "Window.h"
 #include "../Types/List/ArrayList.h"
 #include <iostream>

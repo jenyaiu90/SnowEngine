@@ -21,8 +21,8 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 	{
 		snow::Vector2f newPos = position + speed * delta;
 		if (destination != nullptr &&
-			((destination->x - position.x < 0 ^ destination->x - newPos.x < 0) ||
-			(destination->y - position.y < 0 ^ destination->y - newPos.y < 0)))
+			(((destination->x - position.x < 0) ^ (destination->x - newPos.x < 0)) ||
+			((destination->y - position.y < 0) ^ (destination->y - newPos.y < 0))))
 		{
 			setPosition(*destination);
 			delete destination;
@@ -37,11 +37,32 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 	std::lock_guard<std::mutex> lock(componentsMutex_);
 	if (components_.startIterate())
 	{
+	try_again:; // Yes, I know that goto is bad :-/
 		do
 		{
 			if (components_.getIterator() != nullptr)
 			{
 				components_.getIterator()->tick(delta, window);
+			}
+			else
+			{
+				if (components_.getIteratorPosition() == 0)
+				{
+					components_.removeIterator();
+					if (components_.startIterate())
+					{
+						// If the first element was removed, the loop starts again
+						goto try_again; // I think here goto isn`t so bad
+					}
+					else
+					{
+						break;
+					}
+				}
+				else
+				{
+					components_.removeIterator();
+				}
 			}
 		} while (components_.iterateNext());
 		components_.stopIterate();
@@ -76,11 +97,32 @@ void snow::Actor::setPosition(Vector2f position)
 	std::lock_guard<std::mutex> lock(componentsMutex_);
 	if (components_.startIterate())
 	{
+	try_again:; // Yes, I used goto
 		do
 		{
 			if (components_.getIterator() != nullptr)
 			{
 				components_.getIterator()->actorMove(position);
+			}
+			else
+			{
+				if (components_.getIteratorPosition() == 0)
+				{
+					components_.removeIterator();
+					if (components_.startIterate())
+					{
+						// If the first element was removed, the loop starts again
+						goto try_again; // This goto goes to the start of the loop
+					}
+					else
+					{
+						break;
+					}
+				}
+				else
+				{
+					components_.removeIterator();
+				}
 			}
 		} while (components_.iterateNext());
 		components_.stopIterate();

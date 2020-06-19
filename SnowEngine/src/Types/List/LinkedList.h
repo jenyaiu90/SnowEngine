@@ -210,6 +210,15 @@ public:
 	T& getIterator();
 
 	////////////////////////////////////////////////////////////
+	///	\brief Allows to remove an element without calling a stopIterate().
+	///	
+	///	Removes an element that the iterator points to. After calling this method the iterator
+	///	will point to the previous element.
+	///	\return <b>true</b> if iterator isn`t null and the element was successfully removed.
+	////////////////////////////////////////////////////////////
+	bool removeIterator();
+
+	////////////////////////////////////////////////////////////
 	///	\brief Returns the index of the element that the iterator points to.
 	///	
 	///	Allows to get the index of the element that the iterator points to now.
@@ -226,6 +235,15 @@ public:
 	///	method wasn`t called.
 	////////////////////////////////////////////////////////////
 	virtual bool iterateNext();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the iterator to the previous element.
+	///
+	///	Moves the iterator to the previous element of the list.
+	///	\return <b>false</b> if the iterator has reached the begin of the list or the
+	///	startIterate() method wasn`t called.
+	////////////////////////////////////////////////////////////
+	virtual bool iteratePrev();
 
 	////////////////////////////////////////////////////////////
 	///	\brief Clears the iterator.
@@ -579,6 +597,37 @@ T& LinkedList<T>::getIterator()
 }
 
 template<typename T>
+bool snow::LinkedList<T>::removeIterator()
+{
+	if (iteratorPos_ > 0)
+	{
+		Note* tmp = iterator_;
+		Note* newIterator = iterator_->next;
+		if (iterator_->prev != nullptr)
+		{
+			newIterator = iterator_->prev;
+			iterator_->prev->next = iterator_->next;
+		}
+		if (iterator_->next != nullptr)
+		{
+			iterator_->next->prev = iterator_->prev;
+		}
+		iterator_ = newIterator;
+		delete tmp;
+		size_--;
+		if (size_ == 0)
+		{
+			stopIterate();
+		}
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+template<typename T>
 int LinkedList<T>::getIteratorPosition()
 {
 	return iteratorPos_;
@@ -595,6 +644,21 @@ bool LinkedList<T>::iterateNext()
 	{
 		iterator_ = iterator_->next;
 		iteratorPos_++;
+		return true;
+	}
+}
+
+template<typename T>
+bool LinkedList<T>::iteratePrev()
+{
+	if (iteratorPos_ <= 0 || iteratorPos_ > size_ - 1)
+	{
+		return false;
+	}
+	else
+	{
+		iterator_ = iterator_->prev;
+		iteratorPos_--;
 		return true;
 	}
 }

@@ -173,6 +173,11 @@ snow::Vector2f::Vector2f(float x, float y) :
 {
 }
 
+snow::Vector2f::Vector2f(double x, double y) :
+	x(static_cast<float>(x)), y(static_cast<float>(y))
+{
+}
+
 snow::Vector2f::Vector2f(int x, int y) :
 	x(static_cast<float>(x)), y(static_cast<float>(y))
 {
@@ -589,6 +594,13 @@ snow::Vector3f::Vector3f(const Vector3i& vector) :
 
 snow::Vector3f::Vector3f(float x, float y, float z) :
 	x(x), y(y), z(z)
+{
+}
+
+snow::Vector3f::Vector3f(double x, double y, double z) :
+	x(static_cast<float>(x)),
+	y(static_cast<float>(y)),
+	z(static_cast<float>(z))
 {
 }
 

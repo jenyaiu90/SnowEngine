@@ -72,6 +72,88 @@ public:
 	virtual void tick(const int& delta, sf::RenderWindow& window) override;
 
 	////////////////////////////////////////////////////////////
+	///	\brief Sets the rect for the texture.
+	///	
+	///	Allows to crop the texture with passed rectangle.
+	///	\param textureRect The rectangle to cropping.
+	////////////////////////////////////////////////////////////
+	virtual void setTextureRect(IntRect textureRect);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the texture rectangle.
+	///	Allows to get the rectangle that the texture was cropped with.
+	///	\return The texture rectangle.
+	////////////////////////////////////////////////////////////
+	virtual IntRect getTextureRect();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets a new scale for the texture.
+	///	
+	///	Allows to set a scale for the texture. The default scale is (1, 1). If you want to increase
+	///	the texture twice, you shoud set the scale (2, 2).
+	///	\param newScale The new texture`s scale.
+	////////////////////////////////////////////////////////////
+	virtual void setScale(Vector2f newScale);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets a new scale for the texture.
+	///	
+	///	Allows to set a scale for the texture. The default scale is 1. If you want to increase
+	///	the texture twice, you shoud set the scale 2. This method is equal to setScale(Vector2f) if
+	///	x = y.
+	///	\param newScale The new texture`s scale.
+	////////////////////////////////////////////////////////////
+	virtual void setScale(float newScale);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the texture`s scale.
+	///	
+	///	Allows to get the texture`s scale.
+	///	\return The texture`s scale.
+	////////////////////////////////////////////////////////////
+	virtual Vector2f getScale();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Scales the texture.
+	///	
+	///	Multiplies the curret scale to a passed factor and sets result value as a new scale.
+	///	\code
+	///		snow::Vector2f factor(x, y);
+	///		
+	///		snow::Vector2f vector = component.scale(factor);
+	///		// Is equal to:
+	///		snow::Vector2f newFactor = component.getScale();
+	///		newFactor.x *= factor.x;
+	///		newFactor.y *= factor.y;
+	///		component.setScale(newFactor);
+	///		snow::Vector2f vector = component.getScale();
+	///	\endcode
+	///	\param factor The multiplier.
+	///	\return The new scale of the texture.
+	////////////////////////////////////////////////////////////
+	virtual Vector2f scale(Vector2f factor);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Scales the texture.
+	///	
+	///	Multiplies the curret scale to a passed factor and sets result value as a new scale. This
+	///	method is equal to scale(Vector2f) if x = y.
+	///	\code
+	///		float factor = x;
+	///		
+	///		snow::Vector2f vector = component.scale(factor);
+	///		// Is equal to:
+	///		snow::Vector2f newFactor = component.getScale();
+	///		newFactor *= factor;
+	///		component.setScale(newFactor);
+	///		snow::Vector2f vector = component.getScale();
+	///	\endcode
+	///	\param factor The multiplier.
+	///	\return The new scale of the texture.
+	////////////////////////////////////////////////////////////
+	virtual Vector2f scale(float factor);
+
+	////////////////////////////////////////////////////////////
 	///	\brief When actor moves.
 	///	
 	///	This method should be called when actor that the component is attached to is moved. It

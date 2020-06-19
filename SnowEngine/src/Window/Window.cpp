@@ -83,7 +83,7 @@ void snow::Window::windowCycle()
 	while (window_->isOpen())
 	{
 		second_time = std::chrono::system_clock::now();
-		int delta = (second_time - first_time).count() / 10000;
+		int delta = static_cast<int>((second_time - first_time).count()) / 10000;
 		first_time = second_time;
 
 		sf::Event event;
@@ -113,11 +113,32 @@ void snow::Window::windowCycle()
 			std::lock_guard<std::mutex> lock(guisMutex_);
 			if (guis_.startIterate())
 			{
+			try_again:; // I know that goto is bad, but here...
 				do
 				{
 					if (guis_.getIterator() != nullptr)
 					{
 						guis_.getIterator()->tick(delta, *window_);
+					}
+					else
+					{
+						if (guis_.getIteratorPosition() == 0)
+						{
+							guis_.removeIterator();
+							if (guis_.startIterate())
+							{
+								// If the first element was removed, the loop starts again
+								goto try_again; // Don`t hit me!
+							}
+							else
+							{
+								break;
+							}
+						}
+						else
+						{
+							guis_.removeIterator();
+						}
 					}
 				} while (guis_.iterateNext());
 				guis_.stopIterate();

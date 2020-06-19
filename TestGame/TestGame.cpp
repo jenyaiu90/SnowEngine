@@ -40,7 +40,8 @@ int main()
 {
 	snow::Gui gui;
 	snow::Actor actor(&gui);
-	snow::TextureComponent component(&actor, "1.png", snow::Vector2f());
+	snow::TextureComponent component(&actor, "1.png", snow::IntRect(150, 150, 300, 300));
+	component.scale(snow::Vector2f(0.25, 0.25));
 	snow::Window window("Hi!", snow::Vector2i(800, 600));
 	window.attach(gui);
 

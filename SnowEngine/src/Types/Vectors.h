@@ -282,6 +282,16 @@ struct Vector2f
 	////////////////////////////////////////////////////////////
 	///	\brief The constructor that create a vector with passed values.
 	///
+	///	This constructor allows you to create a vector with passed double values, that will be
+	///	authomatically converted to a float.
+	///	\warning This can be cause loss of data.
+	///	\param x,y Values that will be set for new vector.
+	////////////////////////////////////////////////////////////
+	Vector2f(double x, double y);
+
+	////////////////////////////////////////////////////////////
+	///	\brief The constructor that create a vector with passed values.
+	///
 	///	This constructor allows you to create a vector with passed integer values, that will be
 	///	authomatically converted to a float.
 	///	\param x,y Values that will be set for new vector.
@@ -325,7 +335,7 @@ struct Vector2f
 	///
 	///	Allows to convert a Vector2f to a Vector2i.
 	///	\warning This method removes a fractional parts of the coordinates of the vector. It can
-	///	cause a data lose!
+	///	cause loss of data!
 	///	\return A Vector2i that is <i>approximately<i> equal to Vector2f.
 	////////////////////////////////////////////////////////////
 	Vector2i toVector2i() const;
@@ -334,7 +344,7 @@ struct Vector2f
 	///	\brief Rounds the vector down.
 	///
 	///	Works like an std::floor, rounds x and y coordinates of the vector down.
-	///	\warning A round operations can cause a data lose.
+	///	\warning A round operations can cause loss of data.
 	///	\return A rounded down Vector2i.
 	////////////////////////////////////////////////////////////
 	Vector2i floor() const;
@@ -343,7 +353,7 @@ struct Vector2f
 	///	\brief Rounds the vector up.
 	///
 	///	Works like an std::ceil, rounds x and y coordinates of the vector up.
-	///	\warning A round operations can cause a data lose.
+	///	\warning A round operations can cause loss of data.
 	///	\return A rounded up Vector2i.
 	////////////////////////////////////////////////////////////
 	Vector2i ceil() const;
@@ -353,7 +363,7 @@ struct Vector2f
 	///
 	///	Works like an std::round, rounds each coordinate of the vector down if its first digit
 	///	after the point is less then 5, else rounds it up.
-	///	\warning A round operations can cause a data lose.
+	///	\warning A round operations can cause loss of data.
 	///	\return A rounded Vector2i.
 	////////////////////////////////////////////////////////////
 	Vector2i round() const;
@@ -930,6 +940,16 @@ struct Vector3f
 	///	\param x,y,x Values that will be set for new vector.
 	////////////////////////////////////////////////////////////
 	Vector3f(float x, float y, float z);
+	
+	////////////////////////////////////////////////////////////
+	///	\brief The constructor that create a vector with passed values.
+	///
+	///	This constructor allows you to create a vector with passed double values, that will be
+	///	authomatically converted to a float.
+	///	\warning This can couse loss of data.
+	///	\param x,y,z Values that will be set for new vector.
+	////////////////////////////////////////////////////////////
+	Vector3f(double x, double y, double z);
 	
 	////////////////////////////////////////////////////////////
 	///	\brief The constructor that create a vector with passed values.

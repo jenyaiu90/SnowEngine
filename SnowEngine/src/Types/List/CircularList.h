@@ -163,6 +163,15 @@ public:
 	////////////////////////////////////////////////////////////
 	bool iterateNext() override;
 
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the iterator to the previous element.
+	///
+	///	Moves the iterator to the previous element of the list.
+	///	\return <b>false</b> if the iterator has reached the begin of the list or the
+	///	startIterate() method wasn`t called.
+	////////////////////////////////////////////////////////////
+	bool iteratePrev() override;
+
 };
 
 // Below are the methods of the CircularList.
@@ -432,6 +441,28 @@ bool CircularList<T>::iterateNext()
 		else
 		{
 			iteratorPos_++;
+		}
+		return true;
+	}
+}
+
+template<typename T>
+bool CircularList<T>::iteratePrev()
+{
+	if (iteratorPos_ < 0)
+	{
+		return false;
+	}
+	else
+	{
+		iterator_ = iterator_->prev;
+		if (iteratorPos_ == 0)
+		{
+			iteratorPos_ = size_ - 1;
+		}
+		else
+		{
+			iteratorPos_--;
 		}
 		return true;
 	}

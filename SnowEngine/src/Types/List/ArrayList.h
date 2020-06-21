@@ -16,6 +16,7 @@ namespace snow
 ///	
 ///	Use this class to create an array list. It provides fast access to the element but adding and
 ///	removing are not fast. If you need to add and remove elements fast, use a linked list.
+///	\warning The template parameter must define operator ==.
 ////////////////////////////////////////////////////////////
 template<typename T>
 class ArrayList : public IList<T>
@@ -120,6 +121,16 @@ public:
 	bool remove(int pos) override;
 
 	////////////////////////////////////////////////////////////
+	/// \brief Returns the index of passed value.
+	///	
+	///	This method allows to find the value in the list.
+	///	\param value The value for searching.
+	///	\return The index of the first element that is equal to passed value or <b>-1</b> if the
+	///	list doesn`t contain it.
+	////////////////////////////////////////////////////////////
+	int find(const T& value) const override;
+
+	////////////////////////////////////////////////////////////
 	///	\brief The method allows to fill the list with values from an array.
 	///
 	///	Clears the list and fills it with values from an array.
@@ -154,6 +165,15 @@ public:
 	///	\throws std::out_of_range if there is no element with passed index.
 	////////////////////////////////////////////////////////////
 	T& operator[](int pos) const override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Return <b>true</b> if two lists are equal.
+	///	
+	///	Checks whether two lists are equal. They are equal when their elements are equal.
+	///	\param list Other list.
+	///	\return <b>true</b> if lists are equal.
+	////////////////////////////////////////////////////////////
+	bool operator==(const ArrayList& list) const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief The assignment operator.
@@ -300,6 +320,19 @@ bool ArrayList<T>::remove(int pos)
 }
 
 template<typename T>
+int snow::ArrayList<T>::find(const T& value) const
+{
+	for (int i = 0; i < size_; i++)
+	{
+		if (array_[i] == value)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+
+template<typename T>
 void ArrayList<T>::sort(IComparator<T>& comparator)
 {
 	for (int i = size_; i > 0; i--)
@@ -351,9 +384,39 @@ T& ArrayList<T>::operator[](int pos) const
 }
 
 template<typename T>
+inline bool snow::ArrayList<T>::operator==(const ArrayList<T>& list) const
+{
+	if (size_ != list.size_)
+	{
+		return true;
+	}
+	else
+	{
+		for (int i = 0; i < size_; i++)
+		{
+			if (!(array_[i] == list.array_[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
+
+template<typename T>
 ArrayList<T> ArrayList<T>::operator=(const ArrayList<T>& list)
 {
-	fromArray(list.toArray(), list.length());
+	if (list.length() == 0)
+	{
+		this->~ArrayList();
+		currentMax_ = 5;
+		array_ = new T[5];
+		size_ = 0;
+	}
+	else
+	{
+		fromArray(list.toArray(), list.length());
+	}
 	return *this;
 }
 
@@ -361,7 +424,14 @@ template<typename T>
 void ArrayList<T>::expand()
 {
 	int oldMax = currentMax_;
-	currentMax_ += static_cast<int>(currentMax_ * 0.5);
+	if (currentMax_ < 5)
+	{
+		currentMax_ = 5;
+	}
+	else
+	{
+		currentMax_ += static_cast<int>(currentMax_ * 0.5);
+	}
 	T* newArray = new T[currentMax_];
 	for (int i = 0; i < oldMax; i++)
 	{

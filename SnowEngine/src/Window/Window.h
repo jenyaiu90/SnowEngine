@@ -13,6 +13,7 @@
 #include "../Types/Vectors.h"
 #include "../Layer/Level/Level.h"
 #include "../Layer/Gui/Gui.h"
+#include "../Component/Collision/CollisionComponent.h"
 
 namespace snow
 {
@@ -68,6 +69,14 @@ public:
 	///	this window on top of the level.
 	////////////////////////////////////////////////////////////
 	bool attach(Gui& gui);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the pointer to sf::RenderWindow.
+	///	
+	///	Allows to get the pointer to sf::RenderWindow (an SFML type) that is used by this Window.
+	///	\return Pointer to sf::RenderWindow.
+	////////////////////////////////////////////////////////////
+	sf::RenderWindow* getWindow();
 
 protected:
 	std::mutex windowMutex_;

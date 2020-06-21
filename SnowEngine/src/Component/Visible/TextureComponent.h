@@ -77,7 +77,7 @@ public:
 	///	Allows to get the rectangle that the texture was cropped with.
 	///	\return The texture rectangle.
 	////////////////////////////////////////////////////////////
-	virtual IntRect getTextureRect();
+	virtual IntRect getTextureRect() const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets a new scale for the texture.
@@ -104,7 +104,7 @@ public:
 	///	Allows to get the texture`s scale.
 	///	\return The texture`s scale.
 	////////////////////////////////////////////////////////////
-	virtual Vector2f getScale();
+	virtual Vector2f getScale() const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Scales the texture.

@@ -37,6 +37,7 @@ namespace snow
 ///	\endcode
 ///	\warning The remove() method and one of overloads of the add() method calls the stopIterate().
 ///	Don`t use them in cycles like above.
+///	\warning The template parameter must define operator ==.
 ////////////////////////////////////////////////////////////
 template<typename T>
 class LinkedList : public IList<T>
@@ -131,6 +132,16 @@ public:
 	virtual bool remove(int pos) override;
 
 	////////////////////////////////////////////////////////////
+	/// \brief Returns the index of passed value.
+	///	
+	///	This method allows to find the value in the list.
+	///	\param value The value for searching.
+	///	\return The index of the first element that is equal to passed value or <b>-1</b> if the
+	///	list doesn`t contain it.
+	////////////////////////////////////////////////////////////
+	int find(const T& value) const;
+
+	////////////////////////////////////////////////////////////
 	///	\brief The method allows to fill the list with values from an array.
 	///
 	///	Clears the list and fills it with values from an array.
@@ -165,6 +176,15 @@ public:
 	///	\throws std::out_of_range if an index is out of bounds.
 	////////////////////////////////////////////////////////////
 	virtual T& operator[](int pos) const override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Return <b>true</b> if two lists are equal.
+	///	
+	///	Checks whether two lists are equal. They are equal when their elements are equal.
+	///	\param list Other list.
+	///	\return <b>true</b> if lists are equal.
+	////////////////////////////////////////////////////////////
+	bool operator==(const LinkedList& list) const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Copies a list.
@@ -478,6 +498,21 @@ bool LinkedList<T>::remove(int pos)
 }
 
 template<typename T>
+int snow::LinkedList<T>::find(const T& value) const
+{
+	Note* p = begin_;
+	for (int i = 0; i < size_; i++)
+	{
+		if (p->item == value)
+		{
+			return i;
+		}
+		p = p->next;
+	}
+	return -1;
+}
+
+template<typename T>
 void snow::LinkedList<T>::sort(IComparator<T>& comparator)
 {
 	for (Note* i = end_; i != begin_; i = i->prev)
@@ -545,6 +580,30 @@ T& LinkedList<T>::operator[](int pos) const
 			}
 		}
 		return p->item;
+	}
+}
+
+template<typename T>
+bool snow::LinkedList<T>::operator==(const snow::LinkedList<T>& list) const
+{
+	if (size_ != list.size_)
+	{
+		return false;
+	}
+	else
+	{
+		Note* p1 = begin_;
+		Note* p2 = list.begin_;
+		for (int i = 0; i < size_; i++)
+		{
+			if (!(p1->item == p2->item))
+			{
+				return false;
+			}
+			p1 = p1->next;
+			p2 = p2->next;
+		}
+		return true;
 	}
 }
 

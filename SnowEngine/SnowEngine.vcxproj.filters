@@ -45,6 +45,9 @@
     <Filter Include="Source Files\Utilites\TextureAnimation">
       <UniqueIdentifier>{2522bf2d-249d-4f5e-addb-f4b8744340a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Component\Collision">
+      <UniqueIdentifier>{5aa41f31-1996-4e40-903d-ff1639760cf1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\SnowEngine.h">
@@ -107,6 +110,18 @@
     <ClInclude Include="src\Component\Visible\AnimationComponent.h">
       <Filter>Source Files\Component\Visible</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Collision\CollisionComponent.h">
+      <Filter>Source Files\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\Dictionaty.h">
+      <Filter>Source Files\Types\List</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Collision\RectCollisionComponent.h">
+      <Filter>Source Files\Component\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\Collision\CircleCollisionComponent.h">
+      <Filter>Source Files\Component\Collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -153,6 +168,15 @@
     </ClCompile>
     <ClCompile Include="src\Component\Visible\AnimationComponent.cpp">
       <Filter>Source Files\Component\Visible</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Collision\CollisionComponent.cpp">
+      <Filter>Source Files\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Collision\RectCollisionComponent.cpp">
+      <Filter>Source Files\Component\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Collision\CircleCollisionComponent.cpp">
+      <Filter>Source Files\Component\Collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -53,14 +53,14 @@ protected:
 	class GuiPriorityComparator : public IComparator<Gui>
 	{
 	public:
-		int compare(const Gui& first, const Gui& second) override;
+		int compare(const Gui& first, const Gui& second) const override;
 	};
 
 	class GuiPointerPriorityComparator : public IComparator<Gui*>
 	{
 		typedef Gui* GuiPointer; // I really don`t know why it works but it works. I hope...
 	public:
-		int compare(const GuiPointer& first, const GuiPointer& second) override;
+		int compare(const GuiPointer& first, const GuiPointer& second) const override;
 	};
 
 	static GuiPriorityComparator comparator_;

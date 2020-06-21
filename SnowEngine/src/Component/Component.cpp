@@ -15,7 +15,7 @@ const std::string snow::Component::TEXTURES_PATH = "res/textures/";
 
 // Definition of the constructor is in Actor.cpp.
 
-snow::Vector2f snow::Component::getRelativePosition()
+snow::Vector2f snow::Component::getRelativePosition() const
 {
 	return position;
 }

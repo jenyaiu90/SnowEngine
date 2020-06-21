@@ -58,6 +58,11 @@ bool snow::Window::attach(Gui& gui)
 	return guis_.add(&gui, *Gui::getPointerComparator());
 }
 
+sf::RenderWindow * snow::Window::getWindow()
+{
+	return window_;
+}
+
 ///////////////
 // protected //
 ///////////////

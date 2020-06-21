@@ -75,7 +75,7 @@ public:
 	///	This method allows you to get component`s position relative to the base actor.
 	///	\return The relative position as snow::Vector2f.
 	////////////////////////////////////////////////////////////
-	Vector2f getRelativePosition();
+	Vector2f getRelativePosition() const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Returns component`s world position.
@@ -83,7 +83,7 @@ public:
 	///	This method lets you to get component`s world position.
 	///	\return The world position as snow::Vector2f.
 	////////////////////////////////////////////////////////////
-	Vector2f getWorldPosition();
+	Vector2f getWorldPosition() const;
 
 protected:
 

@@ -69,7 +69,7 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 	}
 }
 
-snow::Vector2f snow::Actor::getPosition()
+snow::Vector2f snow::Actor::getPosition() const
 {
 	return position;
 }
@@ -93,7 +93,6 @@ void snow::Actor::move(snow::Vector2f to, int time)
 
 void snow::Actor::setPosition(Vector2f position)
 {
-	this->position = position;
 	std::lock_guard<std::mutex> lock(componentsMutex_);
 	if (components_.startIterate())
 	{
@@ -127,6 +126,7 @@ void snow::Actor::setPosition(Vector2f position)
 		} while (components_.iterateNext());
 		components_.stopIterate();
 	}
+	this->position = position;
 }
 
 bool snow::Actor::attachComponent(snow::Component* component)
@@ -148,7 +148,7 @@ snow::Component::Component(snow::Actor* actor, snow::Vector2f pos) :
 	actor_ = actor;
 }
 
-snow::Vector2f snow::Component::getWorldPosition()
+snow::Vector2f snow::Component::getWorldPosition() const
 {
 	return actor_->getPosition() + position;
 }

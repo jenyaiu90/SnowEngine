@@ -77,6 +77,16 @@ public:
 	virtual bool remove(int pos) = 0;
 
 	////////////////////////////////////////////////////////////
+	/// \brief Returns the index of passed value.
+	///	
+	///	This method allows to find the value in the list.
+	///	\param value The value for searching.
+	///	\return The index of the first element that is equal to passed value or <b>-1</b> if the
+	///	list doesn`t contain it.
+	////////////////////////////////////////////////////////////
+	virtual int find(const T& value) const = 0;
+
+	////////////////////////////////////////////////////////////
 	///	\brief Sorts the list.
 	///	
 	///	Allows to sort the list according to a passed comparator. The smallest elements are moved

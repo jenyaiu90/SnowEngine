@@ -67,7 +67,7 @@ public:
 	///	This method lets you to get actor`s position.
 	///	\return The world position as snow::Vector2f.
 	////////////////////////////////////////////////////////////
-	Vector2f getPosition();
+	Vector2f getPosition() const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Changes the actor`s position.

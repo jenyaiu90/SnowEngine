@@ -24,12 +24,13 @@ snow::IComparator<snow::Gui*>* snow::Gui::getPointerComparator()
 	return &pointerComparator_;
 }
 
-int snow::Gui::GuiPriorityComparator::compare(const Gui& first, const Gui& second)
+int snow::Gui::GuiPriorityComparator::compare(const Gui& first, const Gui& second) const
 {
 	return first.priority_ - second.priority_;
 }
 
-int snow::Gui::GuiPointerPriorityComparator::compare(const GuiPointer& first, const GuiPointer& second)
+int snow::Gui::GuiPointerPriorityComparator::compare(const GuiPointer& first,
+													 const GuiPointer& second) const
 {
 	return (*first).priority_ - (*second).priority_;
 }

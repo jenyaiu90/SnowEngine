@@ -21,6 +21,9 @@
   <ItemGroup>
     <ClInclude Include="src\Component\Audio\MusicComponent.h" />
     <ClInclude Include="src\Component\Audio\SoundComponent.h" />
+    <ClInclude Include="src\Component\Collision\CircleCollisionComponent.h" />
+    <ClInclude Include="src\Component\Collision\CollisionComponent.h" />
+    <ClInclude Include="src\Component\Collision\RectCollisionComponent.h" />
     <ClInclude Include="src\Component\Component.h" />
     <ClInclude Include="src\Component\Visible\AnimationComponent.h" />
     <ClInclude Include="src\Component\Visible\TextureComponent.h" />
@@ -31,6 +34,7 @@
     <ClInclude Include="src\Types\List\ArrayList.h" />
     <ClInclude Include="src\Types\List\CircularList.h" />
     <ClInclude Include="src\Types\List\Comparator.h" />
+    <ClInclude Include="src\Types\List\Dictionaty.h" />
     <ClInclude Include="src\Types\List\LinkedList.h" />
     <ClInclude Include="src\Types\List\List.h" />
     <ClInclude Include="src\Types\Vectors.h" />
@@ -45,6 +49,9 @@
     <ClCompile Include="src\Actor\Actor.h" />
     <ClCompile Include="src\Component\Audio\MusicComponent.cpp" />
     <ClCompile Include="src\Component\Audio\SoundComponent.cpp" />
+    <ClCompile Include="src\Component\Collision\CircleCollisionComponent.cpp" />
+    <ClCompile Include="src\Component\Collision\CollisionComponent.cpp" />
+    <ClCompile Include="src\Component\Collision\RectCollisionComponent.cpp" />
     <ClCompile Include="src\Component\Component.cpp" />
     <ClCompile Include="src\Component\Visible\AnimationComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextureComponent.cpp" />

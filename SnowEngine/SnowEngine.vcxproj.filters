@@ -122,6 +122,9 @@
     <ClInclude Include="src\Component\Collision\CircleCollisionComponent.h">
       <Filter>Source Files\Component\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="src\Window\Input.h">
+      <Filter>Source Files\Window</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">

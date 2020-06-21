@@ -14,6 +14,7 @@
 #include "../Layer/Level/Level.h"
 #include "../Layer/Gui/Gui.h"
 #include "../Component/Collision/CollisionComponent.h"
+#include "Input.h"
 
 namespace snow
 {
@@ -78,6 +79,22 @@ public:
 	////////////////////////////////////////////////////////////
 	sf::RenderWindow* getWindow();
 
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the Input object.
+	///	
+	///	Allows to get a pointer to the Input object that can be modified. Use it to set the
+	///	controls, for example:
+	///	\code
+	///		// Using lambda
+	///		window.getInput()->mouseButtonPressed = [](MouseButton button, Vector2f position)
+	///		{
+	///			// Do something
+	///		};
+	///	\endcode
+	///	\return The pointer to the Input object.
+	////////////////////////////////////////////////////////////
+	Input* getInput();
+
 protected:
 	std::mutex windowMutex_;
 	std::mutex guisMutex_;
@@ -89,6 +106,8 @@ protected:
 
 	Level* level_;
 	LinkedList<Gui*> guis_;
+
+	Input input_;
 
 	void startWindow(const std::string& title, const Vector2i& resolution, bool isFullscreen);
 	void windowCycle();

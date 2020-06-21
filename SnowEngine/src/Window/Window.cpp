@@ -63,6 +63,11 @@ sf::RenderWindow * snow::Window::getWindow()
 	return window_;
 }
 
+snow::Input* snow::Window::getInput()
+{
+	return &input_;
+}
+
 ///////////////
 // protected //
 ///////////////
@@ -87,7 +92,9 @@ void snow::Window::windowCycle()
 		sf::Event event;
 		while (window_->pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed)
+			switch (event.type)
+			{
+			case sf::Event::Closed:
 			{
 				windowMutex_.lock();
 				if (window_->isOpen())
@@ -95,6 +102,59 @@ void snow::Window::windowCycle()
 					window_->close();
 				}
 				windowMutex_.unlock();
+				break;
+			}
+			case sf::Event::EventType::KeyPressed:
+			{
+				if (input_.keyPressed != nullptr)
+				{
+					input_.keyPressed(event.key);
+				}
+				break;
+			}
+			case sf::Event::EventType::KeyReleased:
+			{
+				if (input_.keyReleased != nullptr)
+				{
+					input_.keyReleased(event.key);
+				}
+				break;
+			}
+			case sf::Event::EventType::MouseButtonPressed:
+			{
+				if (input_.mouseButtonPressed != nullptr)
+				{
+					input_.mouseButtonPressed(event.mouseButton.button,
+											  Vector2f(event.mouseButton.x, event.mouseButton.y));
+				}
+				break;
+			}
+			case sf::Event::EventType::MouseButtonReleased:
+			{
+				if (input_.mouseButtonReleased != nullptr)
+				{
+					input_.mouseButtonReleased(event.mouseButton.button,
+											  Vector2f(event.mouseButton.x, event.mouseButton.y));
+				}
+				break;
+			}
+			case sf::Event::EventType::MouseWheelScrolled:
+			{
+				if (input_.mouseWheelScrolled != nullptr)
+				{
+					input_.mouseWheelScrolled(event.mouseWheel.delta,
+											  Vector2f(event.mouseWheel.x, event.mouseWheel.y));
+				}
+				break;
+			}
+			case sf::Event::EventType::MouseMoved:
+			{
+				if (input_.mouseMoved != nullptr)
+				{
+					input_.mouseMoved(Vector2f(event.mouseMove.x, event.mouseMove.y));
+				}
+				break;
+			}
 			}
 		}
 

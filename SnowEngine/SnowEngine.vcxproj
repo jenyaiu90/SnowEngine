@@ -42,6 +42,7 @@
     <ClInclude Include="src\Utilites\TextureAnimation\AdvancedTextureAnimation.h" />
     <ClInclude Include="src\Utilites\TextureAnimation\SimpleTextureAnimation.h" />
     <ClInclude Include="src\Utilites\TextureAnimation\TextureAnimation.h" />
+    <ClInclude Include="src\Window\Input.h" />
     <ClInclude Include="src\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>

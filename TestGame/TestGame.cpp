@@ -43,11 +43,13 @@ int main()
 	snow::Actor actor1(&gui);
 	snow::Actor actor2(&gui, snow::Vector2i(200, 200));
 	snow::Window window("Hi!", snow::Vector2i(800, 600));
-	snow::RectCollisionComponent component1(&actor1, window.getWindow(), snow::Vector2f(300, 300));
-	snow::RectCollisionComponent component2(&actor2, window.getWindow(), snow::Vector2f(100, 100));
 	window.attach(gui);
-	
-	std::cout << component1.isCollide(&component2);
+
+	window.getInput()->mouseMoved = [](snow::Vector2f vector)
+	{
+		std::cout << vector.x << " " << vector.y << std::endl;
+	};
+	window.getInput()->mouseMoved(snow::Vector2f(3, 3));
 
 	_getch();
 }

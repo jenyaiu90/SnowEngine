@@ -4,16 +4,25 @@
  //  File: Actor.cpp                   //
 ////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-///	\file
-/// \brief The file for the Actor class.
-///	
-///	This file contains the definition of the methods of the Actor class.
-////////////////////////////////////////////////////////////
-
 #include "Actor.h"
 
 // Definition of the constructor is in Layer.cpp.
+
+snow::Actor::~Actor()
+{
+	std::lock_guard<std::mutex> lock(componentsMutex_);
+	if (components_.startIterate())
+	{
+		do
+		{
+			if (components_.getIterator() != nullptr)
+			{
+				delete components_.getIterator();
+			}
+		} while (components_.iterateNext());
+		components_.stopIterate();
+	}
+}
 
 void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 {

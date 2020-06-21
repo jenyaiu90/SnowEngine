@@ -33,6 +33,14 @@ public:
 							 Vector2f pos = Vector2f());
 
 	////////////////////////////////////////////////////////////
+	///	\brief The RectCollisionComponent`s destructor.
+	///	
+	///	The destructor of RectCollisionComponent class. Removes the collision from a statis 
+	///	collisions list.
+	////////////////////////////////////////////////////////////
+	virtual ~RectCollisionComponent();
+
+	////////////////////////////////////////////////////////////
 	///	\brief Is called when the actor moves.
 	///	
 	///	This method must be called before the actor that the component is attached to is moved.

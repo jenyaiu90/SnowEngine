@@ -48,7 +48,7 @@ public:
 	///	\warning After calling this destructor you won`t be able to use the level or GUI`s because
 	///	they will be deleted.
 	////////////////////////////////////////////////////////////
-	~Window();
+	virtual ~Window();
 
 	////////////////////////////////////////////////////////////
 	///	\brief Attaches the level for the window.
@@ -98,6 +98,9 @@ public:
 protected:
 	std::mutex windowMutex_;
 	std::mutex guisMutex_;
+
+	sf::View levelView_;
+	sf::View guisView_;
 
 	sf::RenderWindow* window_;
 	std::string title_;

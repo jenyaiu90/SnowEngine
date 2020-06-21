@@ -6,6 +6,8 @@
 
 #include "CollisionComponent.h"
 
+std::mutex snow::CollisionComponent::collisionsMutex_;
+
 snow::Dictionary<sf::RenderWindow*, snow::Dictionary<snow::Vector2i, // Yes, it can seem scary...
 	snow::ArrayList<snow::CollisionComponent*>>> snow::CollisionComponent::collisions_;
 

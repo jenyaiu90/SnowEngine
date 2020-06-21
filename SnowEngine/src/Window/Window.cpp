@@ -32,7 +32,22 @@ snow::Window::~Window()
 	}
 	windowMutex_.unlock();
 
-	delete level_;
+	if (level_ != nullptr)
+	{
+		delete level_;
+	}
+	std::lock_guard<std::mutex> lock(guisMutex_);
+	if (guis_.startIterate())
+	{
+		do
+		{
+			if (guis_.getIterator() != nullptr)
+			{
+				delete guis_.getIterator();
+			}
+		} while (guis_.iterateNext());
+		guis_.stopIterate();
+	}
 	delete window_;
 }
 
@@ -76,6 +91,8 @@ void snow::Window::startWindow(const std::string& title, const Vector2i& resolut
 							   bool isFullscreen)
 {
 	window_ = new sf::RenderWindow(sf::VideoMode(resolution_.x, resolution_.y), title_);
+	levelView_ = window_->getView();
+	guisView_ = window_->getView();
 	windowCycle();
 }
 
@@ -102,6 +119,12 @@ void snow::Window::windowCycle()
 					window_->close();
 				}
 				windowMutex_.unlock();
+				break;
+			}
+			case sf::Event::EventType::Resized:
+			{
+				levelView_.setSize(sf::Vector2f(event.size.width, event.size.height));
+				guisView_.setSize(sf::Vector2f(event.size.width, event.size.height));
 				break;
 			}
 			case sf::Event::EventType::KeyPressed:
@@ -163,7 +186,9 @@ void snow::Window::windowCycle()
 		window_->clear();
 		if (level_ != nullptr)
 		{
+			window_->setView(levelView_);
 			level_->tick(delta, *window_);
+			levelView_.move(-0.001, 0);
 		}
 
 		//guisMutex_ zone
@@ -171,6 +196,7 @@ void snow::Window::windowCycle()
 			std::lock_guard<std::mutex> lock(guisMutex_);
 			if (guis_.startIterate())
 			{
+				window_->setView(guisView_);
 			try_again:; // I know that goto is bad, but here...
 				do
 				{

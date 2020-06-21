@@ -6,6 +6,20 @@
 
 #include "Layer.h"
 
+snow::Layer::~Layer()
+{
+	if (actors_.startIterate())
+	{
+		do
+		{
+			if (actors_.getIterator() != nullptr)
+			{
+				delete actors_.getIterator();
+			}
+		} while (actors_.iterateNext());
+	}
+}
+
 void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 {
 	std::lock_guard<std::mutex> lock(actorsMutex_);

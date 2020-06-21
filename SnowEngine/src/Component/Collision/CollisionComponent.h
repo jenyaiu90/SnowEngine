@@ -39,6 +39,13 @@ public:
 					   const std::string& type, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
+	///	\brief The CollisionComponent`s destructor.
+	///	
+	///	The destructor of CollisionComponent class. Should be overrided.
+	////////////////////////////////////////////////////////////
+	virtual ~CollisionComponent() = 0;
+
+	////////////////////////////////////////////////////////////
 	///	\brief The method that is called every tick.
 	///	
 	///	This method does nothing. Absolutely. It is useless. But it is necessary.
@@ -94,7 +101,7 @@ protected:
 	static Dictionary<sf::RenderWindow*, Dictionary<Vector2i, ArrayList<CollisionComponent*>>>
 		collisions_; ///< The dictionary of all collision components.
 					 //   ...The scary dictionary...
-	std::mutex collisionsMutex_; ///< The mutex for collisions_.
+	static std::mutex collisionsMutex_; ///< The mutex for collisions_.
 
 	sf::RenderWindow* window_; ///< The window with that component (an SFML type)
 

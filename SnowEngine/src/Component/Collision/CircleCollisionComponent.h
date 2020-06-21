@@ -33,6 +33,14 @@ public:
 							 Vector2f pos = Vector2f());
 
 	////////////////////////////////////////////////////////////
+	///	\brief The CircleCollisionComponent`s destructor.
+	///	
+	///	The destructor of CircleCollisionComponent class. Removes the collision from a statis 
+	///	collisions list.
+	////////////////////////////////////////////////////////////
+	virtual ~CircleCollisionComponent();
+
+	////////////////////////////////////////////////////////////
 	///	\brief Is called when the actor moves.
 	///	
 	///	This method must be called before the actor that the component is attached to is moved.

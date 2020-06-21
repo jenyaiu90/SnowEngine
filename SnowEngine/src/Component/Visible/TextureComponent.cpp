@@ -25,6 +25,12 @@ snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string &
 	sprite_->setTextureRect(textureRect);
 }
 
+snow::TextureComponent::~TextureComponent()
+{
+	delete sprite_;
+	delete texture_;
+}
+
 void snow::TextureComponent::tick(const int& delta, sf::RenderWindow& window)
 {
 	snow::Vector2f nps = getWorldPosition();

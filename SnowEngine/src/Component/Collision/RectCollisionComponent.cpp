@@ -31,6 +31,19 @@ snow::RectCollisionComponent::RectCollisionComponent(snow::Actor* actor,
 	}
 }
 
+snow::RectCollisionComponent::~RectCollisionComponent()
+{
+	std::lock_guard<std::mutex> lock(collisionsMutex_);
+	int windowId = collisions_.findKey(window_);
+	for (int i = first_.x; i <= last_.x; i++)
+	{
+		for (int j = first_.y; j <= last_.y; j++)
+		{
+			removeFromSegment_(i, j, windowId);
+		}
+	}
+}
+
 void snow::RectCollisionComponent::actorMove(snow::Vector2f to)
 {
 	Vector2i newFirst = ((to + position) / SEGMENT_SIZE).floor();

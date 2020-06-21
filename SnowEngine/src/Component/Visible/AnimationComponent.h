@@ -33,6 +33,8 @@ public:
 	///	\param pos A position of the component relative to a base actor. The default value
 	///	is (0, 0).
 	///	\throws std::invalid_argument if the animation is null.
+	///	\warning Passed TextureAnimation doesn`t be removed in the destructor. You should delete it
+	///	from the heap manually. Also you can use one animation for different components.
 	////////////////////////////////////////////////////////////
 	AnimationComponent(Actor* actor, const std::string& file,
 					   TextureAnimation* animation, Vector2f pos=Vector2f());

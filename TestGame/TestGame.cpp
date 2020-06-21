@@ -1,6 +1,6 @@
 #include <conio.h>
 #include "SnowEngine.h"
-#include "Component/Visible/AnimationComponent.h"
+#include "Component/Visible/TextureComponent.h"
 #include "Utilites/Animation.h"
 #include "Component/Collision/RectCollisionComponent.h"
 #include <windows.h>
@@ -39,17 +39,22 @@ public:
 
 int main()
 {
+	snow::Level level;
 	snow::Gui gui;
-	snow::Actor actor1(&gui);
-	snow::Actor actor2(&gui, snow::Vector2i(200, 200));
+	snow::Actor levelActor(&level, snow::Vector2i(400, 300));
+	snow::Actor guiActor(&gui, snow::Vector2i(400, 300));
+	snow::TextureComponent levelComponent(&levelActor, "1.png");
+	levelComponent.setTextureRect(snow::IntRect(0, 0, 50, 50));
+	snow::TextureComponent guiComponent(&guiActor, "1.png");
+	guiComponent.setTextureRect(snow::IntRect(0, 0, 50, 50));
 	snow::Window window("Hi!", snow::Vector2i(800, 600));
+	window.attach(level);
 	window.attach(gui);
 
 	window.getInput()->mouseMoved = [](snow::Vector2f vector)
 	{
 		std::cout << vector.x << " " << vector.y << std::endl;
 	};
-	window.getInput()->mouseMoved(snow::Vector2f(3, 3));
-
+	
 	_getch();
 }

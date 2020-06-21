@@ -32,6 +32,19 @@ snow::CircleCollisionComponent::CircleCollisionComponent(snow::Actor* actor,
 	}
 }
 
+snow::CircleCollisionComponent::~CircleCollisionComponent()
+{
+	std::lock_guard<std::mutex> lock(collisionsMutex_);
+	int windowId = collisions_.findKey(window_);
+	for (int i = first_.x; i <= last_.x; i++)
+	{
+		for (int j = first_.y; j <= last_.y; j++)
+		{
+			removeFromSegment_(i, j, windowId);
+		}
+	}
+}
+
 void snow::CircleCollisionComponent::actorMove(snow::Vector2f to)
 {
 	Vector2i newFirst = ((getWorldPosition() - Vector2f(radius_, radius_)) / SEGMENT_SIZE).floor();

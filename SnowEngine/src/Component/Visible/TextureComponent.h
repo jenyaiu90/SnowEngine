@@ -48,6 +48,13 @@ public:
 					 IntRect textureRect, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
+	///	\brief The TextureComponent`s destructor.
+	///	
+	///	The destructor of the TextureComponent.
+	////////////////////////////////////////////////////////////
+	virtual ~TextureComponent();
+
+	////////////////////////////////////////////////////////////
 	///	\brief Method that is called every tick.
 	///	
 	///	This method draws the texture and is called every tick. If you need to override it, you

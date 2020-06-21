@@ -42,6 +42,13 @@ public:
 	Component(Actor* actor, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
+	///	\brief The Component`s destructor.
+	///	
+	///	The destructor of Component class. Is virtual. Does nothing.
+	////////////////////////////////////////////////////////////
+	virtual ~Component();
+
+	////////////////////////////////////////////////////////////
 	/// \brief The method that is called every tick.
 	///	
 	///	This method is called every tick by an Actor that the component is attached to. It isn`t

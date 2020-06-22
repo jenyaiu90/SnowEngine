@@ -7,6 +7,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <functional>
 #include "../Types/Vectors.h"
 
 namespace snow
@@ -24,22 +25,22 @@ typedef sf::Mouse::Button MouseButton;
 struct Input
 {
 	///	Key on keyboard was pressed.
-	void(*keyPressed)(KeyData key) = nullptr;
+	std::function<void(KeyData key)> keyPressed;
 
 	///	Key on keyboard was released.
-	void(*keyReleased)(KeyData key) = nullptr;
+	std::function<void(KeyData key)> keyReleased;
 
 	///	Mouse button was pressed.
-	void(*mouseButtonPressed)(MouseButton button, Vector2f position) = nullptr;
+	std::function<void(MouseButton button, Vector2f position)> mouseButtonPressed;
 
 	///	Mouse button was released.
-	void(*mouseButtonReleased)(MouseButton button, Vector2f position) = nullptr;
+	std::function<void(MouseButton button, Vector2f position)> mouseButtonReleased;
 
 	///	Mouse wheel was scrolled.
-	void(*mouseWheelScrolled)(int delta, Vector2f position) = nullptr;
+	std::function<void(int delta, Vector2f position)> mouseWheelScrolled;
 
 	///	Mouse was moved.
-	void(*mouseMoved)(Vector2f position) = nullptr;
+	std::function<void(Vector2f position)> mouseMoved;
 };
 
 }

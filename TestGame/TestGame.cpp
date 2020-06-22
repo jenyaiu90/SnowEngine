@@ -51,10 +51,16 @@ int main()
 	window.attach(level);
 	window.attach(gui);
 
-	window.getInput()->mouseMoved = [](snow::Vector2f vector)
+	int a = 5;
+
+	/*window.getInput()->mouseButtonPressed = [&a](snow::MouseButton button, snow::Vector2f position)
 	{
-		std::cout << vector.x << " " << vector.y << std::endl;
-	};
+		a = 9;
+	};*/
 	
+	_getch();
+	std::cout << a << std::endl;
+	_getch();
+	std::cout << a << std::endl;
 	_getch();
 }

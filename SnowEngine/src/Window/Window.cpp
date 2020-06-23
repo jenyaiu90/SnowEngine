@@ -123,8 +123,12 @@ void snow::Window::windowCycle()
 			}
 			case sf::Event::EventType::Resized:
 			{
-				levelView_.setSize(sf::Vector2f(event.size.width, event.size.height));
-				guisView_.setSize(sf::Vector2f(event.size.width, event.size.height));
+				levelView_.setSize(sf::Vector2f(
+								   static_cast<float>(event.size.width),
+								   static_cast<float>(event.size.height)));
+				guisView_.setSize(sf::Vector2f(
+								   static_cast<float>(event.size.width),
+								   static_cast<float>(event.size.height)));
 				break;
 			}
 			case sf::Event::EventType::KeyPressed:
@@ -145,15 +149,128 @@ void snow::Window::windowCycle()
 			}
 			case sf::Event::EventType::MouseButtonPressed:
 			{
+				Vector2f mousePosition(event.mouseButton.x, event.mouseButton.y);
+				bool clicked = false;
+				
+				if (guis_.startIterate())
+				{
+					do
+					{
+						if (guis_.getIterator() != nullptr &&
+							guis_.getIterator()->getClickables().startIterate())
+						{
+							do
+							{
+								ClickableComponent* clickable = guis_.getIterator()->getClickables().
+									getIterator();
+								if (clickable->onMousePressed != nullptr			   &&
+									clickable != nullptr							   &&
+									mousePosition.x >= clickable->getWorldPosition().x &&
+									mousePosition.x <= clickable->getWorldPosition().x +
+									clickable->getSize().x							   &&
+									mousePosition.y >= clickable->getWorldPosition().y &&
+									mousePosition.y <= clickable->getWorldPosition().y +
+									clickable->getSize().y)
+								{
+									clickable->onMousePressed(event.mouseButton.button, mousePosition);
+									clicked = true;
+									break;
+								}
+							} while (guis_.getIterator()->getClickables().iterateNext());
+							guis_.getIterator()->getClickables().stopIterate();
+						}
+					} while (guis_.iterateNext() && !clicked);
+					guis_.stopIterate();
+				}
+
+				if (!clicked && level_ != nullptr && level_->getClickables().startIterate())
+				{
+					do
+					{
+						ClickableComponent* clickable = level_->getClickables().getIterator();
+						if (clickable->onMousePressed != nullptr			   &&
+							clickable != nullptr							   &&
+							mousePosition.x >= clickable->getWorldPosition().x &&
+							mousePosition.x <= clickable->getWorldPosition().x +
+											   clickable->getSize().x		   &&
+							mousePosition.y >= clickable->getWorldPosition().y &&
+							mousePosition.y <= clickable->getWorldPosition().y +
+							clickable->getSize().y)
+						{
+							clickable->onMousePressed(event.mouseButton.button, mousePosition);
+							clicked = true;
+							break;
+						}
+					} while (level_->getClickables().iterateNext());
+					level_->getClickables().stopIterate();
+				}
+
 				if (input_.mouseButtonPressed != nullptr)
 				{
 					input_.mouseButtonPressed(event.mouseButton.button,
-											  Vector2f(event.mouseButton.x, event.mouseButton.y));
+											  Vector2f());
 				}
 				break;
 			}
 			case sf::Event::EventType::MouseButtonReleased:
 			{
+				Vector2f mousePosition(event.mouseButton.x, event.mouseButton.y);
+				bool clicked = false;
+				if (guis_.startIterate())
+				{
+					do
+					{
+						if (guis_.getIterator() != nullptr &&
+							guis_.getIterator()->getClickables().startIterate())
+						{
+							do
+							{
+								ClickableComponent* clickable = guis_.getIterator()->getClickables().
+									getIterator();
+								if (clickable->onMouseReleased != nullptr			   &&
+									clickable != nullptr							   &&
+									mousePosition.x >= clickable->getWorldPosition().x &&
+									mousePosition.x <= clickable->getWorldPosition().x +
+									clickable->getSize().x							   &&
+									mousePosition.y >= clickable->getWorldPosition().y &&
+									mousePosition.y <= clickable->getWorldPosition().y +
+									clickable->getSize().y)
+								{
+									clickable->onMouseReleased(event.mouseButton.button,
+															   mousePosition);
+									clicked = true;
+									break;
+								}
+							} while (guis_.getIterator()->getClickables().iterateNext());
+							guis_.getIterator()->getClickables().stopIterate();
+						}
+					} while (guis_.iterateNext() && !clicked);
+					guis_.stopIterate();
+				}
+
+				if (!clicked && level_ != nullptr && level_->getClickables().startIterate())
+				{
+					do
+					{
+						ClickableComponent* clickable = level_->getClickables().getIterator();
+						if (clickable->onMouseReleased != nullptr			   &&
+							clickable != nullptr							   &&
+							mousePosition.x >= clickable->getWorldPosition().x &&
+							mousePosition.x <= clickable->getWorldPosition().x +
+							clickable->getSize().x							   &&
+							mousePosition.y >= clickable->getWorldPosition().y &&
+							mousePosition.y <= clickable->getWorldPosition().y +
+							clickable->getSize().y)
+						{
+							clickable->onMouseReleased(event.mouseButton.button,
+													   mousePosition);
+							clicked = true;
+							break;
+						}
+					} while (level_->getClickables().iterateNext());
+					level_->getClickables().stopIterate();
+				}
+
 				if (input_.mouseButtonReleased != nullptr)
 				{
 					input_.mouseButtonReleased(event.mouseButton.button,
@@ -188,7 +305,6 @@ void snow::Window::windowCycle()
 		{
 			window_->setView(levelView_);
 			level_->tick(delta, *window_);
-			levelView_.move(-0.001, 0);
 		}
 
 		//guisMutex_ zone

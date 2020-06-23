@@ -9,12 +9,9 @@
 #include <string>
 #include <mutex>
 
-#include "../Types/List/LinkedList.h"
 #include "../Types/Vectors.h"
 #include "../Layer/Level/Level.h"
 #include "../Layer/Gui/Gui.h"
-#include "../Component/Collision/CollisionComponent.h"
-#include "Input.h"
 
 namespace snow
 {

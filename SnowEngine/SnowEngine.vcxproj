@@ -21,6 +21,7 @@
   <ItemGroup>
     <ClInclude Include="src\Component\Audio\MusicComponent.h" />
     <ClInclude Include="src\Component\Audio\SoundComponent.h" />
+    <ClInclude Include="src\Component\Clickable\ClickableComponent.h" />
     <ClInclude Include="src\Component\Collision\CircleCollisionComponent.h" />
     <ClInclude Include="src\Component\Collision\CollisionComponent.h" />
     <ClInclude Include="src\Component\Collision\RectCollisionComponent.h" />
@@ -50,6 +51,7 @@
     <ClCompile Include="src\Actor\Actor.h" />
     <ClCompile Include="src\Component\Audio\MusicComponent.cpp" />
     <ClCompile Include="src\Component\Audio\SoundComponent.cpp" />
+    <ClCompile Include="src\Component\Clickable\ClickableComponent.cpp" />
     <ClCompile Include="src\Component\Collision\CircleCollisionComponent.cpp" />
     <ClCompile Include="src\Component\Collision\CollisionComponent.cpp" />
     <ClCompile Include="src\Component\Collision\RectCollisionComponent.cpp" />

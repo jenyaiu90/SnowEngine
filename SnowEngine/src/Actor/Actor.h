@@ -62,6 +62,14 @@ public:
 	virtual void tick(const int& delta, sf::RenderWindow& window);
 
 	////////////////////////////////////////////////////////////
+	///	\brief Returns the layer that the actor is attached to.
+	///	
+	///	Allows to get the pointer to the layer.
+	///	\return The pointer to the layer that the actor is attached to.
+	////////////////////////////////////////////////////////////
+	Layer* getLayer();
+
+	////////////////////////////////////////////////////////////
 	///	\brief Allows to get the world position.
 	///	
 	///	This method lets you to get actor`s position.
@@ -125,6 +133,7 @@ private:
 
 	std::mutex componentsMutex_;
 	LinkedList<Component*> components_;
+	Layer* layer_;
 
 };
 

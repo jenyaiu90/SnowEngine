@@ -41,26 +41,25 @@ int main()
 {
 	snow::Level level;
 	snow::Gui gui;
-	snow::Actor levelActor(&level, snow::Vector2i(400, 300));
-	snow::Actor guiActor(&gui, snow::Vector2i(400, 300));
-	snow::TextureComponent levelComponent(&levelActor, "1.png");
-	levelComponent.setTextureRect(snow::IntRect(0, 0, 50, 50));
-	snow::TextureComponent guiComponent(&guiActor, "1.png");
-	guiComponent.setTextureRect(snow::IntRect(0, 0, 50, 50));
-	snow::Window window("Hi!", snow::Vector2i(800, 600));
+
+	snow::Actor levelActor(&level);
+	snow::Actor guiActor(&gui);
+
+	snow::ClickableComponent levelComponent(&levelActor, snow::Vector2f(200, 200));
+	snow::ClickableComponent guiComponent(&guiActor, snow::Vector2f(100, 100));
+
+	snow::Window window("Hello!", snow::Vector2i(800, 600));
 	window.attach(level);
 	window.attach(gui);
-
-	int a = 5;
-
-	/*window.getInput()->mouseButtonPressed = [&a](snow::MouseButton button, snow::Vector2f position)
-	{
-		a = 9;
-	};*/
 	
-	_getch();
-	std::cout << a << std::endl;
-	_getch();
-	std::cout << a << std::endl;
+	levelComponent.onMousePressed = [](snow::MouseButton button, snow::Vector2f position)
+	{
+		std::cout << "Level" << std::endl;
+	};
+	guiComponent.onMousePressed = [](snow::MouseButton button, snow::Vector2f position)
+	{
+		std::cout << "GUI" << std::endl;
+	};
+	
 	_getch();
 }

@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "../Actor/Actor.h"
+#include "../Component/Clickable/ClickableComponent.h"
 
 namespace snow
 {
@@ -67,6 +68,19 @@ public:
 	///	\return <b>true</b> if the actor was successfully spawned.
 	////////////////////////////////////////////////////////////
 	virtual bool spawnActor(Actor* actor);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the list of clickable components of the layer.
+	///	
+	///	Allows to get an adderess of the linked list with clickable components. This method is used
+	///	by the ClickableComponent class, it isn`t recommended to use it out if that class.
+	///	\return The linked list of clickable components.
+	////////////////////////////////////////////////////////////
+	LinkedList<ClickableComponent*>& getClickables();
+
+protected:
+
+	LinkedList<ClickableComponent*> clickables_;
 
 private:
 

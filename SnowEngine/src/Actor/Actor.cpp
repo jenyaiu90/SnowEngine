@@ -78,6 +78,8 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 	}
 }
 
+// Definition of the getLayer() method is in Layer.cpp.
+
 snow::Vector2f snow::Actor::getPosition() const
 {
 	return position;
@@ -151,13 +153,18 @@ bool snow::Actor::attachComponent(snow::Component* component)
 /////////////////
 
 snow::Component::Component(snow::Actor* actor, snow::Vector2f pos) :
-	position(pos)
+	position(pos),
+	actor_(actor)
 {
 	actor->attachComponent(this);
-	actor_ = actor;
 }
 
 snow::Vector2f snow::Component::getWorldPosition() const
 {
 	return actor_->getPosition() + position;
+}
+
+snow::Actor* snow::Component::getActor()
+{
+	return actor_;
 }

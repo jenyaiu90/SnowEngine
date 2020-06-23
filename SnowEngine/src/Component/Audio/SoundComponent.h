@@ -42,7 +42,7 @@ public:
 	///	
 	///	This method does nothing. Absolutely. It is useless. But it is necessary.
 	////////////////////////////////////////////////////////////
-	virtual void tick(const int& delta, sf::RenderWindow& window);
+	virtual void tick(const int& delta, sf::RenderWindow& window) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Is called when actor is moved.

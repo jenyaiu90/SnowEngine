@@ -19,6 +19,10 @@ snow::Component::~Component()
 {
 }
 
+// Definition of the getActor() method is in Actor.cpp.
+
+// Definition of the getWorldPosition() method is in Actor.cpp.
+
 snow::Vector2f snow::Component::getRelativePosition() const
 {
 	return position;

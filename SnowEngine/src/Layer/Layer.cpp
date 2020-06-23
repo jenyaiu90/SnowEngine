@@ -62,13 +62,36 @@ bool snow::Layer::spawnActor(snow::Actor* actor)
 	return actors_.add(actor);
 }
 
+snow::LinkedList<snow::ClickableComponent*>& snow::Layer::getClickables()
+{
+	return clickables_;
+}
+
 /////////////
 //  Actor  //
 /////////////
 
 snow::Actor::Actor(Layer* layer, Vector2f pos) :
 	position(pos),
-	components_()
+	components_(),
+	layer_(layer)
 {
 	layer->spawnActor(this);
+}
+
+snow::Layer* snow::Actor::getLayer()
+{
+	return layer_;
+}
+
+//////////////////////////
+//  ClickableComponent  //
+//////////////////////////
+
+snow::ClickableComponent::ClickableComponent(snow::Actor* actor,
+											 snow::Vector2f size, snow::Vector2f pos) :
+	snow::Component(actor, pos),
+	size_(size)
+{
+	actor->getLayer()->getClickables().add(this);
 }

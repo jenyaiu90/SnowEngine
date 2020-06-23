@@ -68,6 +68,14 @@ public:
 	virtual void tick(const int& delta, sf::RenderWindow& window) = 0;
 
 	////////////////////////////////////////////////////////////
+	///	\brief Returns the actor that the component is attached to.
+	///	
+	///	Allows to get the pointer to the actor.
+	///	\return The pointer to the actor that the component is attached to.
+	////////////////////////////////////////////////////////////
+	Actor* getActor();
+
+	////////////////////////////////////////////////////////////
 	///	\brief When actor moves.
 	///	
 	///	This method should be called when actor that the component is attached to is moved. It can,

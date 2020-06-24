@@ -96,9 +96,6 @@ protected:
 	std::mutex windowMutex_;
 	std::mutex guisMutex_;
 
-	sf::View levelView_;
-	sf::View guisView_;
-
 	sf::RenderWindow* window_;
 	std::string title_;
 	Vector2i resolution_;

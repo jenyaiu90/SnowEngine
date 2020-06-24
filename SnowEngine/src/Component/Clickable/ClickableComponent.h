@@ -27,6 +27,16 @@ class Window;
 ///		{
 ///			// Do what you need
 ///		};
+///		
+///		// Or without lambda
+///		
+///		void f(MouseButton button, Vector2f position)
+///		{
+///			// Do what you need
+///		}
+///		// ...
+///		snow::ClickableComponent component(&actor, &window, Vector2f(100.f, 100.f));
+///		component.onMousePressed = f;
 ///	\endcode
 ////////////////////////////////////////////////////////////
 class ClickableComponent : public Component
@@ -72,8 +82,13 @@ public:
 	///	When the mouse button was released.
 	std::function<void(MouseButton button, Vector2f position)> onMouseReleased;
 
-	///	When the cursor was hovered over.
-	std::function<void(Vector2f position)> onMouseHovered;
+	// Maybe later...
+
+	//	When the cursor was hovered over.
+	// std::function<void(Vector2f position)> onMouseHovered;
+
+	// When the cursor isn`t hovered over the component more.
+	// std::function<void()> onMouseUnhovered;
 
 protected:
 

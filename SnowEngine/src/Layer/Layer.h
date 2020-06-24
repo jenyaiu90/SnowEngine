@@ -23,6 +23,13 @@ class Layer
 public:
 
 	////////////////////////////////////////////////////////////
+	///	\brief The constructor.
+	///	
+	///	The constructor of the Layer class.
+	////////////////////////////////////////////////////////////
+	Layer();
+
+	////////////////////////////////////////////////////////////
 	///	\brief The Layer`s destructor.
 	///	
 	///	The destructor of the Layer class. Removes all attached actors.
@@ -50,6 +57,14 @@ public:
 	virtual void tick(const int& delta, sf::RenderWindow& window);
 
 	////////////////////////////////////////////////////////////
+	///	\brief The layer is attached to a window.
+	///	
+	///	This method should be called when the layer is attached to a window.
+	///	\param size The window`s size.
+	////////////////////////////////////////////////////////////
+	void onAttaching(Vector2f size);
+
+	////////////////////////////////////////////////////////////
 	///	\brief Spawns an actor to the layer.
 	///	
 	///	Spawns a passed actor in the layer. Note that SnowEngine calls the actors` tick() method
@@ -70,6 +85,66 @@ public:
 	virtual bool spawnActor(Actor* actor);
 
 	////////////////////////////////////////////////////////////
+	///	\brief Changes the layer`s scale.
+	///	
+	///	Allows to zoom the layer. It multiplies the current zoom factor to passed.
+	///	\param factor The zoom factor. If >1, the objects will appear smaller, if <1 then they will
+	///	appear bigger.
+	///	\return The new zoom factor.
+	////////////////////////////////////////////////////////////
+	float zoom(float factor);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the layer`s zoom.
+	///	
+	///	Allows to set the layer`s zoom factor.
+	///	/param factor The zoom factor. If 1, This layer will be displayed in 1:1 scale, if <1, the objects
+	///	will appear smaller.
+	////////////////////////////////////////////////////////////
+	void setZoom(float factor);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the current zoom factor.
+	///	
+	///	Allows to get the current layer`s zoom factor.
+	///	\return The current zoom factor.
+	////////////////////////////////////////////////////////////
+	float getZoom();
+
+	////////////////////////////////////////////////////////////
+	///	\brief Moves the camera.
+	///	
+	///	Moves the camera by a delta.
+	///	\param delta The camera will be moved by this value.
+	///	\return The new center`s position.
+	////////////////////////////////////////////////////////////
+	Vector2f move(Vector2f delta);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the center of the view.
+	///	
+	///	Allows to set the point that the camera will look to.
+	///	\param center The center of the view.
+	////////////////////////////////////////////////////////////
+	void setCenter(Vector2f center);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the current center of the view.
+	///	
+	///	Allows to get the point that the camera is looking to.
+	///	\return The current center of the view.
+	////////////////////////////////////////////////////////////
+	Vector2f getCenter();
+
+	////////////////////////////////////////////////////////////
+	///	\brief This method is called when the window is resized.
+	///	
+	///	Changes the scale of the layer. It isn`t recommended to call this method not from a window.
+	///	\param size The new size of the window.
+	////////////////////////////////////////////////////////////
+	void windowResize(Vector2f size);
+
+	////////////////////////////////////////////////////////////
 	///	\brief Returns the list of clickable components of the layer.
 	///	
 	///	Allows to get an adderess of the linked list with clickable components. This method is used
@@ -81,6 +156,9 @@ public:
 protected:
 
 	LinkedList<ClickableComponent*> clickables_;
+	Vector2f windowSize_;
+	float zoomFactor_;
+	sf::View view_;
 
 private:
 

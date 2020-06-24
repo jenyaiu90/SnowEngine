@@ -45,21 +45,16 @@ int main()
 	snow::Actor levelActor(&level);
 	snow::Actor guiActor(&gui);
 
-	snow::ClickableComponent levelComponent(&levelActor, snow::Vector2f(200, 200));
-	snow::ClickableComponent guiComponent(&guiActor, snow::Vector2f(100, 100));
+	snow::TextureComponent levelComponent(&levelActor, "1.png", snow::IntRect(500, 500, 100, 100));
+	snow::TextureComponent guiComponent(&guiActor, "1.png", snow::IntRect(600, 400, 200, 200));
 
 	snow::Window window("Hello!", snow::Vector2i(800, 600));
 	window.attach(level);
 	window.attach(gui);
 	
-	levelComponent.onMousePressed = [](snow::MouseButton button, snow::Vector2f position)
-	{
-		std::cout << "Level" << std::endl;
-	};
-	guiComponent.onMousePressed = [](snow::MouseButton button, snow::Vector2f position)
-	{
-		std::cout << "GUI" << std::endl;
-	};
-	
+	_getch();
+
+	levelActor.move(snow::Vector2f(400.f, 0.f), 2000);
+
 	_getch();
 }

@@ -6,6 +6,11 @@
 
 #include "Layer.h"
 
+snow::Layer::Layer() :
+	zoomFactor_(1.f)
+{
+}
+
 snow::Layer::~Layer()
 {
 	if (actors_.startIterate())
@@ -25,6 +30,7 @@ void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 	std::lock_guard<std::mutex> lock(actorsMutex_);
 	if (actors_.startIterate())
 	{
+		window.setView(view_);
 	try_again:; // Don`t do like me, don`t use goto!
 		do
 		{
@@ -56,10 +62,56 @@ void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 	}
 }
 
+void snow::Layer::onAttaching(snow::Vector2f size)
+{
+	windowSize_ = size;
+	view_.setSize(static_cast<sf::Vector2f>(size * zoomFactor_));
+	view_.setCenter(static_cast<sf::Vector2f>(size / 2));
+}
+
 bool snow::Layer::spawnActor(snow::Actor* actor)
 {
 	std::lock_guard<std::mutex> lock(actorsMutex_);
 	return actors_.add(actor);
+}
+
+float snow::Layer::zoom(float factor)
+{
+	setZoom(factor * zoomFactor_);
+	return getZoom();
+}
+
+void snow::Layer::setZoom(float factor)
+{
+	zoomFactor_ = factor;
+	view_.setSize(static_cast<sf::Vector2f>(windowSize_ * factor));
+}
+
+float snow::Layer::getZoom()
+{
+	return zoomFactor_;
+}
+
+snow::Vector2f snow::Layer::move(snow::Vector2f delta)
+{
+	view_.move(static_cast<sf::Vector2f>(delta));
+	return getCenter();
+}
+
+void snow::Layer::setCenter(snow::Vector2f center)
+{
+	view_.setCenter(static_cast<sf::Vector2f>(center));
+}
+
+snow::Vector2f snow::Layer::getCenter()
+{
+	return view_.getCenter();
+}
+
+void snow::Layer::windowResize(snow::Vector2f size)
+{
+	windowSize_ = size;
+	view_.setSize(static_cast<sf::Vector2f>(windowSize_ * zoomFactor_));
 }
 
 snow::LinkedList<snow::ClickableComponent*>& snow::Layer::getClickables()

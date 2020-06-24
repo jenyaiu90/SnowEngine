@@ -1,12 +1,10 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: Window.cpp                  //
 ////////////////////////////////////////
 
 #include "Window.h"
-#include "../Types/List/ArrayList.h"
-#include <iostream>
 #include <chrono>
 #include <thread>
 
@@ -19,7 +17,7 @@ snow::Window::Window(const std::string& title, const Vector2i& resolution, bool 
 	resolution_(resolution),
 	isFullscreen_(isFullscreen)
 {
-	std::thread windowThread(&snow::Window::startWindow, this, title, resolution, isFullscreen);
+	std::thread windowThread(&Window::startWindow, this, title, resolution, isFullscreen);
 	windowThread.detach();
 }
 

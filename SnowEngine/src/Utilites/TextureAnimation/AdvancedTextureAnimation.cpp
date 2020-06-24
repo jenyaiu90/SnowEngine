@@ -1,7 +1,7 @@
-////////////////////////////////////////
-//         After by SnegirSoft        //
-//                                    //
-//  File: SimpleTextureAnimation.cpp  //
+    ////////////////////////////////////////
+   //      SnowEngine by SnegirSoft      //
+  //                                    //
+ //  File: SimpleTextureAnimation.cpp  //
 ////////////////////////////////////////
 
 #include "AdvancedTextureAnimation.h"

@@ -1,5 +1,5 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: Actor.h                     //
 ////////////////////////////////////////
@@ -7,7 +7,6 @@
 #pragma once
 
 #include "../Component/Component.h"
-#include <thread>
 #include <mutex>
 
 namespace snow

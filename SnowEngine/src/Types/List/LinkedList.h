@@ -1,5 +1,5 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: LinkedList.h                //
 ////////////////////////////////////////

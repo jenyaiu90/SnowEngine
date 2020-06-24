@@ -1,5 +1,5 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: Gui.h                       //
 ////////////////////////////////////////
@@ -7,7 +7,6 @@
 #pragma once
 
 #include "../Layer.h"
-#include "../../Types/List/Comparator.h"
 
 namespace snow
 {

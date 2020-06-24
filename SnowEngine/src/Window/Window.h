@@ -1,17 +1,13 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: Window.h                    //
 ////////////////////////////////////////
 
 #pragma once
 
-#include <string>
-#include <mutex>
-
-#include "../Types/Vectors.h"
-#include "../Layer/Level/Level.h"
 #include "../Layer/Gui/Gui.h"
+#include "../Layer/Level/Level.h"
 
 namespace snow
 {

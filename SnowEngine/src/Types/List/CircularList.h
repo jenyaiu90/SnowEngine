@@ -1,7 +1,7 @@
-////////////////////////////////////////
-//         After by SnegirSoft        //
-//                                    //
-//  File: CircularList.h              //
+    ////////////////////////////////////////
+   //      SnowEngine by SnegirSoft      //
+  //                                    //
+ //  File: CircularList.h              //
 ////////////////////////////////////////
 
 #pragma once

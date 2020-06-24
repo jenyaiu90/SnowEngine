@@ -1,12 +1,11 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: Component.h                 //
 ////////////////////////////////////////
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 #include <string>
 #include "../Types/Vectors.h"

@@ -1,12 +1,11 @@
     ////////////////////////////////////////
-   //         After by SnegirSoft        //
+   //      SnowEngine by SnegirSoft      //
   //                                    //
  //  File: Layer.h                     //
 ////////////////////////////////////////
 
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include "../Actor/Actor.h"
 #include "../Component/Clickable/ClickableComponent.h"
 

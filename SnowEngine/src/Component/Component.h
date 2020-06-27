@@ -31,6 +31,7 @@ public:
 	static const std::string SOUNDS_PATH;	///< Path to sounds folder.
 	static const std::string MUSIC_PATH;	///< Path to music folder.
 	static const std::string TEXTURES_PATH;	///< Path to textures folder.
+	static const std::string FONTS_PATH;	///< Path to fonts folder.
 
 	////////////////////////////////////////////////////////////
 	///	\brief The constructor that sets a relative position and attaches the component to actor.

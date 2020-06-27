@@ -131,6 +131,9 @@
     <ClInclude Include="src\Component\Clickable\ClickableComponent.h">
       <Filter>Source Files\Component\Clickable</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Visible\TextComponent.h">
+      <Filter>Source Files\Component\Visible</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -189,6 +192,9 @@
     </ClCompile>
     <ClCompile Include="src\Component\Clickable\ClickableComponent.cpp">
       <Filter>Source Files\Component\Clickable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Visible\TextComponent.cpp">
+      <Filter>Source Files\Component\Visible</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

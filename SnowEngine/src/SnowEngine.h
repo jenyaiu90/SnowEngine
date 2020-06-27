@@ -12,6 +12,7 @@
 #include "Component/Audio/SoundComponent.h"
 #include "Component/Collision/CircleCollisionComponent.h"
 #include "Component/Visible/AnimationComponent.h"
+#include "Component/Visible/TextComponent.h"
 
 #include "Utilites/TextureAnimation/SimpleTextureAnimation.h"
 #include "Utilites/TextureAnimation/AdvancedTextureAnimation.h"

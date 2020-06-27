@@ -16,6 +16,7 @@ namespace snow
 
 typedef sf::IntRect IntRect;		///< You can use snow::IntRect instead of sf::IntRect.
 typedef sf::FloatRect FloatRect;	///< You can use snow::FloatRect instead of sf::FloatRect.
+typedef sf::Color Color;			///< You can use snow::Color instead of sf::Color.
 
 ////////////////////////////////////////////////////////////
 ///	\brief A two-dimensional vector of integer

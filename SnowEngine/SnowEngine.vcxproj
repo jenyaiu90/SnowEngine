@@ -27,6 +27,7 @@
     <ClInclude Include="src\Component\Collision\RectCollisionComponent.h" />
     <ClInclude Include="src\Component\Component.h" />
     <ClInclude Include="src\Component\Visible\AnimationComponent.h" />
+    <ClInclude Include="src\Component\Visible\TextComponent.h" />
     <ClInclude Include="src\Component\Visible\TextureComponent.h" />
     <ClInclude Include="src\Layer\Gui\Gui.h" />
     <ClInclude Include="src\Layer\Layer.h" />
@@ -57,6 +58,7 @@
     <ClCompile Include="src\Component\Collision\RectCollisionComponent.cpp" />
     <ClCompile Include="src\Component\Component.cpp" />
     <ClCompile Include="src\Component\Visible\AnimationComponent.cpp" />
+    <ClCompile Include="src\Component\Visible\TextComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextureComponent.cpp" />
     <ClCompile Include="src\Layer\Gui\Gui.cpp" />
     <ClCompile Include="src\Layer\Layer.cpp" />

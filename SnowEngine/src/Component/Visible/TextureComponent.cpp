@@ -78,5 +78,5 @@ snow::Vector2f snow::TextureComponent::scale(float factor)
 
 void snow::TextureComponent::actorMove(snow::Vector2f to)
 {
-	sprite_->setPosition(to + static_cast<sf::Vector2f>(position));
+	sprite_->setPosition(static_cast<sf::Vector2f>(to + position));
 }

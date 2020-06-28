@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../Component.h"
+#include "VisibleComponent.h"
 
 namespace snow
 {
@@ -17,7 +17,7 @@ namespace snow
 ///	This component is intended for displaying actor`s texture. If you need to create an animation,
 ///	you should use the AnimationComponent.
 ////////////////////////////////////////////////////////////
-class TextureComponent : public Component
+class TextureComponent : public VisibleComponent
 {
 public:
 
@@ -85,6 +85,22 @@ public:
 	///	\return The texture rectangle.
 	////////////////////////////////////////////////////////////
 	virtual IntRect getTextureRect() const;
+
+	////////////////////////////////////////////////////////////
+	/// \brief Returns the component`s color.
+	///	
+	///	Allows to get the color of the component.
+	///	\return The component`s color.
+	////////////////////////////////////////////////////////////
+	virtual const Color getColor() const override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the color for the comoponent.
+	///	
+	///	Allows to set the component`s color.
+	///	\param text The color that will be set for the component.
+	////////////////////////////////////////////////////////////
+	virtual void setColor(const Color color) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets a new scale for the texture.

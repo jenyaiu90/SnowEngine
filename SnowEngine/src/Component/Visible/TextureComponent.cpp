@@ -8,7 +8,7 @@
 
 snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string& file,
 										 snow::Vector2f pos) :
-	Component(actor, pos),
+	VisibleComponent(actor, pos),
 	file_(file),
 	texture_(new sf::Texture),
 	sprite_(new sf::Sprite)
@@ -33,10 +33,13 @@ snow::TextureComponent::~TextureComponent()
 
 void snow::TextureComponent::tick(const int& delta, sf::RenderWindow& window)
 {
-	snow::Vector2f nps = getWorldPosition();
-	sf::Vector2f np = static_cast<sf::Vector2f>(nps);
-	sprite_->setPosition(np);
-	window.draw(*sprite_);
+	if (isEnabled_)
+	{
+//		snow::Vector2f nps = getWorldPosition();
+//		sf::Vector2f np = static_cast<sf::Vector2f>(nps);
+//		sprite_->setPosition(np);
+		window.draw(*sprite_);
+	}
 }
 
 void snow::TextureComponent::setTextureRect(snow::IntRect textureRect)
@@ -47,6 +50,16 @@ void snow::TextureComponent::setTextureRect(snow::IntRect textureRect)
 snow::IntRect snow::TextureComponent::getTextureRect() const
 {
 	return sprite_->getTextureRect();
+}
+
+const snow::Color snow::TextureComponent::getColor() const
+{
+	return sprite_->getColor();
+}
+
+void snow::TextureComponent::setColor(const Color color)
+{
+	sprite_->setColor(color);
 }
 
 void snow::TextureComponent::setScale(snow::Vector2f newScale)

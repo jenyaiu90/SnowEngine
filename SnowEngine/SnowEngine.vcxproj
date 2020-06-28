@@ -29,6 +29,7 @@
     <ClInclude Include="src\Component\Visible\AnimationComponent.h" />
     <ClInclude Include="src\Component\Visible\TextComponent.h" />
     <ClInclude Include="src\Component\Visible\TextureComponent.h" />
+    <ClInclude Include="src\Component\Visible\VisibleComponent.h" />
     <ClInclude Include="src\Layer\Gui\Gui.h" />
     <ClInclude Include="src\Layer\Layer.h" />
     <ClInclude Include="src\Layer\Level\Level.h" />
@@ -60,6 +61,7 @@
     <ClCompile Include="src\Component\Visible\AnimationComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextureComponent.cpp" />
+    <ClCompile Include="src\Component\Visible\VisibleComponent.cpp" />
     <ClCompile Include="src\Layer\Gui\Gui.cpp" />
     <ClCompile Include="src\Layer\Layer.cpp" />
     <ClCompile Include="src\Layer\Level\Level.cpp" />

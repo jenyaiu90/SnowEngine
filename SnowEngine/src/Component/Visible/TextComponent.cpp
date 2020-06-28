@@ -8,7 +8,7 @@
 
 snow::TextComponent::TextComponent(Actor* actor, std::string text, int size,
 								   const std::string& fontFile, Vector2f pos) :
-	Component(actor, pos)
+	VisibleComponent(actor, pos)
 {
 	font_.loadFromFile(FONTS_PATH + fontFile);
 	text_ = new sf::Text(sf::String(text), font_, size);
@@ -20,7 +20,7 @@ snow::TextComponent::~TextComponent()
 	delete text_;
 }
 
-const std::string& snow::TextComponent::getText() const
+std::string snow::TextComponent::getText() const
 {
 	return text_->getString();
 }
@@ -37,7 +37,10 @@ void snow::TextComponent::setFont(const std::string& fontFile)
 
 void snow::TextComponent::tick(const int& delta, sf::RenderWindow& window)
 {
-	window.draw(*text_);
+	if (isEnabled_)
+	{
+		window.draw(*text_);
+	}
 }
 
 void snow::TextComponent::actorMove(Vector2f to)

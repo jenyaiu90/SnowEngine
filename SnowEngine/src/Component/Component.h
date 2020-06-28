@@ -36,7 +36,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief The constructor that sets a relative position and attaches the component to actor.
 	///	
-	///	This constructor sets a relative position of the component and attached
+	///	This constructor sets a relative position of the component and attaches it to an actor.
+	///	\param actor The actor that the component will be attached to.
 	///	\param pos A relative position. A default value is (0.0, 0.0).
 	////////////////////////////////////////////////////////////
 	Component(Actor* actor, Vector2f pos=Vector2f());

@@ -6,7 +6,7 @@
 
 #pragma once
 
-#include "../Component.h"
+#include "VisibleComponent.h"
 
 namespace snow
 {
@@ -16,7 +16,7 @@ namespace snow
 ///	
 ///	This component displays the text. You also should set the font for it.
 ////////////////////////////////////////////////////////////
-class TextComponent : public Component
+class TextComponent : public VisibleComponent
 {
 public:
 
@@ -65,7 +65,7 @@ public:
 	///	Allows to get the text that is set to the component.
 	///	\return The component`s text.
 	////////////////////////////////////////////////////////////
-	const std::string& getText() const;
+	std::string getText() const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets the text for the comoponent.
@@ -91,7 +91,7 @@ public:
 	///	Allows to get the color of the text that is set to the component.
 	///	\return The text`s color.
 	////////////////////////////////////////////////////////////
-	const Color getColor() const;
+	const Color getColor() const override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets the color for the text of the comoponent.
@@ -99,7 +99,7 @@ public:
 	///	Allows to set the text`s color.
 	///	\param text The color that will be set for the component`s text.
 	////////////////////////////////////////////////////////////
-	void setColor(const Color color);
+	void setColor(const Color color) override;
 
 	////////////////////////////////////////////////////////////
 	/// \brief Returns the text`s size.

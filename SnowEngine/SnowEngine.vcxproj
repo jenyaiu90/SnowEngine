@@ -27,6 +27,7 @@
     <ClInclude Include="src\Component\Collision\RectCollisionComponent.h" />
     <ClInclude Include="src\Component\Component.h" />
     <ClInclude Include="src\Component\Visible\AnimationComponent.h" />
+    <ClInclude Include="src\Component\Visible\InputComponent.h" />
     <ClInclude Include="src\Component\Visible\TextComponent.h" />
     <ClInclude Include="src\Component\Visible\TextureComponent.h" />
     <ClInclude Include="src\Component\Visible\VisibleComponent.h" />
@@ -59,6 +60,7 @@
     <ClCompile Include="src\Component\Collision\RectCollisionComponent.cpp" />
     <ClCompile Include="src\Component\Component.cpp" />
     <ClCompile Include="src\Component\Visible\AnimationComponent.cpp" />
+    <ClCompile Include="src\Component\Visible\InputComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextComponent.cpp" />
     <ClCompile Include="src\Component\Visible\TextureComponent.cpp" />
     <ClCompile Include="src\Component\Visible\VisibleComponent.cpp" />

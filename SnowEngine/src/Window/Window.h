@@ -8,6 +8,7 @@
 
 #include "../Layer/Gui/Gui.h"
 #include "../Layer/Level/Level.h"
+#include "../Component/Visible/InputComponent.h"
 
 namespace snow
 {

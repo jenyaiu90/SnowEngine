@@ -137,6 +137,9 @@
     <ClInclude Include="src\Component\Visible\VisibleComponent.h">
       <Filter>Source Files\Component\Visible</Filter>
     </ClInclude>
+    <ClInclude Include="src\Component\Visible\InputComponent.h">
+      <Filter>Source Files\Component\Visible</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -200,6 +203,9 @@
       <Filter>Source Files\Component\Visible</Filter>
     </ClCompile>
     <ClCompile Include="src\Component\Visible\VisibleComponent.cpp">
+      <Filter>Source Files\Component\Visible</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Component\Visible\InputComponent.cpp">
       <Filter>Source Files\Component\Visible</Filter>
     </ClCompile>
   </ItemGroup>

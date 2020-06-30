@@ -152,12 +152,21 @@ public:
 	////////////////////////////////////////////////////////////
 	LinkedList<ClickableComponent*>& getClickables();
 
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the followed actor.
+	///	
+	///	The view will follow passed actor.
+	///	\param actor An actor that will be followed.
+	////////////////////////////////////////////////////////////
+	virtual void follow(const Actor* actor);
+
 protected:
 
 	LinkedList<ClickableComponent*> clickables_; ///< The list of all layer`s clickable components.
 	Vector2f windowSize_;						 ///< The size of window (and layer).
 	float zoomFactor_;							 ///< The current zoom.
 	sf::View view_;								 ///< The view (an SFML type).
+	const Actor* followed_;						 ///< The actor that is followed by the layer.
 
 private:
 

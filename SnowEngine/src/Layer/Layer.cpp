@@ -60,6 +60,11 @@ void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 			}
 		} while (actors_.iterateNext());
 	}
+
+	if (followed_ != nullptr)
+	{
+		view_.setCenter(followed_->getPosition());
+	}
 }
 
 void snow::Layer::onAttaching(snow::Vector2f size)
@@ -100,6 +105,7 @@ snow::Vector2f snow::Layer::move(snow::Vector2f delta)
 
 void snow::Layer::setCenter(snow::Vector2f center)
 {
+	followed_ = nullptr;
 	view_.setCenter(static_cast<sf::Vector2f>(center));
 }
 
@@ -117,6 +123,11 @@ void snow::Layer::windowResize(snow::Vector2f size)
 snow::LinkedList<snow::ClickableComponent*>& snow::Layer::getClickables()
 {
 	return clickables_;
+}
+
+void snow::Layer::follow(const Actor* actor)
+{
+	followed_ = actor;
 }
 
 /////////////

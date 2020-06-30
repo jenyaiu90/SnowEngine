@@ -7,25 +7,23 @@ int main()
 {
 	snow::Gui gui;
 
-	snow::Actor guiActor(&gui);
+	snow::Actor actor1(&gui);
+	snow::Actor actor2(&gui);
 
-	snow::InputComponent text(&guiActor, 30, "font.ttf", snow::Vector2f(500, 100));
+	snow::TextureComponent component1(&actor1, "1.png");
+	snow::TextureComponent component2(&actor2, "1.png");
+	component2.setTextureRect(snow::IntRect(500, 500, 200, 200));
 
-	snow::Window window("Hello!", snow::Vector2i(800, 600));
+	snow::Window window("Hello world!", snow::Vector2i(800, 600));
 	window.attach(gui);
 
 	_getch();
 
-	std::cout << snow::SaveLoad::startSaving("default") << std::endl;
-	snow::SaveLoad::save("text", text.getText());
-	snow::SaveLoad::save("hello", "Hello");
-	std::cout << snow::SaveLoad::stopSaving() << std::endl;
+	gui.follow(&actor2);
 
 	_getch();
 
-	std::cout << snow::SaveLoad::startLoading("default") << std::endl;
-	text.setText(snow::SaveLoad::load("hello") + snow::SaveLoad::load("text"));
-	std::cout << snow::SaveLoad::stopLoading() << std::endl;
+	actor2.move(snow::Vector2f(500, 500), 2000);
 
 	_getch();
 }

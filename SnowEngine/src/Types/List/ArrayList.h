@@ -191,14 +191,21 @@ public:
 	///	\endcode
 	////////////////////////////////////////////////////////////
 	ArrayList<T> operator=(const ArrayList<T>& list);
+
 private:
+
 	T* array_;
 	int size_;
 	int currentMax_;
-	void expand();
+	void expand_();
+
 };
 
 // Below are the methods of the ArrayList.
+
+//////////////
+//  public  //
+//////////////
 
 template<typename T>
 ArrayList<T>::ArrayList() :
@@ -256,7 +263,7 @@ bool ArrayList<T>::add(const T& item)
 {
 	if (size_ >= currentMax_)
 	{
-		expand();
+		expand_();
 	}
 	array_[size_] = item;
 	size_++;
@@ -274,7 +281,7 @@ bool ArrayList<T>::add(const T& item, int pos)
 	{
 		if (size_ >= currentMax_)
 		{
-			expand();
+			expand_();
 		}
 
 		for (int i = size_ - 1; i >= pos; i--)
@@ -420,8 +427,12 @@ ArrayList<T> ArrayList<T>::operator=(const ArrayList<T>& list)
 	return *this;
 }
 
+///////////////
+//  private  //
+///////////////
+
 template<typename T>
-void ArrayList<T>::expand()
+void ArrayList<T>::expand_()
 {
 	int oldMax = currentMax_;
 	if (currentMax_ < 5)

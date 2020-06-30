@@ -65,7 +65,7 @@ public:
 	///	Allows to get the text that is set to the component.
 	///	\return The component`s text.
 	////////////////////////////////////////////////////////////
-	std::string getText() const;
+	virtual std::string getText() const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets the text for the comoponent.
@@ -73,7 +73,7 @@ public:
 	///	Allows to set the text that will being displayed.
 	///	\param text The text that will be set for the component.
 	////////////////////////////////////////////////////////////
-	void setText(const std::string& text);
+	virtual void setText(const std::string& text);
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets the font for the comoponent`s text.

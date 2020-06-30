@@ -75,6 +75,22 @@ public:
 	////////////////////////////////////////////////////////////
 	void setActive();
 
+	////////////////////////////////////////////////////////////
+	/// \brief Returns the displaying text.
+	///	
+	///	Allows to get the text that is set to the component.
+	///	\return The component`s text.
+	////////////////////////////////////////////////////////////
+	virtual std::string getText() const override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Sets the text for the comoponent.
+	///	
+	///	Allows to set the text that will being displayed.
+	///	\param text The text that will be set for the component.
+	////////////////////////////////////////////////////////////
+	virtual void setText(const std::string& text) override;
+
 protected:
 
 	ClickableComponent clickable_;	///< The component`s clickable component.

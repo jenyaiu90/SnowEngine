@@ -70,6 +70,7 @@ private:
 	std::string file_; ///< The file with music.
 
 	sf::Music music_; ///< The music (an SFML type).
+
 };
 
 }

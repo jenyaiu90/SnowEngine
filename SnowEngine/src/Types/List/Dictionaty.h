@@ -6,8 +6,9 @@
 
 #pragma once
 
-#include "ArrayList.h"
 #include <stdexcept>
+
+#include "ArrayList.h"
 
 namespace snow
 {

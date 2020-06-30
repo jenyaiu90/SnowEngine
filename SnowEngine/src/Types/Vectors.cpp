@@ -4,9 +4,9 @@
  //  File: Types.cpp                   //
 ////////////////////////////////////////
 
-#include "Vectors.h"
-
 #include <cmath>
+
+#include "Vectors.h"
 
 
 ////////////////

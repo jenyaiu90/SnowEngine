@@ -266,6 +266,7 @@ public:
 	void stopIterate();
 
 protected:
+
 	struct Note
 	{
 		Note* prev;
@@ -278,6 +279,7 @@ protected:
 
 	Note* iterator_;
 	int iteratorPos_;
+
 };
 
 // Below are the methods of the LinkedList.

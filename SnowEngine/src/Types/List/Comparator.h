@@ -32,6 +32,7 @@ public:
 	///		- <b>A negative value</b> if a first object is less than a second one.
 	////////////////////////////////////////////////////////////
 	virtual int compare(const T& first, const T& second) const = 0;
+
 };
 
 }

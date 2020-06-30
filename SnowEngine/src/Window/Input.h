@@ -8,6 +8,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <functional>
+
 #include "../Types/Vectors.h"
 
 namespace snow

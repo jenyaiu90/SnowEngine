@@ -69,6 +69,7 @@ private:
 
 	sf::SoundBuffer buffer_;	///< The sound buffer (an SFML type).
 	sf::Sound sound_;			///< The sound (an SFML type).
+
 };
 
 }

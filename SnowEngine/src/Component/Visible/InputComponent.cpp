@@ -23,10 +23,11 @@ void snow::InputComponent::deactivate()
 {
 	if (active_ != nullptr)
 	{
-		std::string str = active_->getText();
-		str.pop_back();
-		active_->setText(str);
+		InputComponent* tmp = active_;
 		active_ = nullptr;
+		std::string str = tmp->getText();
+		str.pop_back();
+		tmp->setText(str);
 	}
 }
 
@@ -50,20 +51,17 @@ void snow::InputComponent::input(char c)
 	{
 	case '\b':
 	{
-		if (str.length() > 1)
+		if (str.length() > 0)
 		{
 			str.pop_back();
-			str.pop_back();
-			str += '_';
 			setText(str);
 		}
 		break;
 	}
 	case 127:
 	{
-		if (str.length() > 1)
+		if (str.length() > 0)
 		{
-			str.pop_back();
 			char back;
 			do
 			{
@@ -71,7 +69,6 @@ void snow::InputComponent::input(char c)
 				str.pop_back();
 			} while (str.length() > 0 &&
 					 back != ' ' && back != '\t');
-			str += '_';
 			setText(str);
 		}
 		break;
@@ -84,9 +81,7 @@ void snow::InputComponent::input(char c)
 	}
 	default:
 	{
-		str.pop_back();
 		str += c;
-		str += '_';
 		setText(str);
 	}
 	}
@@ -94,6 +89,21 @@ void snow::InputComponent::input(char c)
 
 void snow::InputComponent::setActive()
 {
-	active_ = this;
 	setText(getText() + '_');
+	active_ = this;
+}
+
+std::string snow::InputComponent::getText() const
+{
+	std::string result = __super::getText();
+	if (active_ == this)
+	{
+		result.pop_back();
+	}
+	return result;
+}
+
+void snow::InputComponent::setText(const std::string& text)
+{
+	__super::setText((active_ == this) ? text + '_' : text);
 }

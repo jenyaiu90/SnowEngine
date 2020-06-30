@@ -10,7 +10,6 @@
 #include <SFML/Graphics.hpp>
 #include <stdexcept>
 
-
 namespace snow
 {
 

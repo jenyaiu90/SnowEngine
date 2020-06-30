@@ -6,9 +6,10 @@
 
 #pragma once
 
+#include <mutex>
+
 #include "../Component.h"
 #include "../../Types/List/Dictionaty.h"
-#include <mutex>
 
 namespace snow
 {
@@ -98,10 +99,10 @@ protected:
 
 	std::string type_; ///< Shoud be set in the constructor
 
+	static std::mutex collisionsMutex_; ///< The mutex for collisions_.
 	static Dictionary<sf::RenderWindow*, Dictionary<Vector2i, ArrayList<CollisionComponent*>>>
 		collisions_; ///< The dictionary of all collision components.
 					 //   ...The scary dictionary...
-	static std::mutex collisionsMutex_; ///< The mutex for collisions_.
 
 	sf::RenderWindow* window_; ///< The window with that component (an SFML type)
 

@@ -101,7 +101,6 @@ protected:
 	Vector2i resolution_;		///< The window`s resolution (in pixels).
 	bool isFullscreen_;			///< Is fullscreen.
 								//   Unexpectedly...
-
 /*
 	Comments in my code look like this:
 
@@ -139,6 +138,7 @@ protected:
 	void startWindow_(const std::string& title, const Vector2i& resolution, bool isFullscreen);
 	void windowCycle_(); ///< The window`s behaviour.
 						 //   No, I`m not British.
+
 };
 
 }

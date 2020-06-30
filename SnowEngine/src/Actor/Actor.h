@@ -6,8 +6,9 @@
 
 #pragma once
 
-#include "../Component/Component.h"
 #include <mutex>
+
+#include "../Component/Component.h"
 
 namespace snow
 {

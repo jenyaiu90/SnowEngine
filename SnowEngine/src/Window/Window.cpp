@@ -183,7 +183,7 @@ void snow::Window::windowCycle_()
 				}
 				case sf::Event::EventType::KeyReleased:
 				{
-					if (!InputComponent::thereIsActive &&
+					if (!InputComponent::thereIsActive() &&
 						input_.keyReleased != nullptr)
 					{
 						input_.keyReleased(event.key);

@@ -49,12 +49,14 @@ protected:
 	int priority_; ///< Defines the order of drawing the GUI`s. The GUI with lower priority is
 				   ///  drawed later to be on top of other one.
 
+	/// Compares two GUI`s
 	class GuiPriorityComparator : public IComparator<Gui>
 	{
 	public:
 		int compare(const Gui& first, const Gui& second) const override;
 	};
 
+	/// Compares two GUI`s with their pointers
 	class GuiPointerPriorityComparator : public IComparator<Gui*>
 	{
 		typedef Gui* GuiPointer; // I really don`t know why it works but it works. I hope...
@@ -62,8 +64,8 @@ protected:
 		int compare(const GuiPointer& first, const GuiPointer& second) const override;
 	};
 
-	static GuiPriorityComparator comparator_;
-	static GuiPointerPriorityComparator pointerComparator_;
+	static GuiPriorityComparator comparator_;				///< One comparator.
+	static GuiPointerPriorityComparator pointerComparator_;	///< Another comparator.
 };
 
 }

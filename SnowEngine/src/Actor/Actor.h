@@ -107,32 +107,17 @@ public:
 
 protected:
 
-	////////////////////////////////////////////////////////////
-	///	\brief The position of the actor.
-	///	
-	///	The world position of the actor.
-	////////////////////////////////////////////////////////////
-	Vector2f position;
+	Vector2f position_;	///< The actor`s world position.
+	Vector2f speed_;		///< The actor`s speed in px/ms.
 
-	////////////////////////////////////////////////////////////
-	///	\brief The actor`s speed.
-	///	
-	///	The speed of the actor in px/ms.
-	////////////////////////////////////////////////////////////
-	Vector2f speed;
-
-	////////////////////////////////////////////////////////////
-	///	\brief The actor`s destination.
-	///	
-	///	The point that the actor moves to. If nullptr, the actor doesn`t have a destination.
-	////////////////////////////////////////////////////////////
+	/// The point that the actor moves to. If nullptr, the actor doesn`t have a destination.
 	Vector2f* destination;
 
 private:
 
-	std::mutex componentsMutex_;
-	LinkedList<Component*> components_;
-	Layer* layer_;
+	std::mutex componentsMutex_;		///< The mutex for components_ list.
+	LinkedList<Component*> components_;	///< The list of actor`s component.
+	Layer* layer_;						///< The layer that the actor is attached to.
 
 };
 

@@ -46,8 +46,8 @@ snow::RectCollisionComponent::~RectCollisionComponent()
 
 void snow::RectCollisionComponent::actorMove(snow::Vector2f to)
 {
-	Vector2i newFirst = ((to + position) / SEGMENT_SIZE).floor();
-	Vector2i newLast = ((to + position + size_) / SEGMENT_SIZE).floor();
+	Vector2i newFirst = ((to + position_) / SEGMENT_SIZE).floor();
+	Vector2i newLast = ((to + position_ + size_) / SEGMENT_SIZE).floor();
 	std::lock_guard<std::mutex> lock(collisionsMutex_);
 	int windowId = collisions_.findKey(window_);
 	if (newFirst.x > first_.x)

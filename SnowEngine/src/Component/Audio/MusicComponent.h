@@ -67,9 +67,9 @@ public:
 
 private:
 
-	std::string file_;
+	std::string file_; ///< The file with music.
 
-	sf::Music music_;
+	sf::Music music_; ///< The music (an SFML type).
 };
 
 }

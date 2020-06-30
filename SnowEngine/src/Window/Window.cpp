@@ -17,7 +17,7 @@ snow::Window::Window(const std::string& title, const Vector2i& resolution, bool 
 	resolution_(resolution),
 	isFullscreen_(isFullscreen)
 {
-	std::thread windowThread(&Window::startWindow, this, title, resolution, isFullscreen);
+	std::thread windowThread(&Window::startWindow_, this, title, resolution, isFullscreen);
 	windowThread.detach();
 }
 
@@ -87,14 +87,22 @@ snow::Input* snow::Window::getInput()
 // protected //
 ///////////////
 
-void snow::Window::startWindow(const std::string& title, const Vector2i& resolution,
+void snow::Window::startWindow_(const std::string& title, const Vector2i& resolution,
 							   bool isFullscreen)
 {
-	window_ = new sf::RenderWindow(sf::VideoMode(resolution_.x, resolution_.y), title_);
-	windowCycle();
+	if (isFullscreen)
+	{
+		window_ = new sf::RenderWindow(sf::VideoMode(resolution_.x, resolution_.y), 
+									   title_, sf::Style::Fullscreen);
+	}
+	else
+	{
+		window_ = new sf::RenderWindow(sf::VideoMode(resolution_.x, resolution_.y), title_);
+	}
+	windowCycle_();
 }
 
-void snow::Window::windowCycle()
+void snow::Window::windowCycle_()
 {
 	auto first_time = std::chrono::system_clock::now();
 	auto second_time = first_time;

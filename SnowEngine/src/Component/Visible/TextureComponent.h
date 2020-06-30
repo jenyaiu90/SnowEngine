@@ -184,8 +184,7 @@ protected:
 
 private:
 
-	std::string file_;
-	sf::Texture* texture_;
+	sf::Texture* texture_;	///< The texture (an SFML type).
 
 };
 

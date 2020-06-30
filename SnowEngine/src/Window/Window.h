@@ -62,6 +62,8 @@ public:
 	///	
 	///	Allows to attach the GUI for the window. After attaching the GUI will being displayed in
 	///	this window on top of the level.
+	///	\param gui The GUI for attaching.
+	///	\return <b>true</b> if the GUI was successfully attached.
 	////////////////////////////////////////////////////////////
 	bool attach(Gui& gui);
 
@@ -90,21 +92,53 @@ public:
 	Input* getInput();
 
 protected:
-	std::mutex windowMutex_;
-	std::mutex guisMutex_;
 
-	sf::RenderWindow* window_;
-	std::string title_;
-	Vector2i resolution_;
-	bool isFullscreen_;
+	std::mutex windowMutex_;	///< The mutex for the window.
+	std::mutex guisMutex_;		///< The mutex for the GUI list.
 
-	Level* level_;
-	LinkedList<Gui*> guis_;
+	sf::RenderWindow* window_;	///< The window (an SFML type).
+	std::string title_;			///< The window`s title.
+	Vector2i resolution_;		///< The window`s resolution (in pixels).
+	bool isFullscreen_;			///< Is fullscreen.
+								//   Unexpectedly...
 
-	Input input_;
+/*
+	Comments in my code look like this:
 
-	void startWindow(const std::string& title, const Vector2i& resolution, bool isFullscreen);
-	void windowCycle();
+	            &
+	          &&
+		    &&& <-------------- // Smoke
+	      &&&
+	    &&&&
+	   &&
+	   &	^
+	   _   / \
+	  | | /   \ <-------------- // Roof
+	  | |/ ___ \
+	  | | | | | \
+	  |/  |-|-| <-------------- // Window
+	  |   |_|_|   \
+	 /             \
+	/_______________\	<------	// House
+	|               |
+	|      ___      |
+	|     |   |     |
+	|     |_  |     |
+	|     |   |     |
+	|_____|___|_____|
+		   /|\
+			------------------- // Door
+*/
+
+	Level* level_;				///< The level that is attached to the window.
+	LinkedList<Gui*> guis_;		///< The list of GUI`s that are attached to the window.
+
+	Input input_;				///< The struct for react to the input.
+
+	/// Starts new window.
+	void startWindow_(const std::string& title, const Vector2i& resolution, bool isFullscreen);
+	void windowCycle_(); ///< The window`s behaviour.
+						 //   No, I`m not British.
 };
 
 }

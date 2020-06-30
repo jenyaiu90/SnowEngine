@@ -107,8 +107,8 @@ protected:
 
 	ArrayList<Vector2i> segments_; ///< The list of segments that contain the collision component.
 
-	void removeFromSegment_(int x, int y, int windowId);
-	void addToSegment_(int x, int y, int windowId);
+	void removeFromSegment_(int x, int y, int windowId); ///< Removes the component from the list.
+	void addToSegment_(int x, int y, int windowId); ///< Adds the component to the list.
 
 };
 

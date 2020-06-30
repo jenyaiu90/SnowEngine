@@ -26,16 +26,16 @@ snow::Actor::~Actor()
 
 void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 {
-	if (speed != snow::Vector2f(0.f, 0.f))
+	if (speed_ != snow::Vector2f(0.f, 0.f))
 	{
-		snow::Vector2f newPos = position + speed * delta;
+		snow::Vector2f newPos = position_ + speed_ * delta;
 		if (destination != nullptr &&
-			(((destination->x - position.x < 0) ^ (destination->x - newPos.x < 0)) ||
-			((destination->y - position.y < 0) ^ (destination->y - newPos.y < 0))))
+			(((destination->x - position_.x < 0) ^ (destination->x - newPos.x < 0)) ||
+			((destination->y - position_.y < 0) ^ (destination->y - newPos.y < 0))))
 		{
 			setPosition(*destination);
 			delete destination;
-			speed = snow::Vector2f(0.f, 0.f);
+			speed_ = snow::Vector2f(0.f, 0.f);
 		}
 		else
 		{
@@ -82,7 +82,7 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 
 snow::Vector2f snow::Actor::getPosition() const
 {
-	return position;
+	return position_;
 }
 
 void snow::Actor::move(snow::Vector2f to, int time)
@@ -93,7 +93,7 @@ void snow::Actor::move(snow::Vector2f to, int time)
 	}
 	else
 	{
-		speed = (to - position) / time;
+		speed_ = (to - position_) / time;
 		if (destination != nullptr)
 		{
 			delete destination;
@@ -137,7 +137,7 @@ void snow::Actor::setPosition(Vector2f position)
 		} while (components_.iterateNext());
 		components_.stopIterate();
 	}
-	this->position = position;
+	this->position_ = position;
 }
 
 bool snow::Actor::attachComponent(snow::Component* component)
@@ -153,7 +153,7 @@ bool snow::Actor::attachComponent(snow::Component* component)
 /////////////////
 
 snow::Component::Component(snow::Actor* actor, snow::Vector2f pos) :
-	position(pos),
+	position_(pos),
 	actor_(actor)
 {
 	actor->attachComponent(this);
@@ -161,7 +161,7 @@ snow::Component::Component(snow::Actor* actor, snow::Vector2f pos) :
 
 snow::Vector2f snow::Component::getWorldPosition() const
 {
-	return actor_->getPosition() + position;
+	return actor_->getPosition() + position_;
 }
 
 snow::Actor* snow::Component::getActor()

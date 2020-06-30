@@ -92,7 +92,7 @@ public:
 
 protected:
 
-	Vector2f size_;
+	Vector2f size_; ///< The size of clickable area.
 
 };
 

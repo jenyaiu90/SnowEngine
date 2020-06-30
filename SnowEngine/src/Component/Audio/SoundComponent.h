@@ -67,10 +67,8 @@ public:
 
 private:
 
-	std::string file_;
-
-	sf::SoundBuffer buffer_;
-	sf::Sound sound_;
+	sf::SoundBuffer buffer_;	///< The sound buffer (an SFML type).
+	sf::Sound sound_;			///< The sound (an SFML type).
 };
 
 }

@@ -109,11 +109,11 @@ protected:
 	///	The position of the component. Note that it is position relative to the object that the
 	///	component is attached to.
 	////////////////////////////////////////////////////////////
-	Vector2f position;
+	Vector2f position_;
 
 private:
 
-	Actor* actor_;
+	Actor* actor_; ///< The actor that the component is attached to.
 
 };
 

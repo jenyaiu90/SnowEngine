@@ -124,7 +124,7 @@ snow::LinkedList<snow::ClickableComponent*>& snow::Layer::getClickables()
 /////////////
 
 snow::Actor::Actor(Layer* layer, Vector2f pos) :
-	position(pos),
+	position_(pos),
 	components_(),
 	layer_(layer)
 {

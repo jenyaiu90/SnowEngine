@@ -154,15 +154,15 @@ public:
 
 protected:
 
-	LinkedList<ClickableComponent*> clickables_;
-	Vector2f windowSize_;
-	float zoomFactor_;
-	sf::View view_;
+	LinkedList<ClickableComponent*> clickables_; ///< The list of all layer`s clickable components.
+	Vector2f windowSize_;						 ///< The size of window (and layer).
+	float zoomFactor_;							 ///< The current zoom.
+	sf::View view_;								 ///< The view (an SFML type).
 
 private:
 
-	std::mutex actorsMutex_;
-	LinkedList<Actor*> actors_;
+	std::mutex actorsMutex_;					 ///< The mutex for the actors list.
+	LinkedList<Actor*> actors_;					 ///< The list of all actors on the layer.
 
 };
 

@@ -119,8 +119,8 @@ public:
 
 protected:
 
-	sf::Font font_;
-	sf::Text* text_;
+	sf::Font font_;		///< The font (an SFML type).
+	sf::Text* text_;	///< The displaying text (an SFML type).
 
 };
 

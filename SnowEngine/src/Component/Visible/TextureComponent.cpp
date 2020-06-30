@@ -9,13 +9,12 @@
 snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string& file,
 										 snow::Vector2f pos) :
 	VisibleComponent(actor, pos),
-	file_(file),
 	texture_(new sf::Texture),
 	sprite_(new sf::Sprite)
 {
 	texture_->loadFromFile(TEXTURES_PATH + file);
 	sprite_->setTexture(*texture_);
-	sprite_->setPosition(static_cast<sf::Vector2f>(position));
+	sprite_->setPosition(static_cast<sf::Vector2f>(position_));
 }
 
 snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string & file,
@@ -91,5 +90,5 @@ snow::Vector2f snow::TextureComponent::scale(float factor)
 
 void snow::TextureComponent::actorMove(snow::Vector2f to)
 {
-	sprite_->setPosition(static_cast<sf::Vector2f>(to + position));
+	sprite_->setPosition(static_cast<sf::Vector2f>(to + position_));
 }

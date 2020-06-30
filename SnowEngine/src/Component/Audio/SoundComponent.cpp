@@ -7,10 +7,9 @@
 #include "SoundComponent.h"
 
 snow::SoundComponent::SoundComponent(snow::Actor* actor, const std::string& file) :
-	Component(actor),
-	file_(file)
+	Component(actor)
 {
-	buffer_.loadFromFile(SOUNDS_PATH + file_);
+	buffer_.loadFromFile(SOUNDS_PATH + file);
 	sound_.setBuffer(buffer_);
 }
 

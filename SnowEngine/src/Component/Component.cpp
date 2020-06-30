@@ -26,7 +26,7 @@ snow::Component::~Component()
 
 snow::Vector2f snow::Component::getRelativePosition() const
 {
-	return position;
+	return position_;
 }
 
 // Definition of getWorldPosition() is in Actor.cpp.

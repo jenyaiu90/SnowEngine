@@ -63,7 +63,7 @@ public:
 
 protected:
 
-	bool isEnabled_;
+	bool isEnabled_; ///< Is the component enabled.
 
 };
 

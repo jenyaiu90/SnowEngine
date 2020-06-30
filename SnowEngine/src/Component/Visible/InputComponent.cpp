@@ -77,6 +77,8 @@ void snow::InputComponent::input(char c)
 		break;
 	}
 	case '\n':
+	case 27:
+	case '\r':
 	{
 		break;
 	}

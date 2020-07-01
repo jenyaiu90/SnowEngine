@@ -8,16 +8,17 @@
 
 snow::TextComponent::TextComponent(Actor* actor, std::string text, int size,
 								   const std::string& fontFile, Vector2f pos) :
-	VisibleComponent(actor, pos)
+	VisibleComponent(actor, pos),
+	fileName_(fontFile)
 {
-	font_.loadFromFile(FONTS_PATH + fontFile);
-	text_ = new sf::Text(sf::String(text), font_, size);
+	text_ = new sf::Text(sf::String(text), *ResourceManager::getFont(fontFile), size);
 	text_->setPosition(static_cast<sf::Vector2f>(getWorldPosition()));
 }
 
 snow::TextComponent::~TextComponent()
 {
 	delete text_;
+	ResourceManager::removeFont(fileName_);
 }
 
 std::string snow::TextComponent::getText() const
@@ -32,7 +33,9 @@ void snow::TextComponent::setText(const std::string& text)
 
 void snow::TextComponent::setFont(const std::string& fontFile)
 {
-	font_.loadFromFile(FONTS_PATH + fontFile);
+	ResourceManager::removeFont(fileName_);
+	text_->setFont(*ResourceManager::getFont(fontFile));
+	fileName_ = fontFile;
 }
 
 void snow::TextComponent::tick(const int& delta, sf::RenderWindow& window)

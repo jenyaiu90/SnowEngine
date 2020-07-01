@@ -119,8 +119,11 @@ public:
 
 protected:
 
-	sf::Font font_;		///< The font (an SFML type).
-	sf::Text* text_;	///< The displaying text (an SFML type).
+	sf::Text* text_;		///< The displaying text (an SFML type).
+
+private:
+
+	std::string fileName_;	///< The name of the font file.
 
 };
 

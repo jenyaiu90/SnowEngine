@@ -9,11 +9,10 @@
 snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string& file,
 										 snow::Vector2f pos) :
 	VisibleComponent(actor, pos),
-	texture_(new sf::Texture),
-	sprite_(new sf::Sprite)
+	sprite_(new sf::Sprite),
+	fileName_(file)
 {
-	texture_->loadFromFile(TEXTURES_PATH + file);
-	sprite_->setTexture(*texture_);
+	sprite_->setTexture(*ResourceManager::getTexture(file));
 	sprite_->setPosition(static_cast<sf::Vector2f>(position_));
 }
 
@@ -27,16 +26,13 @@ snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string &
 snow::TextureComponent::~TextureComponent()
 {
 	delete sprite_;
-	delete texture_;
+	ResourceManager::removeTexture(fileName_);
 }
 
 void snow::TextureComponent::tick(const int& delta, sf::RenderWindow& window)
 {
 	if (isEnabled_)
 	{
-//		snow::Vector2f nps = getWorldPosition();
-//		sf::Vector2f np = static_cast<sf::Vector2f>(nps);
-//		sprite_->setPosition(np);
 		window.draw(*sprite_);
 	}
 }

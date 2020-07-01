@@ -146,6 +146,9 @@
     <ClInclude Include="src\Utilites\SaveLoad.h">
       <Filter>Source Files\Utilites</Filter>
     </ClInclude>
+    <ClInclude Include="src\Utilites\ResourceManager.h">
+      <Filter>Source Files\Utilites</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Window\Window.cpp">
@@ -215,6 +218,9 @@
       <Filter>Source Files\Component\Visible</Filter>
     </ClCompile>
     <ClCompile Include="src\Utilites\SaveLoad.cpp">
+      <Filter>Source Files\Utilites</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utilites\ResourceManager.cpp">
       <Filter>Source Files\Utilites</Filter>
     </ClCompile>
   </ItemGroup>

@@ -180,11 +180,8 @@ public:
 
 protected:
 
-	sf::Sprite* sprite_;	///< The displaying sprite.
-
-private:
-
-	sf::Texture* texture_;	///< The texture (an SFML type).
+	sf::Sprite* sprite_;	///< The displaying sprite (an SFML type).
+	std::string fileName_;	///< The name of texture file.
 
 };
 

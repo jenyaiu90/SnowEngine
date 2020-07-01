@@ -4,6 +4,9 @@
  //  File: SnowEngine.h                //
 ////////////////////////////////////////
 
+//	Version Alpha 1.0.0.
+//	https://github.com/jenyaiu90/SnowEngine
+
 #pragma once
 
 #include "Window/Window.h"

@@ -31,7 +31,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief The Layer`s destructor.
 	///	
-	///	The destructor of the Layer class. Removes all attached actors.
+	///	The destructor of the Layer class. Doesn`t remove any attached actor.
 	////////////////////////////////////////////////////////////
 	virtual ~Layer();
 
@@ -82,6 +82,16 @@ public:
 	///	\return <b>true</b> if the actor was successfully spawned.
 	////////////////////////////////////////////////////////////
 	virtual bool spawnActor(Actor* actor);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Detach an actor from the layer.
+	///	
+	///	Detaches a passed actor from the layer if the actor has been attached to it. This method
+	///	should be called only from actor. It isn`t recommended to use it in your code.
+	///	\param actor An actor to detach.
+	///	\return <b>true</b> if the actor was successfully detached.
+	////////////////////////////////////////////////////////////
+	virtual bool detachActor(Actor* actor);
 
 	////////////////////////////////////////////////////////////
 	///	\brief Changes the layer`s scale.

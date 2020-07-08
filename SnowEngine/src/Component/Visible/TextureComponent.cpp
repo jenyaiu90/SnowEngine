@@ -13,7 +13,7 @@ snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string& 
 	fileName_(file)
 {
 	sprite_->setTexture(*ResourceManager::getTexture(file));
-	sprite_->setPosition(static_cast<sf::Vector2f>(position_));
+	sprite_->setPosition(getWorldPosition());
 }
 
 snow::TextureComponent::TextureComponent(snow::Actor* actor, const std::string & file,
@@ -31,7 +31,7 @@ snow::TextureComponent::~TextureComponent()
 
 void snow::TextureComponent::tick(const int& delta, sf::RenderWindow& window)
 {
-	if (isEnabled_)
+	if (isEnabled_ && sprite_ != nullptr)
 	{
 		window.draw(*sprite_);
 	}

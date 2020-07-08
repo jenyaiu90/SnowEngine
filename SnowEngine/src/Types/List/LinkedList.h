@@ -320,7 +320,7 @@ LinkedList<T>::~LinkedList()
 	}
 	else
 	{
-		if (begin_ != nullptr)
+		if (size_ > 0)
 		{
 			delete begin_;
 		}

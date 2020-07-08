@@ -11,9 +11,7 @@ const sf::RenderStates sf::RenderStates::Default = sf::RenderStates();
 
 // Definition of the constructor is in Actor.cpp.
 
-snow::Component::~Component()
-{
-}
+// Definition of the destructor is in Actor.cpp.
 
 // Definition of the getActor() method is in Actor.cpp.
 

@@ -42,7 +42,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief The Component`s destructor.
 	///	
-	///	The destructor of Component class. Is virtual. Does nothing.
+	///	The destructor of Component class. Is virtual. Detaches the component from the actor.
 	////////////////////////////////////////////////////////////
 	virtual ~Component();
 

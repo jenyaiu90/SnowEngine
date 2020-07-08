@@ -13,16 +13,6 @@ snow::Layer::Layer() :
 
 snow::Layer::~Layer()
 {
-	if (actors_.startIterate())
-	{
-		do
-		{
-			if (actors_.getIterator() != nullptr)
-			{
-				delete actors_.getIterator();
-			}
-		} while (actors_.iterateNext());
-	}
 }
 
 void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
@@ -78,6 +68,18 @@ bool snow::Layer::spawnActor(snow::Actor* actor)
 {
 	std::lock_guard<std::mutex> lock(actorsMutex_);
 	return actors_.add(actor);
+}
+
+bool snow::Layer::detachActor(Actor* actor)
+{
+	actorsMutex_.lock();
+	int id = actors_.find(actor);
+	if (id >= 0)
+	{
+		actors_.remove(id);
+	}
+	actorsMutex_.unlock();
+	return id >= 0;
 }
 
 float snow::Layer::zoom(float factor)
@@ -140,6 +142,11 @@ snow::Actor::Actor(Layer* layer, Vector2f pos) :
 	layer_(layer)
 {
 	layer->spawnActor(this);
+}
+
+snow::Actor::~Actor()
+{
+	layer_->detachActor(this);
 }
 
 snow::Layer* snow::Actor::getLayer()

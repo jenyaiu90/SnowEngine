@@ -37,7 +37,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief The Actor`s destructor.
 	///	
-	///	The destructor of class Actor. Is virtual. Deletes all attached components.
+	///	The destructor of class Actor. Is virtual. Doesn`t delete any attached component. Detaches
+	///	the actor from the layer.
 	////////////////////////////////////////////////////////////
 	virtual ~Actor();
 
@@ -105,6 +106,16 @@ public:
 	///	\return <b>true</b> if the component was successfully attached.
 	////////////////////////////////////////////////////////////
 	bool attachComponent(Component* component);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Detach a component from the actor.
+	///	
+	///	Detaches a passed component from the actor if the component has been attached to it. This
+	///	method should be called only from component. It isn`t recommended to use it in your code.
+	///	\param component A component to detach.
+	///	\return <b>true</b> if the component was successfully detached.
+	////////////////////////////////////////////////////////////
+	bool detachComponent(Component* component);
 
 protected:
 

@@ -8,21 +8,7 @@
 
 // Definition of the constructor is in Layer.cpp.
 
-snow::Actor::~Actor()
-{
-	std::lock_guard<std::mutex> lock(componentsMutex_);
-	if (components_.startIterate())
-	{
-		do
-		{
-			if (components_.getIterator() != nullptr)
-			{
-				delete components_.getIterator();
-			}
-		} while (components_.iterateNext());
-		components_.stopIterate();
-	}
-}
+// Definition of the destructor is in Layer.cpp.
 
 void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 {
@@ -35,6 +21,7 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 		{
 			setPosition(*destination);
 			delete destination;
+			destination = nullptr;
 			speed_ = snow::Vector2f(0.f, 0.f);
 		}
 		else
@@ -148,6 +135,18 @@ bool snow::Actor::attachComponent(snow::Component* component)
 	return true;
 }
 
+bool snow::Actor::detachComponent(Component* component)
+{
+	componentsMutex_.lock();
+	int id = components_.find(component);
+	if (id >= 0)
+	{
+		components_.remove(id);
+	}
+	componentsMutex_.unlock();
+	return id >= 0;
+}
+
 /////////////////
 //  Component  //
 /////////////////
@@ -157,6 +156,11 @@ snow::Component::Component(snow::Actor* actor, snow::Vector2f pos) :
 	actor_(actor)
 {
 	actor->attachComponent(this);
+}
+
+snow::Component::~Component()
+{
+	actor_->detachComponent(this);
 }
 
 snow::Vector2f snow::Component::getWorldPosition() const

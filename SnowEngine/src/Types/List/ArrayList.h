@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "List.h"
 
 namespace snow
@@ -14,8 +16,9 @@ namespace snow
 ////////////////////////////////////////////////////////////
 ///	\brief The class that implements an array list.
 ///	
-///	Use this class to create an array list. It provides fast access to the element but adding and
-///	removing are not fast. If you need to add and remove elements fast, use a linked list.
+///	The wrapper of the std::vector class. Use this class to create an array list. It provides fast
+///	access to the element but adding and removing are not fast. If you need to add and remove
+///	elements fast, use a linked list.
 ///	\warning The template parameter must define operator ==.
 ////////////////////////////////////////////////////////////
 template<typename T>
@@ -47,22 +50,6 @@ public:
 	///	\param list The source list.
 	////////////////////////////////////////////////////////////
 	ArrayList(const ArrayList<T>& list);
-
-	////////////////////////////////////////////////////////////
-	///	\brief Fills the array list with values from an array.
-	///	
-	///	Fills the list with values from an array.
-	///	\param array The pointer to the array to copy.
-	///	\param size The size of the array.
-	////////////////////////////////////////////////////////////
-	ArrayList(T* array, int size);
-
-	////////////////////////////////////////////////////////////
-	///	\brief The destructor.
-	///	
-	///	The destructor deletes all elements.
-	////////////////////////////////////////////////////////////
-	~ArrayList();
 
 	////////////////////////////////////////////////////////////
 	///	\brief The methot that allows to get a number of the elements.
@@ -164,7 +151,17 @@ public:
 	///	\return An address of the element.
 	///	\throws std::out_of_range if there is no element with passed index.
 	////////////////////////////////////////////////////////////
-	T& operator[](int pos) const override;
+	T& operator[](int pos) override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief The operator that allows to get access to one of the elements.
+	///	
+	///	Gives you an address of the element with passed index.
+	///	\param pos An index.
+	///	\return An address of the element.
+	///	\throws std::out_of_range if there is no element with passed index.
+	////////////////////////////////////////////////////////////
+	const T& operator[](int pos) const override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Return <b>true</b> if two lists are equal.
@@ -194,18 +191,11 @@ public:
 
 private:
 
-	T* array_;
-	int size_;
-	int currentMax_;
-	void expand_();
+	std::vector<T> array_;
 
 };
 
 // Below are the methods of the ArrayList.
-
-//////////////
-//  public  //
-//////////////
 
 template<typename T>
 ArrayList<T>::ArrayList() :
@@ -215,81 +205,57 @@ ArrayList<T>::ArrayList() :
 
 template<typename T>
 ArrayList<T>::ArrayList(int size) :
-	size_(0), currentMax_(size), array_(new T[size])
+	array_(size)
 {
 }
 
 template<typename T>
 ArrayList<T>::ArrayList(const ArrayList<T>& list) :
-	currentMax_(list.size_),
-	array_(new T[list.size_]),
-	size_(list.size_)
+	array_(list.array_)
 {
-	for (int i = 0; i < size_; i++)
-	{
-		array_[i] = list.array_[i];
-	}
-}
-
-template<typename T>
-ArrayList<T>::ArrayList(T* array, int size)
-{
-	fromArray(array, size);
-}
-
-template<typename T>
-ArrayList<T>::~ArrayList()
-{
-	if (array_ != nullptr)
-	{
-		delete[] array_;
-	}
 }
 
 template<typename T>
 int ArrayList<T>::length() const
 {
-	return size_;
+	return static_cast<int>(array_.size());
 }
 
 template<typename T>
 bool ArrayList<T>::isEmpty() const
 {
-	return size_ == 0;
+	return array_.size() == 0;
 }
 
 template<typename T>
 bool ArrayList<T>::add(const T& item)
 {
-	if (size_ >= currentMax_)
-	{
-		expand_();
-	}
-	array_[size_] = item;
-	size_++;
+	array_.push_back(item);
 	return true;
 }
 
 template<typename T>
 bool ArrayList<T>::add(const T& item, int pos)
 {
-	if (pos < 0 || pos > size_)
+	if (pos < 0 || pos > array_.size())
 	{
 		return false;
 	}
 	else
 	{
-		if (size_ >= currentMax_)
+		if (array_.size() == 0)
 		{
-			expand_();
+			add(item);
 		}
-
-		for (int i = size_ - 1; i >= pos; i--)
+		else
 		{
-			array_[i + 1] = array_[i];
+			array_.push_back(array_.back());
+			for (int i = static_cast<int>(array_.size()) - 2; i >= pos; i--)
+			{
+				array_[i + 1] = array_[i];
+			}
+			array_[pos] = item;
 		}
-		array_[pos] = item;
-		size_++;
 		return true;
 	}
 }
@@ -298,7 +264,7 @@ template<typename T>
 bool ArrayList<T>::add(const T& item, IComparator<T>& comparator)
 {
 	int i;
-	for (i = 0; i < size_; i++)
+	for (i = 0; i < array_.size(); i++)
 	{
 		if (comparator.compare(array_[i], item) > 0)
 		{
@@ -311,17 +277,13 @@ bool ArrayList<T>::add(const T& item, IComparator<T>& comparator)
 template<typename T>
 bool ArrayList<T>::remove(int pos)
 {
-	if (pos < 0 || pos >= size_)
+	if (pos < 0 || pos >= array_.size())
 	{
 		return false;
 	}
 	else
 	{
-		for (int i = pos; i < size_ - 1; i++)
-		{
-			array_[i] = array_[i + 1];
-		}
-		size_--;
+		array_.erase(array_.cbegin() + pos);
 		return true;
 	}
 }
@@ -329,7 +291,7 @@ bool ArrayList<T>::remove(int pos)
 template<typename T>
 int snow::ArrayList<T>::find(const T& value) const
 {
-	for (int i = 0; i < size_; i++)
+	for (int i = 0; i < array_.size(); i++)
 	{
 		if (array_[i] == value)
 		{
@@ -342,7 +304,7 @@ int snow::ArrayList<T>::find(const T& value) const
 template<typename T>
 void ArrayList<T>::sort(IComparator<T>& comparator)
 {
-	for (int i = size_; i > 0; i--)
+	for (int i = static_cast<int>(array_.size()); i > 0; i--)
 	{
 		for (int j = 0; j < i; j++)
 		{
@@ -359,21 +321,18 @@ void ArrayList<T>::sort(IComparator<T>& comparator)
 template<typename T>
 void ArrayList<T>::fromArray(T* array, int size)
 {
-	this->~ArrayList();
-	currentMax_ = size;
-	array_ = new T[size];
+	array_.clear();
 	for (int i = 0; i < size; i++)
 	{
-		array_[i] = array[i];
+		array_.push_back(array[i]);
 	}
-	size_ = size;
 }
 
 template<typename T>
 T* ArrayList<T>::toArray() const
 {
-	T* res = new T[size_];
-	for (int i = 0; i < size_; i++)
+	T* res = new T[array_.size()];
+	for (int i = 0; i < array_.size(); i++)
 	{
 		res[i] = array_[i];
 	}
@@ -381,25 +340,35 @@ T* ArrayList<T>::toArray() const
 }
 
 template<typename T>
-T& ArrayList<T>::operator[](int pos) const
+T& ArrayList<T>::operator[](int pos)
 {
-	if (pos < 0 || pos >= size_)
+	if (pos < 0 || pos >= array_.size())
 	{
 		throw std::out_of_range("index out of bounds");
 	}
-	return array_[pos];
+	return *(array_.begin() + pos);
+}
+
+template<typename T>
+const T& ArrayList<T>::operator[](int pos) const
+{
+	if (pos < 0 || pos >= array_.size())
+	{
+		throw std::out_of_range("index out of bounds");
+	}
+	return *(array_.cbegin() + pos);
 }
 
 template<typename T>
 inline bool snow::ArrayList<T>::operator==(const ArrayList<T>& list) const
 {
-	if (size_ != list.size_)
+	if (array_.size() != list.array_.size())
 	{
 		return true;
 	}
 	else
 	{
-		for (int i = 0; i < size_; i++)
+		for (int i = 0; i < array_.size(); i++)
 		{
 			if (!(array_[i] == list.array_[i]))
 			{
@@ -413,43 +382,8 @@ inline bool snow::ArrayList<T>::operator==(const ArrayList<T>& list) const
 template<typename T>
 ArrayList<T> ArrayList<T>::operator=(const ArrayList<T>& list)
 {
-	if (list.length() == 0)
-	{
-		this->~ArrayList();
-		currentMax_ = 5;
-		array_ = new T[5];
-		size_ = 0;
-	}
-	else
-	{
-		fromArray(list.toArray(), list.length());
-	}
+	array_ = list.array_;
 	return *this;
-}
-
-///////////////
-//  private  //
-///////////////
-
-template<typename T>
-void ArrayList<T>::expand_()
-{
-	int oldMax = currentMax_;
-	if (currentMax_ < 5)
-	{
-		currentMax_ = 5;
-	}
-	else
-	{
-		currentMax_ += static_cast<int>(currentMax_ * 0.5);
-	}
-	T* newArray = new T[currentMax_];
-	for (int i = 0; i < oldMax; i++)
-	{
-		newArray[i] = array_[i];
-	}
-	delete[] array_;
-	array_ = newArray;
 }
 
 }

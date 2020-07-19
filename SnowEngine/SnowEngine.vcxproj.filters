@@ -98,9 +98,6 @@
     <ClInclude Include="src\Utilites\Animation.h">
       <Filter>Source Files\Utilites</Filter>
     </ClInclude>
-    <ClInclude Include="src\Types\List\CircularList.h">
-      <Filter>Source Files\Types\List</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utilites\TextureAnimation\TextureAnimation.h">
       <Filter>Source Files\Utilites\TextureAnimation</Filter>
     </ClInclude>

@@ -30,38 +30,19 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 		}
 	}
 
+	//Goto was here. But I got rid of it!
 	std::lock_guard<std::mutex> lock(componentsMutex_);
-	if (components_.startIterate())
+	for (auto i = components_.begin(); i != components_.end(); i++)
 	{
-	try_again:; // Yes, I know that goto is bad :-/
-		do
+		if (*i != nullptr)
 		{
-			if (components_.getIterator() != nullptr)
-			{
-				components_.getIterator()->tick(delta, window);
-			}
-			else
-			{
-				if (components_.getIteratorPosition() == 0)
-				{
-					components_.removeIterator();
-					if (components_.startIterate())
-					{
-						// If the first element was removed, the loop starts again
-						goto try_again; // I think here goto isn`t so bad
-					}
-					else
-					{
-						break;
-					}
-				}
-				else
-				{
-					components_.removeIterator();
-				}
-			}
-		} while (components_.iterateNext());
-		components_.stopIterate();
+			(*i)->tick(delta, window);
+		}
+		else
+		{
+			i = components_.remove(i);
+			i--;
+		}
 	}
 }
 
@@ -92,37 +73,17 @@ void snow::Actor::move(snow::Vector2f to, int time)
 void snow::Actor::setPosition(Vector2f position)
 {
 	std::lock_guard<std::mutex> lock(componentsMutex_);
-	if (components_.startIterate())
+	for (auto i = components_.begin(); i != components_.end(); i++)
 	{
-	try_again:; // Yes, I used goto
-		do
+		if (*i != nullptr)
 		{
-			if (components_.getIterator() != nullptr)
-			{
-				components_.getIterator()->actorMove(position);
-			}
-			else
-			{
-				if (components_.getIteratorPosition() == 0)
-				{
-					components_.removeIterator();
-					if (components_.startIterate())
-					{
-						// If the first element was removed, the loop starts again
-						goto try_again; // This goto goes to the start of the loop
-					}
-					else
-					{
-						break;
-					}
-				}
-				else
-				{
-					components_.removeIterator();
-				}
-			}
-		} while (components_.iterateNext());
-		components_.stopIterate();
+			(*i)->actorMove(position);
+		}
+		else
+		{
+			i = components_.remove(i);
+			i--;
+		}
 	}
 	this->position_ = position;
 }

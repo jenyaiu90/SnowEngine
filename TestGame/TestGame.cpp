@@ -25,5 +25,7 @@ int main()
 
 	actor2.move(snow::Vector2f(500, 500), 2000);
 
-	_getch();
+	window.join();
+
+	return 0;
 }

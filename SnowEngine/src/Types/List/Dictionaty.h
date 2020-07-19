@@ -88,7 +88,17 @@ public:
 	///	\return The value with passed key.
 	///	\throw std::out_of_range if there is no value with passed key.
 	////////////////////////////////////////////////////////////
-	V& get(const K& key) const;
+	V& get(const K& key);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the value with passed key.
+	///	
+	///	Allows to get the value of the item with passed key. Is equal to operator[].
+	///	\param key The key.
+	///	\return The value with passed key.
+	///	\throw std::out_of_range if there is no value with passed key.
+	////////////////////////////////////////////////////////////
+	const V& get(const K& key) const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the value with passed key.
@@ -98,7 +108,17 @@ public:
 	///	\return The value with passed key.
 	///	\throw std::out_of_range if there is no value with passed key.
 	////////////////////////////////////////////////////////////
-	V& operator[](const K& key) const;
+	V& operator[](const K& key);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the value with passed key.
+	///	
+	///	Allows to get the value of the item with passed key. Is equal to get() method.
+	///	\param key The key.
+	///	\return The value with passed key.
+	///	\throw std::out_of_range if there is no value with passed key.
+	////////////////////////////////////////////////////////////
+	const V& operator[](const K& key) const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Return <b>true</b> if two dictionaries are equal.
@@ -127,7 +147,17 @@ public:
 	///	\return The value with passed id.
 	///	\throw std::out_of_range if there is no value with passed key.
 	////////////////////////////////////////////////////////////
-	V& getById(int id) const;
+	V& getById(int id);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the value with passed id.
+	///	
+	///	Allows to get the value of the item with passed id. Works faster than get() of operator[].
+	///	\param id The id.
+	///	\return The value with passed id.
+	///	\throw std::out_of_range if there is no value with passed key.
+	////////////////////////////////////////////////////////////
+	const V& getById(int id) const;
 
 protected:
 
@@ -196,7 +226,7 @@ bool snow::Dictionary<K, V>::remove(const K& key)
 }
 
 template<typename K, typename V>
-V& snow::Dictionary<K, V>::get(const K& key) const
+V& snow::Dictionary<K, V>::get(const K& key)
 {
 	int index = keys_.find(key);
 	if (index == -1)
@@ -210,7 +240,27 @@ V& snow::Dictionary<K, V>::get(const K& key) const
 }
 
 template<typename K, typename V>
-V& snow::Dictionary<K, V>::operator[](const K& key) const
+const V& snow::Dictionary<K, V>::get(const K& key) const
+{
+	int index = keys_.find(key);
+	if (index == -1)
+	{
+		throw std::out_of_range("dictionaty doesn`t have this key");
+	}
+	else
+	{
+		return values_[index];
+	}
+}
+
+template<typename K, typename V>
+V& snow::Dictionary<K, V>::operator[](const K& key)
+{
+	return get(key);
+}
+
+template<typename K, typename V>
+const V& snow::Dictionary<K, V>::operator[](const K& key) const
 {
 	return get(key);
 }
@@ -228,7 +278,20 @@ bool snow::Dictionary<K, V>::removeById(int id)
 }
 
 template<typename K, typename V>
-V& snow::Dictionary<K, V>::getById(int id) const
+V& snow::Dictionary<K, V>::getById(int id)
+{
+	if (id < 0 || id >= keys_.length())
+	{
+		throw std::out_of_range("Passed id is out of range");
+	}
+	else
+	{
+		return values_[id];
+	}
+}
+
+template<typename K, typename V>
+const V& snow::Dictionary<K, V>::getById(int id) const
 {
 	if (id < 0 || id >= keys_.length())
 	{

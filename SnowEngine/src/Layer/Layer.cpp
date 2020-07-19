@@ -18,37 +18,17 @@ snow::Layer::~Layer()
 void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 {
 	std::lock_guard<std::mutex> lock(actorsMutex_);
-	if (actors_.startIterate())
+	for (auto i = actors_.begin(); i != actors_.end(); i++)
 	{
-		window.setView(view_);
-	try_again:; // Don`t do like me, don`t use goto!
-		do
+		if (*i != nullptr)
 		{
-			if (actors_.getIterator() != nullptr)
-			{
-				actors_.getIterator()->tick(delta, window);
-			}
-			else
-			{
-				if (actors_.getIteratorPosition() == 0)
-				{
-					actors_.removeIterator();
-					if (actors_.startIterate())
-					{
-						// If the first element was removed, the loop starts again
-						goto try_again; // Do you know that goto is bad? Don`t use it
-					}
-					else
-					{
-						break;
-					}
-				}
-				else
-				{
-					actors_.removeIterator();
-				}
-			}
-		} while (actors_.iterateNext());
+			(*i)->tick(delta, window);
+		}
+		else
+		{
+			i = actors_.remove(i);
+			i--;
+		}
 	}
 
 	if (followed_ != nullptr)

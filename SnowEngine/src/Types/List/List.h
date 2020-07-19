@@ -70,7 +70,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Removes an element with passed index from the list.
 	///
-	///	This method allows to remove an element from the list. Clears the iterator.
+	///	This method allows to remove an element from the list.
 	///	\param pos An index of removing element.
 	///	\return <b>true</b> if an element was successfully removed.
 	////////////////////////////////////////////////////////////
@@ -119,7 +119,16 @@ public:
 	///	\param pos An index.
 	///	\return An address of the element.
 	////////////////////////////////////////////////////////////
-	virtual T& operator[](int pos) const = 0;
+	virtual T& operator[](int pos) = 0;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Gives an element of the list with passed index.
+	///
+	///	This method allows to get an access to an element of the list.
+	///	\param pos An index.
+	///	\return An address of the element.
+	////////////////////////////////////////////////////////////
+	virtual const T& operator[](int pos) const = 0;
 };
 
 }

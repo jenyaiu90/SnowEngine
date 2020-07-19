@@ -36,7 +36,6 @@
     <ClInclude Include="src\Layer\Level\Level.h" />
     <ClInclude Include="src\SnowEngine.h" />
     <ClInclude Include="src\Types\List\ArrayList.h" />
-    <ClInclude Include="src\Types\List\CircularList.h" />
     <ClInclude Include="src\Types\List\Comparator.h" />
     <ClInclude Include="src\Types\List\Dictionaty.h" />
     <ClInclude Include="src\Types\List\LinkedList.h" />

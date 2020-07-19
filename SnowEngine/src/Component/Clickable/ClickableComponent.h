@@ -43,6 +43,13 @@ class ClickableComponent : public Component
 {
 public:
 
+	///	Events that the clickable component can handle.
+	enum Event
+	{
+		MOUSE_PRESSED,	///< Mouse was pressed.
+		MOUSE_RELEASED	///< Mouse was released.
+	};
+
 	////////////////////////////////////////////////////////////
 	///	\brief The constructor if the ClickableComponent.
 	///	
@@ -75,6 +82,17 @@ public:
 	///	\return The size.
 	////////////////////////////////////////////////////////////
 	Vector2f getSize() const;
+
+	////////////////////////////////////////////////////////////
+	///	\brief On event.
+	///	
+	///	Handles the event.
+	///	\param event The event.
+	///	\param button The mouse button.
+	///	\param position The mouse position.
+	////////////////////////////////////////////////////////////
+	void event(Event event, MouseButton button, Vector2f position);
+
 
 	/// When the mouse button was pressed.
 	std::function<void(MouseButton button, Vector2f position)> onMousePressed;

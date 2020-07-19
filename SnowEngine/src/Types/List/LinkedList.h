@@ -6,6 +6,8 @@
 
 #pragma once
 
+#include <list>
+
 #include "List.h"
 
 namespace snow
@@ -14,35 +16,17 @@ namespace snow
 ////////////////////////////////////////////////////////////
 ///	\brief A template class that implements a linked list.
 ///
-///	This class is used for creating a linked list. It provides faster adding and removing elements
-///	but slower access to them than an array.
-///
-///	For fast passing through the list you can use a built-in iterator. Using a startIterate() method
-///	sets iterator to the first element in the list. If the list is empty, this method returns
-///	<b>false</b> Use an iterateNext() method for move the iterator to the next element. This method
-///	returns <b>false</b> if there is no next element. A getIterator() method returns a current
-///	element. A stopIterate() method clear the iterator. For example, for print all elements of the
-///	list, you can use the code below:
-///	\code
-///		LinkedList<int> list;
-///		... // Filling in the list
-///
-///		if (list.startIterate()) // False if the list is empty
-///		{
-///			do
-///			{
-///				cout << list.getIterator() << " ";
-///			} while (list.iterateNext()); // False if iterator points to the last element of the list
-///		}
-///	\endcode
-///	\warning The remove() method and one of overloads of the add() method calls the stopIterate().
-///	Don`t use them in cycles like above.
+///	The wrapper of std::list class. This class is used for creating a linked list. It provides
+///	faster adding and removing elements but slower access to them than an array.
 ///	\warning The template parameter must define operator ==.
 ////////////////////////////////////////////////////////////
 template<typename T>
 class LinkedList : public IList<T>
 {
 public:
+
+	typedef typename std::list<T>::iterator listIterator;
+	typedef typename std::list<T>::const_iterator constListIterator;
 
 	////////////////////////////////////////////////////////////
 	///	\brief The default constructor.
@@ -58,22 +42,6 @@ public:
 	///	\param list The source list.
 	////////////////////////////////////////////////////////////
 	LinkedList(const LinkedList<T>& list);
-
-	////////////////////////////////////////////////////////////
-	///	\brief Fills the linked list with values from an array.
-	///
-	///	Fills the list with values from an array.
-	///	\param array The pointer to the array to copy.
-	///	\param size The size of the array.
-	////////////////////////////////////////////////////////////
-	LinkedList(T* array, int size);
-
-	////////////////////////////////////////////////////////////
-	///	\brief The destructor.
-	///
-	///	Removes all elements.
-	////////////////////////////////////////////////////////////
-	virtual ~LinkedList();
 
 	////////////////////////////////////////////////////////////
 	///	\brief The length of the list.
@@ -96,14 +64,14 @@ public:
 	///
 	///	This methos puts a new element in the end of the list.
 	///	\param item A new element.
-	///	\return <b>true</b> if an element was successfully added. Doesn`t clear the iterator.
+	///	\return <b>true</b> if an element was successfully added.
 	////////////////////////////////////////////////////////////
 	virtual bool add(const T& item) override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Adds a new element in the list with passed index.
 	///
-	///	Puts a new element in the list with passed index. Clears the iterator.
+	///	Puts a new element in the list with passed index.
 	///	\param item A new element.
 	///	\param pos An index.
 	///	\return <b>true</b> if an element was successfullt added.
@@ -125,11 +93,19 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Removes an element with passed index from the list.
 	///
-	///	This method allows to remove an element from the list. Clears the iterator.
+	///	This method allows to remove an element from the list.
 	///	\param pos An index of removing element.
 	///	\return <b>true</b> if an element was successfully removed.
 	////////////////////////////////////////////////////////////
 	virtual bool remove(int pos) override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Removes an element from passed position.
+	///	
+	///	This method removes the element that the passed iterator points to.
+	///	\param pos The iterator to the element to remove.
+	///	\return The iterator to the element following the removed element.
+	listIterator remove(listIterator pos);
 
 	////////////////////////////////////////////////////////////
 	/// \brief Returns the index of passed value.
@@ -175,7 +151,17 @@ public:
 	///	\return An address of the element.
 	///	\throws std::out_of_range if an index is out of bounds.
 	////////////////////////////////////////////////////////////
-	virtual T& operator[](int pos) const override;
+	virtual T& operator[](int pos) override;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Gives an element of the list with passed index.
+	///
+	///	This method allows to get an access to an element of the list.
+	///	\param pos An index.
+	///	\return An address of the element.
+	///	\throws std::out_of_range if an index is out of bounds.
+	////////////////////////////////////////////////////////////
+	virtual const T& operator[](int pos) const override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Return <b>true</b> if two lists are equal.
@@ -189,8 +175,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Copies a list.
 	///
-	///	Clears the list and pastes to it a content of another list. Doesn`t copy the positin of an
-	///	iterator.
+	///	Clears the list and pastes to it a content of another list.
 	///	\param list A list to copy.
 	///	\return The list, that you can use, for example, for the construction below:
 	///	\code
@@ -205,80 +190,58 @@ public:
 	LinkedList<T> operator=(const LinkedList<T>& list);
 
 	////////////////////////////////////////////////////////////
-	///	\brief Sets the iterator to the begin of the list.
-	///
-	///	If you want to use the iterator, you have to call this method firstly. It sets the iterator
-	///	to the first element of the list.
-	///	\return <b>true</b> if the list is not empty and the iterator was successfully set.
-	////////////////////////////////////////////////////////////
-	bool startIterate();
-
-	////////////////////////////////////////////////////////////
-	///	\brief Returns the element that the iterator points to.
-	///
-	///	Allows to get access to the element that the iterator points to.
-	///	\return A current element.
-	///	\throws std::logic_error if the startIterate() method wasn`t called.
-	////////////////////////////////////////////////////////////
-	T& getIterator();
-
-	////////////////////////////////////////////////////////////
-	///	\brief Allows to remove an element without calling a stopIterate().
+	///	\brief Returns the iterator to the first element of the list.
 	///	
-	///	Removes an element that the iterator points to. After calling this method the iterator
-	///	will point to the previous element.
-	///	\return <b>true</b> if iterator isn`t null and the element was successfully removed.
+	///	Is equivalent to the std::list`s begin() method.
+	///	\return The iterator to the first element.
 	////////////////////////////////////////////////////////////
-	bool removeIterator();
+	listIterator begin();
 
 	////////////////////////////////////////////////////////////
-	///	\brief Returns the index of the element that the iterator points to.
+	///	\brief Returns the const iterator to the first element of the list.
 	///	
-	///	Allows to get the index of the element that the iterator points to now.
-	///	\return The index of the element of iterator, if the startIterate() method wasn`t called
-	///	returns -1.
+	///	Is equivalent to the std::list`s begin() method.
+	///	\return The iterator to the first element.
 	////////////////////////////////////////////////////////////
-	int getIteratorPosition();
+	constListIterator begin() const;
 
 	////////////////////////////////////////////////////////////
-	///	\brief Sets the iterator to the next element.
-	///
-	///	Moves the iterator to the next element of the list.
-	///	\return <b>false</b> if the iterator has reached the end of the list or the startIterate()
-	///	method wasn`t called.
+	///	\brief Returns the iterator to the last element of the list.
+	///	
+	///	Is equivalent to the std::list`s end() method.
+	///	\return The iterator to the last element.
 	////////////////////////////////////////////////////////////
-	virtual bool iterateNext();
+	listIterator end();
 
 	////////////////////////////////////////////////////////////
-	///	\brief Sets the iterator to the previous element.
-	///
-	///	Moves the iterator to the previous element of the list.
-	///	\return <b>false</b> if the iterator has reached the begin of the list or the
-	///	startIterate() method wasn`t called.
+	///	\brief Returns the const iterator to the last element of the list.
+	///	
+	///	Is equivalent to the std::list`s end() method.
+	///	\return The iterator to the last element.
 	////////////////////////////////////////////////////////////
-	virtual bool iteratePrev();
+	constListIterator end() const;
 
 	////////////////////////////////////////////////////////////
-	///	\brief Clears the iterator.
-	///
-	///	Resets the iterator.
+	///	\brief Returns the iterator to an element of the list.
+	///	
+	///	Allows to get the iterator to the element with passed position.
+	///	\return The iterator to the element with passed position.
+	///	\throws std::out_of_range if an index is out of bounds.
 	////////////////////////////////////////////////////////////
-	void stopIterate();
+	listIterator getIterator(int pos);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Returns the const iterator to an element of the list.
+	///	
+	///	Allows to get the iterator to the element with passed position.
+	///	\return The iterator to the element with passed position.
+	///	\throws std::out_of_range if an index is out of bounds.
+	////////////////////////////////////////////////////////////
+	constListIterator getIterator(int pos) const;
 
 protected:
 
-	struct Note
-	{
-		Note* prev;
-		T item;
-		Note* next;
-	};
-	Note* begin_;
-	Note* end_;
-	int size_;
-
-	Note* iterator_;
-	int iteratorPos_;
+	std::list<T> list_;
 
 };
 
@@ -286,171 +249,74 @@ protected:
 
 template<typename T>
 LinkedList<T>::LinkedList() :
-	begin_(nullptr),
-	end_(nullptr),
-	size_(0),
-	iterator_(nullptr),
-	iteratorPos_(-1)
+	list_()
 {
-	iteratorPos_ = -1;
 }
 
 template<typename T>
-LinkedList<T>::LinkedList(const LinkedList<T>& list)
+LinkedList<T>::LinkedList(const LinkedList<T>& list) :
+	list_(list.list_)
 {
-	*this = list;
-}
-
-template<typename T>
-LinkedList<T>::LinkedList(T* array, int size)
-{
-	fromArray(array, size);
-}
-
-template<typename T>
-LinkedList<T>::~LinkedList()
-{
-	if (size_ > 1)
-	{
-		for (Note* i = begin_->next; i != nullptr; i = i->next)
-		{
-			delete i->prev;
-		}
-		delete end_;
-	}
-	else
-	{
-		if (size_ > 0)
-		{
-			delete begin_;
-		}
-	}
 }
 
 template<typename T>
 int LinkedList<T>::length() const
 {
-	return size_;
+	return static_cast<int>(list_.size());
 }
 
 template<typename T>
 bool LinkedList<T>::isEmpty() const
 {
-	return size_ == 0;
+	return list_.size() == 0;
 }
 
 template<typename T>
 bool LinkedList<T>::add(const T& item)
 {
-	if (size_ == 0)
-	{
-		begin_ = new Note;
-		begin_->prev = nullptr;
-		end_ = begin_;
-	}
-	else
-	{
-		end_->next = new Note;
-		end_->next->prev = end_;
-		end_ = end_->next;
-	}
-	end_->item = item;
-	end_->next = nullptr;
-	size_++;
+	list_.push_back(item);
 	return true;
 }
 
 template<typename T>
 bool LinkedList<T>::add(const T& item, int pos)
 {
-	if (pos < 0 || pos > size_)
+	if (pos < 0 || pos > list_.size())
 	{
 		return false;
 	}
 	else
 	{
-		if (pos == 0)
+		if (pos == list_.size())
 		{
-			Note* p = new Note;
-			p->prev = nullptr;
-			p->item = item;
-			p->next = begin_;
-			begin_->prev = p;
-			begin_ = p;
+			return add(item);
 		}
 		else
 		{
-			Note* p;
-			if (pos < size_ / 2)
-			{
-				p = begin_;
-				p--;
-				for (int i = 0; i < pos; i++)
-				{
-					p = p->next;
-				}
-			}
-			else
-			{
-				p = end_;
-				pos = size_ - pos;
-				for (int i = 0; i < pos; i++)
-				{
-					p = p->prev;
-				}
-			}
-			Note* tmp = new Note;
-			tmp->item = item;
-			tmp->prev = p;
-			tmp->next = p->next;
-			p->next->prev = tmp;
-			p->next = tmp;
+			list_.insert(getIterator(pos), item);
+			return true;
 		}
-		size_++;
-		stopIterate();
-		return true;
 	}
 }
 
 template<typename T>
 bool LinkedList<T>::add(const T& item, IComparator<T>& comparator)
 {
-	if (size_ == 0)
+	if (list_.size() == 0)
 	{
 		return add(item);
 	}
 	else
 	{
-		if (comparator.compare(item, begin_->item) < 0)
+		listIterator i;
+		for (i = list_.begin(); i != list_.end(); i++)
 		{
-			Note* p = new Note;
-			p->prev = nullptr;
-			p->item = item;
-			p->next = begin_;
-			begin_->prev = p;
-			begin_ = p;
-		}
-		else
-		{
-			Note* p;
-			for (p = begin_; p->next != nullptr; p = p->next)
+			if (comparator.compare(*i, item) > 0)
 			{
-				if (comparator.compare(p->item, item) < 0)
-				{
-					break;
-				}
-			}
-			Note* newNote = new Note;
-			newNote->prev = p;
-			newNote->item = item;
-			newNote->next = p->next;
-			p->next = newNote;
-			if (newNote->next != nullptr)
-			{
-				newNote->next->prev = newNote;
+				break;
 			}
 		}
-		size_++;
+		list_.insert(i, item);
 		return true;
 	}
 }
@@ -458,58 +324,34 @@ bool LinkedList<T>::add(const T& item, IComparator<T>& comparator)
 template<typename T>
 bool LinkedList<T>::remove(int pos)
 {
-	if (pos < 0 || pos >= size_)
+	if (pos < 0 || pos >= list_.size())
 	{
 		return false;
 	}
 	else
 	{
-		Note* p;
-		if (pos < size_ / 2)
-		{
-			p = begin_;
-			for (int i = 0; i < pos; i++)
-			{
-				p = p->next;
-			}
-		}
-		else
-		{
-			p = end_;
-			pos = size_ - pos - 1;
-			for (int i = 0; i < pos; i++)
-			{
-				p = p->prev;
-			}
-		}
-		Note* prev = p->prev;
-		Note* next = p->next;
-		if (prev != nullptr)
-		{
-			prev->next = next;
-		}
-		if (next != nullptr)
-		{
-			next->prev = prev;
-		}
-		delete p;
-		size_--;
-		stopIterate();
+		list_.erase(getIterator(pos));
 		return true;
 	}
 }
 
 template<typename T>
+typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::remove(listIterator pos)
+{
+	return list_.erase(pos);
+}
+
+template<typename T>
 int snow::LinkedList<T>::find(const T& value) const
 {
-	Note* p = begin_;
-	for (int i = 0; i < size_; i++)
+	int index = 0;
+	for (constListIterator i = list_.begin(); i != list_.end(); i++)
 	{
-		if (p->item == value)
+		if (*i == value)
 		{
-			return i;
+			return index;
 		}
-		p = p->next;
+		index++;
 	}
 	return -1;
 }
@@ -517,15 +359,15 @@ int snow::LinkedList<T>::find(const T& value) const
 template<typename T>
 void snow::LinkedList<T>::sort(IComparator<T>& comparator)
 {
-	for (Note* i = end_; i != begin_; i = i->prev)
+	for (listIterator i = list_.end(); i != list_.begin(); i--)
 	{
-		for (Note* j = begin_; j != i; j = j->next)
+		for (listIterator j = list_.begin(); j != i; j++)
 		{
-			if (comparator.compare(j->item, i->item) > 1)
+			if (comparator.compare(*j, *i) > 1)
 			{
-				Note* tmp = i;
-				i = j;
-				j = tmp;
+				T tmp = *j;
+				*j = *i;
+				*i = tmp;
 			}
 		}
 	}
@@ -534,76 +376,68 @@ void snow::LinkedList<T>::sort(IComparator<T>& comparator)
 template<typename T>
 void LinkedList<T>::fromArray(T* array, int size)
 {
-	this->~LinkedList();
+	list_.clear();
 	for (int i = 0; i < size; i++)
 	{
-		add(array[i]);
+		list_.push_back(array[i]);
 	}
 }
 
 template<typename T>
 T* snow::LinkedList<T>::toArray() const
 {
-	T* res = new T[size_];
-	for (int i = 0; i < size_; i++)
+	T* res = new T[list_.size()];
+	int index = 0;
+	for (constListIterator i = list_.begin(); i != list_.end(); i++)
 	{
-		static Note* p = begin_;
-		res[i] = p->item;
-		p = p->next;
+		res[index++] = *i;
 	}
 	return res;
 }
 
 template<typename T>
-T& LinkedList<T>::operator[](int pos) const
+T& LinkedList<T>::operator[](int pos)
 {
-	if (pos < 0 || pos >= size_)
+	if (pos < 0 || pos >= list_.size())
 	{
 		throw std::out_of_range("index is out of bounds");
 	}
 	else
 	{
-		Note* p;
-		if (pos < size_ / 2)
-		{
-			p = begin_;
-			for (int i = 0; i < pos; i++)
-			{
-				p = p->next;
-			}
-		}
-		else
-		{
-			p = end_;
-			pos = size_ - pos - 1;
-			for (int i = 0; i < pos; i++)
-			{
-				p = p->prev;
-			}
-		}
-		return p->item;
+		return *getIterator(pos);
+	}
+}
+
+template<typename T>
+const T& LinkedList<T>::operator[](int pos) const
+{
+	if (pos < 0 || pos >= list_.size())
+	{
+		throw std::out_of_range("index is out of bounds");
+	}
+	else
+	{
+		return *getIterator(pos);
 	}
 }
 
 template<typename T>
 bool snow::LinkedList<T>::operator==(const snow::LinkedList<T>& list) const
 {
-	if (size_ != list.size_)
+	if (list_.size() != list.list_.size())
 	{
 		return false;
 	}
 	else
 	{
-		Note* p1 = begin_;
-		Note* p2 = list.begin_;
-		for (int i = 0; i < size_; i++)
+		listIterator i1 = list_.begin();
+		listIterator i2 = list.list_.begin();
+		for (int i = 0; i < list_.size(); i++)
 		{
-			if (!(p1->item == p2->item))
+			if (!(*i1 == *i2))
 			{
 				return false;
 			}
-			p1 = p1->next;
-			p2 = p2->next;
 		}
 		return true;
 	}
@@ -612,116 +446,94 @@ bool snow::LinkedList<T>::operator==(const snow::LinkedList<T>& list) const
 template<typename T>
 LinkedList<T> LinkedList<T>::operator=(const LinkedList<T>& list)
 {
-	LinkedList::~LinkedList();
-	iterator_ = nullptr;
-	iteratorPos_ = -1;
-	for (Note* p = list.begin_; p != nullptr; p = p->next)
-	{
-		add(p->item);
-	}
+	list_ = list.list_;
 	return *this;
 }
 
 template<typename T>
-bool LinkedList<T>::startIterate()
+typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::begin()
 {
-	if (size_ > 0)
-	{
-		iterator_ = begin_;
-		iteratorPos_ = 0;
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return list_.begin();
 }
 
 template<typename T>
-T& LinkedList<T>::getIterator()
+typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::begin() const
 {
-	if (iteratorPos_ > -1)
-	{
-		return iterator_->item;
-	}
-	else
-	{
-		throw std::logic_error("iterate wasn`t started");
-	}
+	return list_.begin();
 }
 
 template<typename T>
-bool snow::LinkedList<T>::removeIterator()
+typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::end()
 {
-	if (iteratorPos_ > 0)
+	return list_.end();
+}
+
+template<typename T>
+typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::end() const
+{
+	return list_.end();
+}
+
+template<typename T>
+typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::getIterator(int pos)
+{
+	if (pos < 0 && pos >= list_.size())
 	{
-		Note* tmp = iterator_;
-		Note* newIterator = iterator_->next;
-		if (iterator_->prev != nullptr)
+		throw std::out_of_range("index is out of bounds");
+	}
+	else
+	{
+		listIterator p;
+		if (pos < list_.size() / 2)
 		{
-			newIterator = iterator_->prev;
-			iterator_->prev->next = iterator_->next;
+			p = list_.begin();
+			for (int i = 0; i < pos; i++)
+			{
+				p++;
+			}
 		}
-		if (iterator_->next != nullptr)
+		else
 		{
-			iterator_->next->prev = iterator_->prev;
+			p = list_.end();
+			pos = static_cast<int>(list_.size()) - pos;
+			for (int i = 0; i < pos; i++)
+			{
+				p--;
+			}
 		}
-		iterator_ = newIterator;
-		delete tmp;
-		size_--;
-		if (size_ == 0)
+		return p;
+	}
+}
+
+template<typename T>
+typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::getIterator(int pos) const
+{
+	if (pos < 0 && pos >= list_.size())
+	{
+		throw std::out_of_range("index is out of bounds");
+	}
+	else
+	{
+		constListIterator p;
+		if (pos < list_.size() / 2)
 		{
-			stopIterate();
+			p = list_.begin();
+			for (int i = 0; i < pos; i++)
+			{
+				p++;
+			}
 		}
-		return true;
+		else
+		{
+			p = list_.end();
+			pos = static_cast<int>(list_.size()) - pos;
+			for (int i = 0; i < pos; i++)
+			{
+				p--;
+			}
+		}
+		return p;
 	}
-	else
-	{
-		return false;
-	}
-}
-
-template<typename T>
-int LinkedList<T>::getIteratorPosition()
-{
-	return iteratorPos_;
-}
-
-template<typename T>
-bool LinkedList<T>::iterateNext()
-{
-	if (iteratorPos_ < 0 || iteratorPos_ >= size_ - 1)
-	{
-		return false;
-	}
-	else
-	{
-		iterator_ = iterator_->next;
-		iteratorPos_++;
-		return true;
-	}
-}
-
-template<typename T>
-bool LinkedList<T>::iteratePrev()
-{
-	if (iteratorPos_ <= 0 || iteratorPos_ > size_ - 1)
-	{
-		return false;
-	}
-	else
-	{
-		iterator_ = iterator_->prev;
-		iteratorPos_--;
-		return true;
-	}
-}
-
-template<typename T>
-void LinkedList<T>::stopIterate()
-{
-	iterator_ = nullptr;
-	iteratorPos_ = -1;
 }
 
 }

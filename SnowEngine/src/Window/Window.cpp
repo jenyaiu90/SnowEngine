@@ -57,6 +57,20 @@ bool snow::Window::attach(Gui& gui)
 	return guis_.add(&gui, *Gui::getPointerComparator());
 }
 
+bool snow::Window::detach(Gui& gui)
+{
+	int pos = guis_.find(&gui);
+	if (pos != -1)
+	{
+		bool res = guis_.remove(pos);
+		return res;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 sf::RenderWindow* snow::Window::getWindow()
 {
 	return window_;
@@ -208,7 +222,7 @@ void snow::Window::windowCycle_()
 						std::lock_guard<std::mutex> lock(guisMutex_);
 						for (auto i = guis_.begin(); i != guis_.end(); i++)
 						{
-							if (*i != nullptr)
+							if (*i != nullptr && (*i)->isActive() && (*i)->isClickable())
 							{
 								Vector2f layerMousePosition(mousePosition.x + (*i)->getCenter().x -
 															0.5f * (*i)->getZoom() * resolution_.x,
@@ -237,7 +251,7 @@ void snow::Window::windowCycle_()
 						}
 					}
 
-					if (!clicked && level_ != nullptr)
+					if (!clicked && level_ != nullptr && level_->isActive() && level_->isClickable())
 					{
 						Vector2f layerMousePosition(mousePosition.x + level_->getCenter().x -
 													0.5f * level_->getZoom() * resolution_.x,

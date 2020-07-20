@@ -170,6 +170,39 @@ public:
 	////////////////////////////////////////////////////////////
 	virtual void follow(const Actor* actor);
 
+	////////////////////////////////////////////////////////////
+	///	\brief Checkes whether the layer is active.
+	///	
+	///	Allows to check whether the layer is active.
+	///	\return <b>true</b> if the layer is active.
+	////////////////////////////////////////////////////////////
+	bool isActive() const;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Allows to activate or deactivate the layer.
+	///	
+	///	Activates or deactivates the layer. If the layer is deactivated it isn`t displayed and doesn`t
+	///	handle any events.
+	///	\param active If <b>true</b>, the layer will be activated, else it will be deactivated.
+	////////////////////////////////////////////////////////////
+	void setActive(bool active);
+
+	////////////////////////////////////////////////////////////
+	///	\brief Checkes whether the layer handles clicks.
+	///	
+	///	Allows to check whether the layer handles clicks.
+	///	\return <b>true</b> if the layer handles clicks.
+	////////////////////////////////////////////////////////////
+	bool isClickable() const;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Allows to activate or deactivate clicks handler of the layer.
+	///	
+	///	Starts of stops clicks handling.
+	///	\param active If <b>true</b>, the layer will handle clicks.
+	////////////////////////////////////////////////////////////
+	void setClickable(bool clickable);
+
 protected:
 
 	LinkedList<ClickableComponent*> clickables_; ///< The list of all layer`s clickable components.
@@ -177,6 +210,8 @@ protected:
 	float zoomFactor_;							 ///< The current zoom.
 	sf::View view_;								 ///< The view (an SFML type).
 	const Actor* followed_;						 ///< The actor that is followed by the layer.
+	bool isActive_;								 ///< Should layer be displayed and handle events.
+	bool isClickable_;							 ///< Should layer handle clicks.
 
 private:
 

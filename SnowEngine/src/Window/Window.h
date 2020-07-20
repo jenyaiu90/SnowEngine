@@ -68,6 +68,15 @@ public:
 	bool attach(Gui& gui);
 
 	////////////////////////////////////////////////////////////
+	///	\brief Detaches the GUI from the window.
+	///	
+	///	Allows to detach the GUI from the window.
+	///	\param gui The GUI for detaching.
+	///	\return <b>true</b> if this GUI has been attached earlier and is detached now.
+	////////////////////////////////////////////////////////////
+	bool detach(Gui& gui);
+
+	////////////////////////////////////////////////////////////
 	///	\brief Returns the pointer to sf::RenderWindow.
 	///	
 	///	Allows to get the pointer to sf::RenderWindow (an SFML type) that is used by this Window.

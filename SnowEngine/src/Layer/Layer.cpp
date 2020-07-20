@@ -7,7 +7,9 @@
 #include "Layer.h"
 
 snow::Layer::Layer() :
-	zoomFactor_(1.f)
+	zoomFactor_(1.f),
+	isActive_(true),
+	isClickable_(true)
 {
 }
 
@@ -17,23 +19,26 @@ snow::Layer::~Layer()
 
 void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 {
-	std::lock_guard<std::mutex> lock(actorsMutex_);
-	for (auto i = actors_.begin(); i != actors_.end(); i++)
+	if (isActive_)
 	{
-		if (*i != nullptr)
+		std::lock_guard<std::mutex> lock(actorsMutex_);
+		for (auto i = actors_.begin(); i != actors_.end(); i++)
 		{
-			(*i)->tick(delta, window);
+			if (*i != nullptr)
+			{
+				(*i)->tick(delta, window);
+			}
+			else
+			{
+				i = actors_.remove(i);
+				i--;
+			}
 		}
-		else
-		{
-			i = actors_.remove(i);
-			i--;
-		}
-	}
 
-	if (followed_ != nullptr)
-	{
-		view_.setCenter(followed_->getPosition());
+		if (followed_ != nullptr)
+		{
+			view_.setCenter(followed_->getPosition());
+		}
 	}
 }
 
@@ -110,6 +115,26 @@ snow::LinkedList<snow::ClickableComponent*>& snow::Layer::getClickables()
 void snow::Layer::follow(const Actor* actor)
 {
 	followed_ = actor;
+}
+
+bool snow::Layer::isActive() const
+{
+	return isActive_;
+}
+
+void snow::Layer::setActive(bool active)
+{
+	isActive_ = active;
+}
+
+bool snow::Layer::isClickable() const
+{
+	return isClickable_;
+}
+
+void snow::Layer::setClickable(bool clickable)
+{
+	isClickable_ = clickable;
 }
 
 /////////////

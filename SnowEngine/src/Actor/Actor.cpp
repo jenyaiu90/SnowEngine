@@ -30,8 +30,9 @@ void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 		}
 	}
 
-	//Goto was here. But I got rid of it!
-	std::lock_guard<std::mutex> lock(componentsMutex_);
+	// Goto was here. But I got rid of it!
+	// goto R.I.P. 2020-2020
+	std::lock_guard<std::recursive_mutex> lock(componentsMutex_);
 	for (auto i = components_.begin(); i != components_.end(); i++)
 	{
 		if (*i != nullptr)
@@ -72,7 +73,7 @@ void snow::Actor::move(snow::Vector2f to, int time)
 
 void snow::Actor::setPosition(Vector2f position)
 {
-	std::lock_guard<std::mutex> lock(componentsMutex_);
+	std::lock_guard<std::recursive_mutex> lock(componentsMutex_);
 	for (auto i = components_.begin(); i != components_.end(); i++)
 	{
 		if (*i != nullptr)
@@ -90,21 +91,19 @@ void snow::Actor::setPosition(Vector2f position)
 
 bool snow::Actor::attachComponent(snow::Component* component)
 {
-	componentsMutex_.lock();
+	std::lock_guard<std::recursive_mutex> lock(componentsMutex_);
 	components_.add(component);
-	componentsMutex_.unlock();
 	return true;
 }
 
 bool snow::Actor::detachComponent(Component* component)
 {
-	componentsMutex_.lock();
+	std::lock_guard<std::recursive_mutex> lock(componentsMutex_);
 	int id = components_.find(component);
 	if (id >= 0)
 	{
 		components_.remove(id);
 	}
-	componentsMutex_.unlock();
 	return id >= 0;
 }
 

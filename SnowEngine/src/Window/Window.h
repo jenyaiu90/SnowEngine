@@ -109,8 +109,8 @@ public:
 
 protected:
 
-	std::mutex windowMutex_;	///< The mutex for the window.
-	std::mutex guisMutex_;		///< The mutex for the GUI list.
+	std::recursive_mutex windowMutex_;	///< The mutex for the window.
+	std::recursive_mutex guisMutex_;	///< The mutex for the GUI list.
 
 	sf::RenderWindow* window_;	///< The window (an SFML type).
 	std::string title_;			///< The window`s title.

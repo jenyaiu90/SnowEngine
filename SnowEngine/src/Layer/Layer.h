@@ -215,7 +215,7 @@ protected:
 
 private:
 
-	std::mutex actorsMutex_;					 ///< The mutex for the actors list.
+	std::recursive_mutex actorsMutex_;			 ///< The mutex for the actors list.
 	LinkedList<Actor*> actors_;					 ///< The list of all actors on the layer.
 
 };

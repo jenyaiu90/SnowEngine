@@ -21,7 +21,7 @@ void snow::Layer::tick(const int& delta, sf::RenderWindow& window)
 {
 	if (isActive_)
 	{
-		std::lock_guard<std::mutex> lock(actorsMutex_);
+		std::lock_guard<std::recursive_mutex> lock(actorsMutex_);
 		for (auto i = actors_.begin(); i != actors_.end(); i++)
 		{
 			if (*i != nullptr)
@@ -51,19 +51,18 @@ void snow::Layer::onAttaching(snow::Vector2f size)
 
 bool snow::Layer::spawnActor(snow::Actor* actor)
 {
-	std::lock_guard<std::mutex> lock(actorsMutex_);
+	std::lock_guard<std::recursive_mutex> lock(actorsMutex_);
 	return actors_.add(actor);
 }
 
 bool snow::Layer::detachActor(Actor* actor)
 {
-	actorsMutex_.lock();
+	std::lock_guard<std::recursive_mutex> lock(actorsMutex_);
 	int id = actors_.find(actor);
 	if (id >= 0)
 	{
 		actors_.remove(id);
 	}
-	actorsMutex_.unlock();
 	return id >= 0;
 }
 

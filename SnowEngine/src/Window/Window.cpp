@@ -15,7 +15,8 @@
 snow::Window::Window(const std::string& title, const Vector2i& resolution, bool isFullscreen) :
 	title_(title),
 	resolution_(resolution),
-	isFullscreen_(isFullscreen)
+	isFullscreen_(isFullscreen),
+	window_(nullptr)
 {
 	std::thread windowThread(&Window::startWindow_, this, title, resolution, isFullscreen);
 	windowThread.detach();
@@ -23,12 +24,11 @@ snow::Window::Window(const std::string& title, const Vector2i& resolution, bool 
 
 snow::Window::~Window()
 {
-	windowMutex_.lock();
+	std::lock_guard<std::recursive_mutex> lock(windowMutex_);
 	if (window_ != nullptr && window_->isOpen())
 	{
 		window_->close();
 	}
-	windowMutex_.unlock();
 
 	delete window_;
 }
@@ -59,6 +59,7 @@ bool snow::Window::attach(Gui& gui)
 
 bool snow::Window::detach(Gui& gui)
 {
+	std::lock_guard<std::recursive_mutex> lock(guisMutex_);
 	int pos = guis_.find(&gui);
 	if (pos != -1)
 	{
@@ -83,6 +84,7 @@ snow::Input* snow::Window::getInput()
 
 void snow::Window::join()
 {
+	while (window_ == nullptr);
 	while (window_->isOpen());
 }
 
@@ -95,11 +97,13 @@ void snow::Window::startWindow_(const std::string& title, const Vector2i& resolu
 {
 	if (isFullscreen)
 	{
+		std::lock_guard<std::recursive_mutex> lock(windowMutex_);
 		window_ = new sf::RenderWindow(sf::VideoMode(resolution_.x, resolution_.y), 
 									   title_, sf::Style::Fullscreen);
 	}
 	else
 	{
+		std::lock_guard<std::recursive_mutex> lock(windowMutex_);
 		window_ = new sf::RenderWindow(sf::VideoMode(resolution_.x, resolution_.y), title_);
 	}
 	windowCycle_();
@@ -131,12 +135,11 @@ void snow::Window::windowCycle_()
 				{
 				case sf::Event::Closed:
 				{
-					windowMutex_.lock();
+					std::lock_guard<std::recursive_mutex> lock(windowMutex_);
 					if (window_->isOpen())
 					{
 						window_->close();
 					}
-					windowMutex_.unlock();
 					return;
 				}
 				case sf::Event::EventType::Resized:
@@ -150,7 +153,7 @@ void snow::Window::windowCycle_()
 
 					// guisMutex_ zone
 					{
-						std::lock_guard<std::mutex> lock(guisMutex_);
+						std::lock_guard<std::recursive_mutex> lock(guisMutex_);
 						for (auto i = guis_.begin(); i != guis_.end(); i++)
 						{
 							if (*i != nullptr)
@@ -219,7 +222,7 @@ void snow::Window::windowCycle_()
 
 					// guisMutex_ zone
 					{
-						std::lock_guard<std::mutex> lock(guisMutex_);
+						std::lock_guard<std::recursive_mutex> lock(guisMutex_);
 						for (auto i = guis_.begin(); i != guis_.end(); i++)
 						{
 							if (*i != nullptr && (*i)->isActive() && (*i)->isClickable())
@@ -306,7 +309,7 @@ void snow::Window::windowCycle_()
 			}
 		}
 
-		std::lock_guard<std::mutex> lock(windowMutex_);
+		std::lock_guard<std::recursive_mutex> lock(windowMutex_);
 
 		window_->clear();
 		if (level_ != nullptr)
@@ -316,7 +319,7 @@ void snow::Window::windowCycle_()
 
 		//guisMutex_ zone
 		{
-			std::lock_guard<std::mutex> lock(guisMutex_);
+			std::lock_guard<std::recursive_mutex> lock(guisMutex_);
 			for (auto i = guis_.begin(); i != guis_.end(); i++)
 			{
 				if (*i != nullptr)

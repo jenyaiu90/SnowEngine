@@ -126,10 +126,10 @@ protected:
 	Vector2f* destination;
 
 private:
-
-	std::mutex componentsMutex_;		///< The mutex for components_ list.
-	LinkedList<Component*> components_;	///< The list of actor`s component.
-	Layer* layer_;						///< The layer that the actor is attached to.
+	
+	std::recursive_mutex componentsMutex_;	///< The mutex for components_ list.
+	LinkedList<Component*> components_;		///< The list of actor`s component.
+	Layer* layer_;							///< The layer that the actor is attached to.
 
 };
 

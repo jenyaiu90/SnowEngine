@@ -13,8 +13,16 @@ snow::Dictionary<sf::RenderWindow*, snow::Dictionary<snow::Vector2i, // Yes, it 
 
 snow::CollisionComponent::CollisionComponent(Actor* actor, sf::RenderWindow* window,
 											 const std::string& type, Vector2f pos) :
+	CollisionComponent(actor, window, type, "default", pos)
+{
+}
+
+snow::CollisionComponent::CollisionComponent(Actor* actor, sf::RenderWindow* window,
+											 const std::string& type, const std::string& kind,
+											 Vector2f pos) :
 	Component(actor, pos),
 	type_(type),
+	kind_(kind),
 	window_(window)
 {
 }
@@ -37,6 +45,56 @@ snow::ArrayList<snow::CollisionComponent*> snow::CollisionComponent::checkCollis
 			for (int j = 0; j < dict->getById(id).length(); j++)
 			{
 				if (dict->getById(id)[j] != this && isCollide(dict->getById(id)[j]))
+				{
+					res.add(dict->getById(id)[j]);
+				}
+			}
+		}
+	}
+	return res;
+}
+
+snow::ArrayList<snow::CollisionComponent*>
+	snow::CollisionComponent::checkCollision(const std::string& kind)
+{
+	ArrayList<CollisionComponent*> res;
+	Dictionary<Vector2i, ArrayList<CollisionComponent*>>* dict = &collisions_[window_];
+	// Mutex zone
+	{
+		std::lock_guard<std::mutex> lock(collisionsMutex_);
+		for (int i = 0; i < segments_.length(); i++)
+		{
+			int id = dict->findKey(segments_[i]);
+			for (int j = 0; j < dict->getById(id).length(); j++)
+			{
+				if (dict->getById(id)[j] != this &&
+					dict->getById(id)[j]->getKind() == kind &&
+					isCollide(dict->getById(id)[j]))
+				{
+					res.add(dict->getById(id)[j]);
+				}
+			}
+		}
+	}
+	return res;
+}
+
+snow::ArrayList<snow::CollisionComponent*>
+	snow::CollisionComponent::checkCollision(const ArrayList<std::string>& kinds)
+{
+	ArrayList<CollisionComponent*> res;
+	Dictionary<Vector2i, ArrayList<CollisionComponent*>>* dict = &collisions_[window_];
+	// Mutex zone
+	{
+		std::lock_guard<std::mutex> lock(collisionsMutex_);
+		for (int i = 0; i < segments_.length(); i++)
+		{
+			int id = dict->findKey(segments_[i]);
+			for (int j = 0; j < dict->getById(id).length(); j++)
+			{
+				if (dict->getById(id)[j] != this &&
+					kinds.find(dict->getById(id)[j]->getKind()) > -1 &&
+					isCollide(dict->getById(id)[j]))
 				{
 					res.add(dict->getById(id)[j]);
 				}
@@ -70,4 +128,9 @@ void snow::CollisionComponent::addToSegment_(int x, int y, int windowId)
 const std::string& snow::CollisionComponent::getType() const
 {
 	return type_;
+}
+
+const std::string& snow::CollisionComponent::getKind() const
+{
+	return kind_;
 }

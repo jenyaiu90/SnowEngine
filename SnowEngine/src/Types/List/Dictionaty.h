@@ -130,6 +130,15 @@ public:
 	bool operator==(const Dictionary& dictionary) const;
 
 	////////////////////////////////////////////////////////////
+	///	\brief Return <b>true</b> if two dictionaries are not equal.
+	///	
+	///	Checks whether two dictionaries are different. They are equal when their elements are equal.
+	///	\param dictionary Other dictionary.
+	///	\return <b>true</b> if lists are not equal.
+	////////////////////////////////////////////////////////////
+	bool operator!=(const Dictionary& dictionary) const;
+
+	////////////////////////////////////////////////////////////
 	///	\brief Removes the value with passed id.
 	///	
 	///	This methos removes the value that is associated with a key with passed id. Works faster
@@ -171,25 +180,25 @@ protected:
 // Below are the methods of the Dictionary
 
 template<typename K, typename V>
-const snow::ArrayList<K>& snow::Dictionary<K, V>::getKeys() const
+inline const snow::ArrayList<K>& snow::Dictionary<K, V>::getKeys() const
 {
 	return keys_;
 }
 
 template<typename K, typename V>
-const snow::ArrayList<V>& snow::Dictionary<K, V>::getValues() const
+inline const snow::ArrayList<V>& snow::Dictionary<K, V>::getValues() const
 {
 	return values_;
 }
 
 template<typename K, typename V>
-int snow::Dictionary<K, V>::findKey(const K& key) const
+inline int snow::Dictionary<K, V>::findKey(const K& key) const
 {
 	return keys_.find(key);
 }
 
 template<typename K, typename V>
-const K* snow::Dictionary<K, V>::find(const V& value) const
+inline const K* snow::Dictionary<K, V>::find(const V& value) const
 {
 	int index = values_.find(value);
 	if (index == -1)
@@ -203,7 +212,7 @@ const K* snow::Dictionary<K, V>::find(const V& value) const
 }
 
 template<typename K, typename V>
-bool snow::Dictionary<K, V>::set(const K& key, V value)
+inline bool snow::Dictionary<K, V>::set(const K& key, V value)
 {
 	int index = keys_.find(key);
 	if (index == -1)
@@ -219,14 +228,14 @@ bool snow::Dictionary<K, V>::set(const K& key, V value)
 }
 
 template<typename K, typename V>
-bool snow::Dictionary<K, V>::remove(const K& key)
+inline bool snow::Dictionary<K, V>::remove(const K& key)
 {
 	int index = keys_.find(key);
 	return keys_.remove(index) & values_.remove(index);
 }
 
 template<typename K, typename V>
-V& snow::Dictionary<K, V>::get(const K& key)
+inline V& snow::Dictionary<K, V>::get(const K& key)
 {
 	int index = keys_.find(key);
 	if (index == -1)
@@ -240,7 +249,7 @@ V& snow::Dictionary<K, V>::get(const K& key)
 }
 
 template<typename K, typename V>
-const V& snow::Dictionary<K, V>::get(const K& key) const
+inline const V& snow::Dictionary<K, V>::get(const K& key) const
 {
 	int index = keys_.find(key);
 	if (index == -1)
@@ -254,13 +263,13 @@ const V& snow::Dictionary<K, V>::get(const K& key) const
 }
 
 template<typename K, typename V>
-V& snow::Dictionary<K, V>::operator[](const K& key)
+inline V& snow::Dictionary<K, V>::operator[](const K& key)
 {
 	return get(key);
 }
 
 template<typename K, typename V>
-const V& snow::Dictionary<K, V>::operator[](const K& key) const
+inline const V& snow::Dictionary<K, V>::operator[](const K& key) const
 {
 	return get(key);
 }
@@ -272,13 +281,19 @@ inline bool snow::Dictionary<K, V>::operator==(const snow::Dictionary<K, V>& dic
 }
 
 template<typename K, typename V>
-bool snow::Dictionary<K, V>::removeById(int id)
+inline bool snow::Dictionary<K, V>::operator!=(const snow::Dictionary<K, V>& dictionary) const
+{
+	return !(*this == dictionary);
+}
+
+template<typename K, typename V>
+inline bool snow::Dictionary<K, V>::removeById(int id)
 {
 	return keys_.remove(id) & values_.remove(id);
 }
 
 template<typename K, typename V>
-V& snow::Dictionary<K, V>::getById(int id)
+inline V& snow::Dictionary<K, V>::getById(int id)
 {
 	if (id < 0 || id >= keys_.length())
 	{
@@ -291,7 +306,7 @@ V& snow::Dictionary<K, V>::getById(int id)
 }
 
 template<typename K, typename V>
-const V& snow::Dictionary<K, V>::getById(int id) const
+inline const V& snow::Dictionary<K, V>::getById(int id) const
 {
 	if (id < 0 || id >= keys_.length())
 	{

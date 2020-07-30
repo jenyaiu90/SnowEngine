@@ -115,7 +115,16 @@ public:
 	///	\return The index of the first element that is equal to passed value or <b>-1</b> if the
 	///	list doesn`t contain it.
 	////////////////////////////////////////////////////////////
-	int find(const T& value) const;
+	int find(const T& value) const override;
+
+	////////////////////////////////////////////////////////////
+	/// \brief Allows to check whether the list contains the item.
+	///	
+	///	This method checks whether there is a passed value in the list.
+	///	\param value The value for searching.
+	///	\return <b>true</b> if the list contains the value.
+	////////////////////////////////////////////////////////////
+	bool contains(const T& value) const override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief The method allows to fill the list with values from an array.
@@ -171,6 +180,15 @@ public:
 	///	\return <b>true</b> if lists are equal.
 	////////////////////////////////////////////////////////////
 	bool operator==(const LinkedList& list) const;
+
+	////////////////////////////////////////////////////////////
+	///	\brief Return <b>true</b> if two lists are not equal.
+	///	
+	///	Checks whether two lists are not equal. They are equal when their elements are equal.
+	///	\param list Other list.
+	///	\return <b>true</b> if lists are not equal.
+	////////////////////////////////////////////////////////////
+	bool operator!=(const LinkedList& list) const;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Copies a list.
@@ -260,26 +278,26 @@ LinkedList<T>::LinkedList(const LinkedList<T>& list) :
 }
 
 template<typename T>
-int LinkedList<T>::length() const
+inline int LinkedList<T>::length() const
 {
 	return static_cast<int>(list_.size());
 }
 
 template<typename T>
-bool LinkedList<T>::isEmpty() const
+inline bool LinkedList<T>::isEmpty() const
 {
 	return list_.size() == 0;
 }
 
 template<typename T>
-bool LinkedList<T>::add(const T& item)
+inline bool LinkedList<T>::add(const T& item)
 {
 	list_.push_back(item);
 	return true;
 }
 
 template<typename T>
-bool LinkedList<T>::add(const T& item, int pos)
+inline bool LinkedList<T>::add(const T& item, int pos)
 {
 	if (pos < 0 || pos > list_.size())
 	{
@@ -300,7 +318,7 @@ bool LinkedList<T>::add(const T& item, int pos)
 }
 
 template<typename T>
-bool LinkedList<T>::add(const T& item, IComparator<T>& comparator)
+inline bool LinkedList<T>::add(const T& item, IComparator<T>& comparator)
 {
 	if (list_.size() == 0)
 	{
@@ -322,7 +340,7 @@ bool LinkedList<T>::add(const T& item, IComparator<T>& comparator)
 }
 
 template<typename T>
-bool LinkedList<T>::remove(int pos)
+inline bool LinkedList<T>::remove(int pos)
 {
 	if (pos < 0 || pos >= list_.size())
 	{
@@ -336,13 +354,13 @@ bool LinkedList<T>::remove(int pos)
 }
 
 template<typename T>
-typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::remove(listIterator pos)
+inline typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::remove(listIterator pos)
 {
 	return list_.erase(pos);
 }
 
 template<typename T>
-int snow::LinkedList<T>::find(const T& value) const
+inline int snow::LinkedList<T>::find(const T& value) const
 {
 	int index = 0;
 	for (constListIterator i = list_.begin(); i != list_.end(); i++)
@@ -357,7 +375,13 @@ int snow::LinkedList<T>::find(const T& value) const
 }
 
 template<typename T>
-void snow::LinkedList<T>::sort(IComparator<T>& comparator)
+inline bool snow::LinkedList<T>::contains(const T& value) const
+{
+	return find(value) > -1;
+}
+
+template<typename T>
+inline void snow::LinkedList<T>::sort(IComparator<T>& comparator)
 {
 	for (listIterator i = list_.end(); i != list_.begin(); i--)
 	{
@@ -374,7 +398,7 @@ void snow::LinkedList<T>::sort(IComparator<T>& comparator)
 }
 
 template<typename T>
-void LinkedList<T>::fromArray(T* array, int size)
+inline void LinkedList<T>::fromArray(T* array, int size)
 {
 	list_.clear();
 	for (int i = 0; i < size; i++)
@@ -384,7 +408,7 @@ void LinkedList<T>::fromArray(T* array, int size)
 }
 
 template<typename T>
-T* snow::LinkedList<T>::toArray() const
+inline T* snow::LinkedList<T>::toArray() const
 {
 	T* res = new T[list_.size()];
 	int index = 0;
@@ -396,7 +420,7 @@ T* snow::LinkedList<T>::toArray() const
 }
 
 template<typename T>
-T& LinkedList<T>::operator[](int pos)
+inline T& LinkedList<T>::operator[](int pos)
 {
 	if (pos < 0 || pos >= list_.size())
 	{
@@ -409,7 +433,7 @@ T& LinkedList<T>::operator[](int pos)
 }
 
 template<typename T>
-const T& LinkedList<T>::operator[](int pos) const
+inline const T& LinkedList<T>::operator[](int pos) const
 {
 	if (pos < 0 || pos >= list_.size())
 	{
@@ -422,7 +446,7 @@ const T& LinkedList<T>::operator[](int pos) const
 }
 
 template<typename T>
-bool snow::LinkedList<T>::operator==(const snow::LinkedList<T>& list) const
+inline bool snow::LinkedList<T>::operator==(const snow::LinkedList<T>& list) const
 {
 	if (list_.size() != list.list_.size())
 	{
@@ -444,38 +468,44 @@ bool snow::LinkedList<T>::operator==(const snow::LinkedList<T>& list) const
 }
 
 template<typename T>
-LinkedList<T> LinkedList<T>::operator=(const LinkedList<T>& list)
+inline bool snow::LinkedList<T>::operator!=(const snow::LinkedList<T>& list) const
+{
+	return !(*this == list);
+}
+
+template<typename T>
+inline LinkedList<T> LinkedList<T>::operator=(const LinkedList<T>& list)
 {
 	list_ = list.list_;
 	return *this;
 }
 
 template<typename T>
-typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::begin()
+inline typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::begin()
 {
 	return list_.begin();
 }
 
 template<typename T>
-typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::begin() const
+inline typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::begin() const
 {
 	return list_.begin();
 }
 
 template<typename T>
-typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::end()
+inline typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::end()
 {
 	return list_.end();
 }
 
 template<typename T>
-typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::end() const
+inline typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::end() const
 {
 	return list_.end();
 }
 
 template<typename T>
-typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::getIterator(int pos)
+inline typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::getIterator(int pos)
 {
 	if (pos < 0 && pos >= list_.size())
 	{
@@ -506,7 +536,7 @@ typename snow::LinkedList<T>::listIterator snow::LinkedList<T>::getIterator(int 
 }
 
 template<typename T>
-typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::getIterator(int pos) const
+inline typename snow::LinkedList<T>::constListIterator snow::LinkedList<T>::getIterator(int pos) const
 {
 	if (pos < 0 && pos >= list_.size())
 	{

@@ -87,6 +87,15 @@ public:
 	virtual int find(const T& value) const = 0;
 
 	////////////////////////////////////////////////////////////
+	/// \brief Allows to check whether the list contains the item.
+	///	
+	///	This method checks whether there is a passed value in the list.
+	///	\param value The value for searching.
+	///	\return <b>true</b> if the list contains the value.
+	////////////////////////////////////////////////////////////
+	virtual bool contains(const T& value) const = 0;
+
+	////////////////////////////////////////////////////////////
 	///	\brief Sorts the list.
 	///	
 	///	Allows to sort the list according to a passed comparator. The smallest elements are moved

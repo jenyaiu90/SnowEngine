@@ -118,6 +118,15 @@ public:
 	int find(const T& value) const override;
 
 	////////////////////////////////////////////////////////////
+	/// \brief Allows to check whether the list contains the item.
+	///	
+	///	This method checks whether there is a passed value in the list.
+	///	\param value The value for searching.
+	///	\return <b>true</b> if the list contains the value.
+	////////////////////////////////////////////////////////////
+	bool contains(const T& value) const override;
+
+	////////////////////////////////////////////////////////////
 	///	\brief The method allows to fill the list with values from an array.
 	///
 	///	Clears the list and fills it with values from an array.
@@ -173,6 +182,15 @@ public:
 	bool operator==(const ArrayList& list) const;
 
 	////////////////////////////////////////////////////////////
+	///	\brief Return <b>true</b> if two lists are not equal.
+	///	
+	///	Checks whether two lists are different. They are equal when their elements are equal.
+	///	\param list Other list.
+	///	\return <b>true</b> if lists are not equal.
+	////////////////////////////////////////////////////////////
+	bool operator!=(const ArrayList& list) const;
+
+	////////////////////////////////////////////////////////////
 	///	\brief The assignment operator.
 	///	
 	///	Clears the array and copies the passed array.
@@ -216,26 +234,26 @@ ArrayList<T>::ArrayList(const ArrayList<T>& list) :
 }
 
 template<typename T>
-int ArrayList<T>::length() const
+inline int ArrayList<T>::length() const
 {
 	return static_cast<int>(array_.size());
 }
 
 template<typename T>
-bool ArrayList<T>::isEmpty() const
+inline bool ArrayList<T>::isEmpty() const
 {
 	return array_.size() == 0;
 }
 
 template<typename T>
-bool ArrayList<T>::add(const T& item)
+inline bool ArrayList<T>::add(const T& item)
 {
 	array_.push_back(item);
 	return true;
 }
 
 template<typename T>
-bool ArrayList<T>::add(const T& item, int pos)
+inline bool ArrayList<T>::add(const T& item, int pos)
 {
 	if (pos < 0 || pos > array_.size())
 	{
@@ -261,7 +279,7 @@ bool ArrayList<T>::add(const T& item, int pos)
 }
 
 template<typename T>
-bool ArrayList<T>::add(const T& item, IComparator<T>& comparator)
+inline bool ArrayList<T>::add(const T& item, IComparator<T>& comparator)
 {
 	int i;
 	for (i = 0; i < array_.size(); i++)
@@ -275,7 +293,7 @@ bool ArrayList<T>::add(const T& item, IComparator<T>& comparator)
 }
 
 template<typename T>
-bool ArrayList<T>::remove(int pos)
+inline bool ArrayList<T>::remove(int pos)
 {
 	if (pos < 0 || pos >= array_.size())
 	{
@@ -289,7 +307,7 @@ bool ArrayList<T>::remove(int pos)
 }
 
 template<typename T>
-int snow::ArrayList<T>::find(const T& value) const
+inline int snow::ArrayList<T>::find(const T& value) const
 {
 	for (int i = 0; i < array_.size(); i++)
 	{
@@ -302,7 +320,13 @@ int snow::ArrayList<T>::find(const T& value) const
 }
 
 template<typename T>
-void ArrayList<T>::sort(IComparator<T>& comparator)
+inline bool snow::ArrayList<T>::contains(const T& value) const
+{
+	return find(value) > -1;
+}
+
+template<typename T>
+inline void ArrayList<T>::sort(IComparator<T>& comparator)
 {
 	for (int i = static_cast<int>(array_.size()); i > 0; i--)
 	{
@@ -319,7 +343,7 @@ void ArrayList<T>::sort(IComparator<T>& comparator)
 }
 
 template<typename T>
-void ArrayList<T>::fromArray(T* array, int size)
+inline void ArrayList<T>::fromArray(T* array, int size)
 {
 	array_.clear();
 	for (int i = 0; i < size; i++)
@@ -329,7 +353,7 @@ void ArrayList<T>::fromArray(T* array, int size)
 }
 
 template<typename T>
-T* ArrayList<T>::toArray() const
+inline T* ArrayList<T>::toArray() const
 {
 	T* res = new T[array_.size()];
 	for (int i = 0; i < array_.size(); i++)
@@ -340,7 +364,7 @@ T* ArrayList<T>::toArray() const
 }
 
 template<typename T>
-T& ArrayList<T>::operator[](int pos)
+inline T& ArrayList<T>::operator[](int pos)
 {
 	if (pos < 0 || pos >= array_.size())
 	{
@@ -350,7 +374,7 @@ T& ArrayList<T>::operator[](int pos)
 }
 
 template<typename T>
-const T& ArrayList<T>::operator[](int pos) const
+inline const T& ArrayList<T>::operator[](int pos) const
 {
 	if (pos < 0 || pos >= array_.size())
 	{
@@ -380,7 +404,13 @@ inline bool snow::ArrayList<T>::operator==(const ArrayList<T>& list) const
 }
 
 template<typename T>
-ArrayList<T> ArrayList<T>::operator=(const ArrayList<T>& list)
+inline bool snow::ArrayList<T>::operator!=(const ArrayList& list) const
+{
+	return !(*this == list);
+}
+
+template<typename T>
+inline ArrayList<T> ArrayList<T>::operator=(const ArrayList<T>& list)
 {
 	array_ = list.array_;
 	return *this;

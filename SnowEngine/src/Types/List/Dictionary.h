@@ -240,7 +240,7 @@ inline V& snow::Dictionary<K, V>::get(const K& key)
 	int index = keys_.find(key);
 	if (index == -1)
 	{
-		throw std::out_of_range("dictionaty doesn`t have this key");
+		throw std::out_of_range("Dictionary doesn`t have this key");
 	}
 	else
 	{
@@ -254,7 +254,7 @@ inline const V& snow::Dictionary<K, V>::get(const K& key) const
 	int index = keys_.find(key);
 	if (index == -1)
 	{
-		throw std::out_of_range("dictionaty doesn`t have this key");
+		throw std::out_of_range("Dictionary doesn`t have this key");
 	}
 	else
 	{

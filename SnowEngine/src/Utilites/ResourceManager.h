@@ -9,7 +9,7 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 
-#include "../Types/List/Dictionaty.h"
+#include "../Types/List/Dictionary.h"
 
 namespace snow
 {

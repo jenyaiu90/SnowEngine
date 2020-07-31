@@ -37,14 +37,13 @@
     <ClInclude Include="src\SnowEngine.h" />
     <ClInclude Include="src\Types\List\ArrayList.h" />
     <ClInclude Include="src\Types\List\Comparator.h" />
-    <ClInclude Include="src\Types\List\Dictionaty.h" />
+    <ClInclude Include="src\Types\List\Dictionary.h" />
     <ClInclude Include="src\Types\List\LinkedList.h" />
     <ClInclude Include="src\Types\List\List.h" />
     <ClInclude Include="src\Types\Vectors.h" />
     <ClInclude Include="src\Utilites\Animation.h" />
     <ClInclude Include="src\Utilites\ResourceManager.h" />
     <ClInclude Include="src\Utilites\SaveLoad.h" />
-    <ClInclude Include="src\Utilites\Serializable.h" />
     <ClInclude Include="src\Utilites\TextureAnimation\AdvancedTextureAnimation.h" />
     <ClInclude Include="src\Utilites\TextureAnimation\SimpleTextureAnimation.h" />
     <ClInclude Include="src\Utilites\TextureAnimation\TextureAnimation.h" />

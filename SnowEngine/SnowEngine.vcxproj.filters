@@ -113,9 +113,6 @@
     <ClInclude Include="src\Component\Collision\CollisionComponent.h">
       <Filter>Source Files\Component\Collision</Filter>
     </ClInclude>
-    <ClInclude Include="src\Types\List\Dictionaty.h">
-      <Filter>Source Files\Types\List</Filter>
-    </ClInclude>
     <ClInclude Include="src\Component\Collision\RectCollisionComponent.h">
       <Filter>Source Files\Component\Collision</Filter>
     </ClInclude>
@@ -137,14 +134,14 @@
     <ClInclude Include="src\Component\Visible\InputComponent.h">
       <Filter>Source Files\Component\Visible</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utilites\Serializable.h">
-      <Filter>Source Files\Utilites</Filter>
-    </ClInclude>
     <ClInclude Include="src\Utilites\SaveLoad.h">
       <Filter>Source Files\Utilites</Filter>
     </ClInclude>
     <ClInclude Include="src\Utilites\ResourceManager.h">
       <Filter>Source Files\Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Types\List\Dictionary.h">
+      <Filter>Source Files\Types\List</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

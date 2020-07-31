@@ -9,7 +9,7 @@
 #include <mutex>
 
 #include "../Component.h"
-#include "../../Types/List/Dictionaty.h"
+#include "../../Types/List/Dictionary.h"
 
 namespace snow
 {

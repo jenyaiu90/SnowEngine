@@ -7,10 +7,20 @@
 #include "CircleCollisionComponent.h"
 #include "RectCollisionComponent.h"
 
+const std::string snow::CircleCollisionComponent::CIRCLE_TYPE = "circle";
+
+snow::CircleCollisionComponent::CircleCollisionComponent(Actor* actor,
+														 sf::RenderWindow* window,
+														 float radius, Vector2f pos) :
+	CircleCollisionComponent(actor, window, radius, DEFAULT_KIND, pos)
+{
+}
+
 snow::CircleCollisionComponent::CircleCollisionComponent(snow::Actor* actor,
 														 sf::RenderWindow* window,
-														 float radius, snow::Vector2f pos) :
-	CollisionComponent(actor, window, "circle", pos),
+														 float radius, const std::string& kind,
+														 snow::Vector2f pos) :
+	CollisionComponent(actor, window, CIRCLE_TYPE, kind, pos),
 	radius_(radius),
 	first_(((getWorldPosition() - Vector2f(radius_, radius_)) / SEGMENT_SIZE).floor()),
 	last_(((getWorldPosition() + Vector2f(radius_, radius_)) / SEGMENT_SIZE).floor())
@@ -114,13 +124,13 @@ void snow::CircleCollisionComponent::actorMove(snow::Vector2f to)
 
 bool snow::CircleCollisionComponent::isCollide(const snow::CollisionComponent* collision) const
 {
-	if (collision->getType() == "circle")
+	if (collision->getType() == CIRCLE_TYPE)
 	{
 		return sqrt(pow(getWorldPosition().x - collision->getWorldPosition().x, 2) +
 					pow(getWorldPosition().y - collision->getWorldPosition().y, 2)) <=
 			   getRadius() + static_cast<const CircleCollisionComponent*>(collision)->getRadius();
 	}
-	else if (collision->getType() == "rectangle")
+	else if (collision->getType() == RectCollisionComponent::RECT_TYPE)
 	{
 		Vector2f fo = collision->getWorldPosition();
 		Vector2f lo = fo + (static_cast<const RectCollisionComponent*>(collision))->getSize();

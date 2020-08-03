@@ -38,8 +38,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Sets a sprite to animate.
 	///	
-	///	This methos allows to set a sprite that will be animated. If the sprite isn`t set, the
-	///	animation doesn`t work. If you use AnimationComponent, you shouldn`t set the sprite.
+	///	This methos allows to set a sprite that will be animated. If the sprite isn\`t set, the
+	///	animation doesn\`t work. If you use AnimationComponent, you shouldn\`t set the sprite.
 	////////////////////////////////////////////////////////////
 	virtual void setSprite(sf::Sprite* sprite);
 

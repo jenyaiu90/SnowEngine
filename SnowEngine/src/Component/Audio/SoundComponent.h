@@ -27,7 +27,7 @@ public:
 	///	
 	///	This constructor sets a relative position of component to default value (0.0, 0.0) and sets
 	///	a file with sound. All sounds should be in "res/sounds/" folder. You can create another
-	///	folders in it. SnowEngine supports WAV, FLAC and OGG formats. It doesn`t support MP3!
+	///	folders in it. SnowEngine supports WAV, FLAC and OGG formats. It doesn\`t support MP3!
 	///	\param actor An actor that the component will be attached to.
 	///	\param file A relative path to file without "res/sounds/" For example, for
 	///	"res/sounds/new/cow/cow-sound.wav" use next constructor:

@@ -16,9 +16,9 @@ namespace snow
 ////////////////////////////////////////////////////////////
 ///	\brief The class of window. A level or UI can be attached for window.
 ///	
-///	A displayed window. You can set a resulution and expand it to full screen. Levels and UI`s can
+///	A displayed window. You can set a resulution and expand it to full screen. Levels and UI\`s can
 ///	be attached for windows. For one window you can attach only one level and unlimited number of
-///	GUI`s. Each window uses its own thread for displaying.
+///	GUI\`s. Each window uses its own thread for displaying.
 ////////////////////////////////////////////////////////////
 class Window
 {
@@ -38,8 +38,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief The destructor.
 	///	
-	///	The destructor closes the window (is it wasn`t closed earlier) and frees up the memory.
-	///	\warning After calling this destructor you won`t be able to use the level or GUI`s because
+	///	The destructor closes the window (is it wasn\`t closed earlier) and frees up the memory.
+	///	\warning After calling this destructor you won\`t be able to use the level or GUI\`s because
 	///	they will be deleted.
 	////////////////////////////////////////////////////////////
 	virtual ~Window();
@@ -51,7 +51,7 @@ public:
 	///	in this window. Note that you can attach only one level to the window, if you attach a
 	///	second level, a first one will be detached.
 	///	\param level The level for attaching.
-	///	\param safeMode If <b>true</b>, you can`t attach a level for the window if that window has
+	///	\param safeMode If <b>true</b>, you can\`t attach a level for the window if that window has
 	///	already an attached level. The default value is <b>false</b>.
 	///	\return <b>true</b> if the level was successfully attached.
 	////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Wait for the window closing.
 	///	
-	///	This method pauses current thread while window isn`t closed.
+	///	This method pauses current thread while window isn\`t closed.
 	////////////////////////////////////////////////////////////
 	void join();
 
@@ -113,8 +113,8 @@ protected:
 	std::recursive_mutex guisMutex_;	///< The mutex for the GUI list.
 
 	sf::RenderWindow* window_;	///< The window (an SFML type).
-	std::string title_;			///< The window`s title.
-	Vector2i resolution_;		///< The window`s resolution (in pixels).
+	std::string title_;			///< The window\`s title.
+	Vector2i resolution_;		///< The window\`s resolution (in pixels).
 	bool isFullscreen_;			///< Is fullscreen.
 								//   Unexpectedly...
 /*
@@ -146,14 +146,14 @@ protected:
 */
 
 	Level* level_;				///< The level that is attached to the window.
-	LinkedList<Gui*> guis_;		///< The list of GUI`s that are attached to the window.
+	LinkedList<Gui*> guis_;		///< The list of GUI\`s that are attached to the window.
 
 	Input input_;				///< The struct for react to the input.
 
 	/// Starts new window.
 	void startWindow_(const std::string& title, const Vector2i& resolution, bool isFullscreen);
-	void windowCycle_(); ///< The window`s behaviour.
-						 //   No, I`m not British.
+	void windowCycle_(); ///< The window\`s behaviour.
+						 //   No, I\`m not British.
 
 };
 

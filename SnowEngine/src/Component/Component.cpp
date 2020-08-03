@@ -6,7 +6,7 @@
 
 #include "Component.h"
 
-// I don`t know WHY I have to write this line but without it nothing works.
+// I don\`t know WHY I have to write this line but without it nothing works.
 const sf::RenderStates sf::RenderStates::Default = sf::RenderStates();
 
 // Definition of the constructor is in Actor.cpp.

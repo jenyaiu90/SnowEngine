@@ -14,7 +14,7 @@ namespace snow
 ////////////////////////////////////////////////////////////
 ///	\brief The component that draws a texture.
 ///	
-///	This component is intended for displaying actor`s texture. If you need to create an animation,
+///	This component is intended for displaying actor\`s texture. If you need to create an animation,
 ///	you should use the AnimationComponent.
 ////////////////////////////////////////////////////////////
 class TextureComponent : public VisibleComponent
@@ -25,7 +25,7 @@ public:
 	///	\brief The constructor of the TextureComponent.
 	///	
 	///	This constructor attaches new component to an actor, sets its relative position and a file
-	///	with a source texture. It doesn`t set the texture rect.
+	///	with a source texture. It doesn\`t set the texture rect.
 	///	\param actor An actor that the component will be attached to.
 	///	\param file A file with a source texture.
 	///	\param pos A position of the component relative to a base actor. The default value
@@ -48,7 +48,7 @@ public:
 					 IntRect textureRect, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
-	///	\brief The TextureComponent`s destructor.
+	///	\brief The TextureComponent\`s destructor.
 	///	
 	///	The destructor of the TextureComponent.
 	////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ public:
 	///	\brief Method that is called every tick.
 	///	
 	///	This method draws the texture and is called every tick. If you need to override it, you
-	///	should call a parent`s method:
+	///	should call a parent\`s method:
 	///	\code
 	///		void tick(const int& delta, sf::RenderWindow& window) override
 	///		{
@@ -66,7 +66,7 @@ public:
 	///			__super::tick(delta, window);
 	///		}
 	///	\endcode
-	///	It isn`t recommended to do any lengthly calculations in this method because it will affect
+	///	It isn\`t recommended to do any lengthly calculations in this method because it will affect
 	///	perfomance.
 	////////////////////////////////////////////////////////////
 	virtual void tick(const int& delta, sf::RenderWindow& window) override;
@@ -87,18 +87,18 @@ public:
 	virtual IntRect getTextureRect() const;
 
 	////////////////////////////////////////////////////////////
-	/// \brief Returns the component`s color.
+	/// \brief Returns the component\`s color.
 	///	
 	///	Allows to get the color of the component.
-	///	\return The component`s color.
+	///	\return The component\`s color.
 	////////////////////////////////////////////////////////////
 	virtual const Color getColor() const override;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets the color for the comoponent.
 	///	
-	///	Allows to set the component`s color.
-	///	\param text The color that will be set for the component.
+	///	Allows to set the component\`s color.
+	///	\param color The color that will be set for the component.
 	////////////////////////////////////////////////////////////
 	virtual void setColor(const Color color) override;
 
@@ -107,7 +107,7 @@ public:
 	///	
 	///	Allows to set a scale for the texture. The default scale is (1, 1). If you want to increase
 	///	the texture twice, you shoud set the scale (2, 2).
-	///	\param newScale The new texture`s scale.
+	///	\param newScale The new texture\`s scale.
 	////////////////////////////////////////////////////////////
 	virtual void setScale(Vector2f newScale);
 
@@ -117,15 +117,15 @@ public:
 	///	Allows to set a scale for the texture. The default scale is 1. If you want to increase
 	///	the texture twice, you shoud set the scale 2. This method is equal to setScale(Vector2f) if
 	///	x = y.
-	///	\param newScale The new texture`s scale.
+	///	\param newScale The new texture\`s scale.
 	////////////////////////////////////////////////////////////
 	virtual void setScale(float newScale);
 
 	////////////////////////////////////////////////////////////
-	///	\brief Returns the texture`s scale.
+	///	\brief Returns the texture\`s scale.
 	///	
-	///	Allows to get the texture`s scale.
-	///	\return The texture`s scale.
+	///	Allows to get the texture\`s scale.
+	///	\return The texture\`s scale.
 	////////////////////////////////////////////////////////////
 	virtual Vector2f getScale() const;
 

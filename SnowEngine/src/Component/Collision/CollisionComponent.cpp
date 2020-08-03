@@ -6,6 +6,8 @@
 
 #include "CollisionComponent.h"
 
+const std::string snow::CollisionComponent::DEFAULT_KIND = "default";
+
 std::mutex snow::CollisionComponent::collisionsMutex_;
 
 snow::Dictionary<sf::RenderWindow*, snow::Dictionary<snow::Vector2i, // Yes, it can seem scary...
@@ -13,7 +15,7 @@ snow::Dictionary<sf::RenderWindow*, snow::Dictionary<snow::Vector2i, // Yes, it 
 
 snow::CollisionComponent::CollisionComponent(Actor* actor, sf::RenderWindow* window,
 											 const std::string& type, Vector2f pos) :
-	CollisionComponent(actor, window, type, "default", pos)
+	CollisionComponent(actor, window, type, DEFAULT_KIND, pos)
 {
 }
 
@@ -27,9 +29,13 @@ snow::CollisionComponent::CollisionComponent(Actor* actor, sf::RenderWindow* win
 {
 }
 
+snow::CollisionComponent::~CollisionComponent()
+{
+}
+
 void snow::CollisionComponent::tick(const int& delta, sf::RenderWindow& window)
 {
-	// I`m useless!
+	// I\`m useless!
 }
 
 snow::ArrayList<snow::CollisionComponent*> snow::CollisionComponent::checkCollision()

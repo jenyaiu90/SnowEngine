@@ -30,18 +30,18 @@ public:
 	VisibleComponent(Actor* actor, Vector2f pos = Vector2f());
 
 	////////////////////////////////////////////////////////////
-	/// \brief Returns the component`s color.
+	/// \brief Returns the component\`s color.
 	///	
 	///	Allows to get the color of the component.
-	///	\return The component`s color.
+	///	\return The component\`s color.
 	////////////////////////////////////////////////////////////
 	virtual const Color getColor() const = 0;
 
 	////////////////////////////////////////////////////////////
 	///	\brief Sets the color for the comoponent.
 	///	
-	///	Allows to set the component`s color.
-	///	\param text The color that will be set for the component.
+	///	Allows to set the component\`s color.
+	///	\param color The color that will be set for the component.
 	////////////////////////////////////////////////////////////
 	virtual void setColor(const Color color) = 0;
 	
@@ -56,7 +56,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Enables or disables the component.
 	///	
-	///	Set the component`s status: enable or disable.
+	///	Set the component\`s status: enable or disable.
 	///	\param enable If <b>true</b>, the component will be enabled.
 	////////////////////////////////////////////////////////////
 	virtual void setEnable(const bool enable);

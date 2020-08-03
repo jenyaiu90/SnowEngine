@@ -39,7 +39,7 @@ public:
 	virtual bool isEmpty() const = 0;
 
 	////////////////////////////////////////////////////////////
-	///	\breif Adds a new element in the list.
+	///	\brief Adds a new element in the list.
 	///
 	///	This methos puts a new element in the end of the list.
 	///	\param item A new element.
@@ -63,6 +63,7 @@ public:
 	///	Allows to put a new element to the sorted list. The element will be added according to a
 	///	passed comparator.
 	///	\param item An element to put.
+	///	\param comparator A link to a comparator object.
 	///	\return <b>true</b> if an element was successfully added.
 	////////////////////////////////////////////////////////////
 	virtual bool add(const T& item, IComparator<T>& comparator) = 0;
@@ -82,7 +83,7 @@ public:
 	///	This method allows to find the value in the list.
 	///	\param value The value for searching.
 	///	\return The index of the first element that is equal to passed value or <b>-1</b> if the
-	///	list doesn`t contain it.
+	///	list doesn\`t contain it.
 	////////////////////////////////////////////////////////////
 	virtual int find(const T& value) const = 0;
 

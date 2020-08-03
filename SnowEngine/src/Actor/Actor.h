@@ -35,9 +35,9 @@ public:
 	Actor(Layer* layer, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
-	///	\brief The Actor`s destructor.
+	///	\brief The Actor\`s destructor.
 	///	
-	///	The destructor of class Actor. Is virtual. Doesn`t delete any attached component. Detaches
+	///	The destructor of class Actor. Is virtual. Doesn\`t delete any attached component. Detaches
 	///	the actor from the layer.
 	////////////////////////////////////////////////////////////
 	virtual ~Actor();
@@ -45,8 +45,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief This method is called every tick.
 	///	
-	///	A level or a GUI calls this method every tick. It calls the tick() method of actor`s
-	///	component. You may override it but it is recommended to call parent`s method in your
+	///	A level or a GUI calls this method every tick. It calls the tick() method of actor\`s
+	///	component. You may override it but it is recommended to call parent\`s method in your
 	///	override:
 	/// \code
 	///		void tick(const int& delta) override;
@@ -55,7 +55,7 @@ public:
 	///			// Do what you need
 	///		}
 	///	\endcode
-	///	It isn`t recommended to add any lengthly calculations in this method because it will affect
+	///	It isn\`t recommended to add any lengthly calculations in this method because it will affect
 	///	perfomance.
 	/// \param delta A duration of previous frame in milliseconds.
 	///	\param window A window for drawing (an SFML type).
@@ -73,16 +73,16 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Allows to get the world position.
 	///	
-	///	This method lets you to get actor`s position.
+	///	This method lets you to get actor\`s position.
 	///	\return The world position as snow::Vector2f.
 	////////////////////////////////////////////////////////////
 	Vector2f getPosition() const;
 
 	////////////////////////////////////////////////////////////
-	///	\brief Changes the actor`s position.
+	///	\brief Changes the actor\`s position.
 	///	
-	///	This method lets you to change the actor`s position. Calls components` actorMove() method.
-	///	\position The new actor`s position.
+	///	This method lets you to change the actor\`s position. Calls components\` actorMove() method.
+	///	\param position The new actor\`s position.
 	////////////////////////////////////////////////////////////
 	virtual void setPosition(Vector2f position);
 
@@ -100,7 +100,7 @@ public:
 	///	\brief Attach a component to the actor.
 	///	
 	///	Attaches a passed component to the actor. This method should be called only from component.
-	///	It isn`t recommended to use it in your code. Note that SnowEngine calls the components`
+	///	It isn\`t recommended to use it in your code. Note that SnowEngine calls the components\`
 	///	tick() method sequentially starting from a one that was added earlier.
 	///	\param component A component to attaching.
 	///	\return <b>true</b> if the component was successfully attached.
@@ -111,7 +111,7 @@ public:
 	///	\brief Detach a component from the actor.
 	///	
 	///	Detaches a passed component from the actor if the component has been attached to it. This
-	///	method should be called only from component. It isn`t recommended to use it in your code.
+	///	method should be called only from component. It isn\`t recommended to use it in your code.
 	///	\param component A component to detach.
 	///	\return <b>true</b> if the component was successfully detached.
 	////////////////////////////////////////////////////////////
@@ -119,16 +119,16 @@ public:
 
 protected:
 
-	Vector2f position_;	///< The actor`s world position.
-	Vector2f speed_;		///< The actor`s speed in px/ms.
+	Vector2f position_;	///< The actor\`s world position.
+	Vector2f speed_;		///< The actor\`s speed in px/ms.
 
-	/// The point that the actor moves to. If nullptr, the actor doesn`t have a destination.
+	/// The point that the actor moves to. If nullptr, the actor doesn\`t have a destination.
 	Vector2f* destination;
 
 private:
 	
 	std::recursive_mutex componentsMutex_;	///< The mutex for components_ list.
-	LinkedList<Component*> components_;		///< The list of actor`s component.
+	LinkedList<Component*> components_;		///< The list of actor\`s component.
 	Layer* layer_;							///< The layer that the actor is attached to.
 
 };

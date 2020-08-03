@@ -29,9 +29,9 @@ public:
 	Layer();
 
 	////////////////////////////////////////////////////////////
-	///	\brief The Layer`s destructor.
+	///	\brief The Layer\`s destructor.
 	///	
-	///	The destructor of the Layer class. Doesn`t remove any attached actor.
+	///	The destructor of the Layer class. Doesn\`t remove any attached actor.
 	////////////////////////////////////////////////////////////
 	virtual ~Layer();
 
@@ -39,7 +39,7 @@ public:
 	///	\brief This method is called every tick.
 	///	
 	///	A window calls this method every tick. It calls the tick() method of actors that are in
-	///	the layer. You may override it but it is recommended to call parent`s method in your
+	///	the layer. You may override it but it is recommended to call parent\`s method in your
 	///	override:
 	/// \code
 	///		void tick(const int& delta) override
@@ -59,16 +59,16 @@ public:
 	///	\brief The layer is attached to a window.
 	///	
 	///	This method should be called when the layer is attached to a window.
-	///	\param size The window`s size.
+	///	\param size The window\`s size.
 	////////////////////////////////////////////////////////////
 	void onAttaching(Vector2f size);
 
 	////////////////////////////////////////////////////////////
 	///	\brief Spawns an actor to the layer.
 	///	
-	///	Spawns a passed actor in the layer. Note that SnowEngine calls the actors` tick() method
+	///	Spawns a passed actor in the layer. Note that SnowEngine calls the actors\` tick() method
 	///	sequentially starting from a one that was added earlier. If you need to override this
-	///	method, it is recommended to call parent`s method:
+	///	method, it is recommended to call parent\`s method:
 	///	\code
 	///		bool spawnActor(Actor& actor) override
 	///		{
@@ -76,7 +76,7 @@ public:
 	///			// Do what you need.
 	///		}
 	///	\endcode
-	///	\warning This method should be called only by an actor. It isn`t recommended to use it in
+	///	\warning This method should be called only by an actor. It isn\`t recommended to use it in
 	///	your code.
 	///	\param actor An actor to spawn.
 	///	\return <b>true</b> if the actor was successfully spawned.
@@ -87,14 +87,14 @@ public:
 	///	\brief Detach an actor from the layer.
 	///	
 	///	Detaches a passed actor from the layer if the actor has been attached to it. This method
-	///	should be called only from actor. It isn`t recommended to use it in your code.
+	///	should be called only from actor. It isn\`t recommended to use it in your code.
 	///	\param actor An actor to detach.
 	///	\return <b>true</b> if the actor was successfully detached.
 	////////////////////////////////////////////////////////////
 	virtual bool detachActor(Actor* actor);
 
 	////////////////////////////////////////////////////////////
-	///	\brief Changes the layer`s scale.
+	///	\brief Changes the layer\`s scale.
 	///	
 	///	Allows to zoom the layer. It multiplies the current zoom factor to passed.
 	///	\param factor The zoom factor. If >1, the objects will appear smaller, if <1 then they will
@@ -104,9 +104,9 @@ public:
 	float zoom(float factor);
 
 	////////////////////////////////////////////////////////////
-	///	\brief Sets the layer`s zoom.
+	///	\brief Sets the layer\`s zoom.
 	///	
-	///	Allows to set the layer`s zoom factor.
+	///	Allows to set the layer\`s zoom factor.
 	///	/param factor The zoom factor. If 1, This layer will be displayed in 1:1 scale, if <1, the objects
 	///	will appear smaller.
 	////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the current zoom factor.
 	///	
-	///	Allows to get the current layer`s zoom factor.
+	///	Allows to get the current layer\`s zoom factor.
 	///	\return The current zoom factor.
 	////////////////////////////////////////////////////////////
 	float getZoom();
@@ -125,7 +125,7 @@ public:
 	///	
 	///	Moves the camera by a delta.
 	///	\param delta The camera will be moved by this value.
-	///	\return The new center`s position.
+	///	\return The new center\`s position.
 	////////////////////////////////////////////////////////////
 	Vector2f move(Vector2f delta);
 
@@ -148,7 +148,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief This method is called when the window is resized.
 	///	
-	///	Changes the scale of the layer. It isn`t recommended to call this method not from a window.
+	///	Changes the scale of the layer. It isn\`t recommended to call this method not from a window.
 	///	\param size The new size of the window.
 	////////////////////////////////////////////////////////////
 	void windowResize(Vector2f size);
@@ -157,7 +157,7 @@ public:
 	///	\brief Returns the list of clickable components of the layer.
 	///	
 	///	Allows to get an adderess of the linked list with clickable components. This method is used
-	///	by the ClickableComponent class, it isn`t recommended to use it out if that class.
+	///	by the ClickableComponent class, it isn\`t recommended to use it out if that class.
 	///	\return The linked list of clickable components.
 	////////////////////////////////////////////////////////////
 	LinkedList<ClickableComponent*>& getClickables();
@@ -181,7 +181,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Allows to activate or deactivate the layer.
 	///	
-	///	Activates or deactivates the layer. If the layer is deactivated it isn`t displayed and doesn`t
+	///	Activates or deactivates the layer. If the layer is deactivated it isn\`t displayed and doesn\`t
 	///	handle any events.
 	///	\param active If <b>true</b>, the layer will be activated, else it will be deactivated.
 	////////////////////////////////////////////////////////////
@@ -199,13 +199,13 @@ public:
 	///	\brief Allows to activate or deactivate clicks handler of the layer.
 	///	
 	///	Starts of stops clicks handling.
-	///	\param active If <b>true</b>, the layer will handle clicks.
+	///	\param clickable If <b>true</b>, the layer will handle clicks.
 	////////////////////////////////////////////////////////////
 	void setClickable(bool clickable);
 
 protected:
 
-	LinkedList<ClickableComponent*> clickables_; ///< The list of all layer`s clickable components.
+	LinkedList<ClickableComponent*> clickables_; ///< The list of all layer\`s clickable components.
 	Vector2f windowSize_;						 ///< The size of window (and layer).
 	float zoomFactor_;							 ///< The current zoom.
 	sf::View view_;								 ///< The view (an SFML type).

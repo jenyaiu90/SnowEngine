@@ -25,8 +25,8 @@ typedef sf::Color Color;			///< You can use snow::Color instead of sf::Color.
 ////////////////////////////////////////////////////////////
 struct Vector2i
 {
-	int x; ///< Vector`s x coordinate.
-	int y; ///< Vector`s y coordinate.
+	int x; ///< Vector\`s x coordinate.
+	int y; ///< Vector\`s y coordinate.
 
 	////////////////////////////////////////////////////////////
 	///	/brief The default contructor, it sets a default value (0; 0).
@@ -236,8 +236,8 @@ struct Vector2i
 ////////////////////////////////////////////////////////////
 struct Vector2f
 {
-	float x; ///< Vector`s x coordinate.
-	float y; ///< Vector`s y coordinate.
+	float x; ///< Vector\`s x coordinate.
+	float y; ///< Vector\`s y coordinate.
 
 	////////////////////////////////////////////////////////////
 	///	/brief The default contructor, it sets a default value (0.0; 0.0).
@@ -328,7 +328,7 @@ struct Vector2f
 	///	Allows to convert a Vector2f to a Vector2i.
 	///	\warning This method removes a fractional parts of the coordinates of the vector. It can
 	///	cause loss of data!
-	///	\return A Vector2i that is <i>approximately<i> equal to Vector2f.
+	///	\return A Vector2i that is <i>approximately</i> equal to Vector2f.
 	////////////////////////////////////////////////////////////
 	Vector2i toVector2i() const;
 
@@ -674,9 +674,9 @@ struct Vector2f
 ////////////////////////////////////////////////////////////
 struct Vector3i
 {
-	int x; ///< Vector`s x coordinate.
-	int y; ///< Vector`s y coordinate.
-	int z; ///< Vector`s z coordinate.
+	int x; ///< Vector\`s x coordinate.
+	int y; ///< Vector\`s y coordinate.
+	int z; ///< Vector\`s z coordinate.
 
 	////////////////////////////////////////////////////////////
 	///	/brief The default contructor, it sets a default value (0; 0; 0).
@@ -897,9 +897,9 @@ struct Vector3i
 ////////////////////////////////////////////////////////////
 struct Vector3f
 {
-	float x; ///< Vector`s x coordinate.
-	float y; ///< Vector`s y coordinate.
-	float z; ///< Vector`s z coordinate.
+	float x; ///< Vector\`s x coordinate.
+	float y; ///< Vector\`s y coordinate.
+	float z; ///< Vector\`s z coordinate.
 
 	////////////////////////////////////////////////////////////
 	///	/brief The default contructor, it sets a default value (0.0; 0.0; 0.0).
@@ -929,7 +929,7 @@ struct Vector3f
 	///	\brief The constructor that create a vector with passed values.
 	///
 	///	This constructor allows you to create a vector with passed float values.
-	///	\param x,y,x Values that will be set for new vector.
+	///	\param x,y,z Values that will be set for new vector.
 	////////////////////////////////////////////////////////////
 	Vector3f(float x, float y, float z);
 	
@@ -990,7 +990,7 @@ struct Vector3f
 	///	Allows to convert a Vector3f to a Vector3i.
 	///	\warning This method removes a fractional parts of the coordinates of the vector. It can
 	///	cause a data lose!
-	///	\return A Vector3i that is <i>approximately<i> equal to Vector3f.
+	///	\return A Vector3i that is <i>approximately</i> equal to Vector3f.
 	////////////////////////////////////////////////////////////
 	Vector3i toVector3i() const;
 

@@ -24,10 +24,10 @@ public:
 	///	\brief The base method for creating an animation. Need to be overrided.
 	///	
 	///	Override this method in your class to create an animation. It should returns the value
-	///	depending on the parameter. For example, we need to create an animation for an actor`s
+	///	depending on the parameter. For example, we need to create an animation for an actor\`s
 	///	moving. It must move from (3, 5) to (9, 10) in two seconds. We will pass to the method the
 	///	time elapsed from the moving start in milliseconds (int). The method will return the
-	///	actor`s position corresponding to the time (snow::Vector2f). Now we need to find a dependence
+	///	actor\`s position corresponding to the time (snow::Vector2f). Now we need to find a dependence
 	///	of the coordinate of the time (<b>t</b> is the time in milliseconds).
 	///	X: At time 0 ms x = 3, at time 2000 ms x = 9. So x = 3 + t * 3 / 1000.
 	///	Y: At time 0 ms y = 5, at time 2000 ms y = 10. So y = 5 + t / 400.

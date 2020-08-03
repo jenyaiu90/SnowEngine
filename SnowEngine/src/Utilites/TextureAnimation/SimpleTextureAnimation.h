@@ -22,7 +22,7 @@ class SimpleTextureAnimation : public TextureAnimation
 public:
 
 	////////////////////////////////////////////////////////////
-	///	\brief The constructor of SimpleTextureAnimation (it doesn`t seem simple).
+	///	\brief The constructor of SimpleTextureAnimation (it doesn\`t seem simple).
 	///	
 	///	Creates a new SimpleTextureAnimation object.
 	///	\param duration The duration of one animation frame.

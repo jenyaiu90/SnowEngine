@@ -6,10 +6,20 @@
 
 #include "RectCollisionComponent.h"
 
-snow::RectCollisionComponent::RectCollisionComponent(snow::Actor* actor,
-														 sf::RenderWindow* window,
-														 snow::Vector2f size, snow::Vector2f pos) :
-	CollisionComponent(actor, window, "rectangle", pos),
+const std::string snow::RectCollisionComponent::RECT_TYPE = "rectangle";
+
+snow::RectCollisionComponent::RectCollisionComponent(Actor* actor,
+													 sf::RenderWindow* window,
+													 Vector2f size, Vector2f pos) :
+	RectCollisionComponent(actor, window, size, DEFAULT_KIND, pos)
+{
+}
+
+snow::RectCollisionComponent::RectCollisionComponent(Actor* actor,
+													 sf::RenderWindow* window,
+													 Vector2f size, const std::string& kind,
+													 Vector2f pos) :
+	CollisionComponent(actor, window, RECT_TYPE, kind, pos),
 	size_(size),
 	first_((getWorldPosition() / SEGMENT_SIZE).floor()),
 	last_(((getWorldPosition() + size) / SEGMENT_SIZE).floor())
@@ -113,7 +123,7 @@ void snow::RectCollisionComponent::actorMove(snow::Vector2f to)
 
 bool snow::RectCollisionComponent::isCollide(const snow::CollisionComponent* collision) const
 {
-	if (collision->getType() == "rectangle")
+	if (collision->getType() == RECT_TYPE)
 	{
 		Vector2f ft = getWorldPosition();
 		Vector2f lt = ft + size_;

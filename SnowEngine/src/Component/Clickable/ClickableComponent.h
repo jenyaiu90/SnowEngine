@@ -18,7 +18,7 @@ class Window;
 ///	\brief The component that can respond to click.
 ///	
 ///	This component can be used for objects that must respond to click, for example, buttons. You
-///	don`t need to create a new class that is inherited from this, but you can do it. Use
+///	don\`t need to create a new class that is inherited from this, but you can do it. Use
 ///	onMousePressed, onMouseReleased and onMouseHovered fields to set functions that will be calles.
 ///	For example:
 ///	\code
@@ -76,7 +76,7 @@ public:
 	virtual void actorMove(Vector2f to) override;
 
 	////////////////////////////////////////////////////////////
-	///	\brief Returns the component`s size.
+	///	\brief Returns the component\`s size.
 	///	
 	///	Allows to get the size of clickable area.
 	///	\return The size.
@@ -105,7 +105,7 @@ public:
 	//	When the cursor was hovered over.
 	// std::function<void(Vector2f position)> onMouseHovered;
 
-	// When the cursor isn`t hovered over the component more.
+	// When the cursor isn\`t hovered over the component more.
 	// std::function<void()> onMouseUnhovered;
 
 protected:

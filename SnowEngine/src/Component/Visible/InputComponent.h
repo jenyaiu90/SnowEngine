@@ -26,12 +26,12 @@ public:
 	///	
 	///	This constructor creates a new text component.
 	///	\param actor The actor that the component will be attached to.
-	///	\param text The text that will being bisplayed.
-	///	\param size The text size.
+	///	\param fontSize The font size.
 	///	\param fontFile The relative path to the font file. All font files must be in
 	///	"res/fonts/" folder. If you want to use the font from the "res/fonts/my/my_font.ttf", you
 	///	should set the value "my/my_font.ttf" to this parameter.
-	///	/param pos The component`s position relative to the actor. The default value if (0.0, 0.0).
+	///	\param buttonSize The size of clickable area.
+	///	\param pos The component\`s position relative to the actor. The default value if (0.0, 0.0).
 	////////////////////////////////////////////////////////////
 	InputComponent(Actor* actor, int fontSize, const std::string& fontFile,
 				   Vector2f buttonSize, Vector2f pos = Vector2f());
@@ -55,7 +55,7 @@ public:
 	///	\brief Input a character to the active component.
 	///	
 	///	If there is an active component, this function calls its input() method.
-	///	\param c A character that will be added to the component`s text. If <b>'\b'</b>, the last
+	///	\param c A character that will be added to the component\`s text. If <b>'\\b'</b>, the last
 	///	character will be removed.
 	////////////////////////////////////////////////////////////
 	static void inputToActive(char c);
@@ -63,8 +63,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Input a character.
 	///	
-	///	Adds passed character to the component`s text.
-	///	\param c A character to adding. If <b>'\b'</b>, the last character will be removed.
+	///	Adds passed character to the component\`s text.
+	///	\param c A character to adding. If <b>'\\b'</b>, the last character will be removed.
 	////////////////////////////////////////////////////////////
 	virtual void input(char c);
 
@@ -79,7 +79,7 @@ public:
 	/// \brief Returns the displaying text.
 	///	
 	///	Allows to get the text that is set to the component.
-	///	\return The component`s text.
+	///	\return The component\`s text.
 	////////////////////////////////////////////////////////////
 	virtual std::string getText() const override;
 
@@ -93,7 +93,7 @@ public:
 
 protected:
 
-	ClickableComponent clickable_;	///< The component`s clickable component.
+	ClickableComponent clickable_;	///< The component\`s clickable component.
 
 	static InputComponent* active_;	///< The current active InputComponent (may be nullptr).
 

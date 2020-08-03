@@ -23,7 +23,7 @@ class Actor;
 ///	
 ///	You may create your custom component. Just create a class that is inherited from the Component
 ///	class or one of its inheritors (like TextComponent, AudioComponent etc.). A component can be
-///	attached to an actor. Don`t attach one component to several objects, it can cause unpredictable
+///	attached to an actor. Don\`t attach one component to several objects, it can cause unpredictable
 ///	program behaviour.
 ////////////////////////////////////////////////////////////
 class Component
@@ -40,7 +40,7 @@ public:
 	Component(Actor* actor, Vector2f pos=Vector2f());
 
 	////////////////////////////////////////////////////////////
-	///	\brief The Component`s destructor.
+	///	\brief The Component\`s destructor.
 	///	
 	///	The destructor of Component class. Is virtual. Detaches the component from the actor.
 	////////////////////////////////////////////////////////////
@@ -49,9 +49,9 @@ public:
 	////////////////////////////////////////////////////////////
 	/// \brief The method that is called every tick.
 	///	
-	///	This method is called every tick by an Actor that the component is attached to. It isn`t
+	///	This method is called every tick by an Actor that the component is attached to. It isn\`t
 	///	recommended to do any lengthy calculations in this method because it will affect
-	///	perfomance. If you override this method, it is recommended to call a parent`s tick()
+	///	perfomance. If you override this method, it is recommended to call a parent\`s tick()
 	///	method:
 	///	\code
 	///		void tick(const int& delta) override
@@ -83,17 +83,17 @@ public:
 	virtual void actorMove(Vector2f to) = 0;
 
 	////////////////////////////////////////////////////////////
-	///	\brief Returns component`s relative position.
+	///	\brief Returns component\`s relative position.
 	///	
-	///	This method allows you to get component`s position relative to the base actor.
+	///	This method allows you to get component\`s position relative to the base actor.
 	///	\return The relative position as snow::Vector2f.
 	////////////////////////////////////////////////////////////
 	Vector2f getRelativePosition() const;
 
 	////////////////////////////////////////////////////////////
-	///	\brief Returns component`s world position.
+	///	\brief Returns component\`s world position.
 	///	
-	///	This method lets you to get component`s world position.
+	///	This method lets you to get component\`s world position.
 	///	\return The world position as snow::Vector2f.
 	////////////////////////////////////////////////////////////
 	Vector2f getWorldPosition() const;

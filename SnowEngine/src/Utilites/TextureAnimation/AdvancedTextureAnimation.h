@@ -23,7 +23,7 @@ class AdvancedTextureAnimation : public TextureAnimation
 public:
 
 	////////////////////////////////////////////////////////////
-	///	\brief The constructor of SimpleTextureAnimation (it doesn`t seem simple).
+	///	\brief The constructor of SimpleTextureAnimation (it doesn\`t seem simple).
 	///	
 	///	Creates a new SimpleTextureAnimation object.
 	///	\param spriteSize The size of one tile in pixels.
@@ -31,7 +31,7 @@ public:
 	///	i-th tile.
 	///	\param tilePositions The array list with positions of tiles. tilePositions[i] is a position
 	///	of the i-th tile.
-	///	\throws std::logic_error if The durations` and tilePositions` sizes aren`t equal.
+	///	\throws std::logic_error if The durations\` and tilePositions\` sizes aren\`t equal.
 	////////////////////////////////////////////////////////////
 	AdvancedTextureAnimation(Vector2i spriteSize, ArrayList<int> durations,
 							 ArrayList<Vector2i> tilePositions);

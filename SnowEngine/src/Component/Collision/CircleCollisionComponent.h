@@ -20,20 +20,35 @@ class CircleCollisionComponent : public CollisionComponent
 {
 public:
 
+	static const std::string CIRCLE_TYPE; ///< CircleCollision\`s type.
+
 	////////////////////////////////////////////////////////////
-	///	\brief The CircleCollisionComponent`s constructor.
+	///	\brief The CircleCollisionComponent\`s constructor.
 	///	
-	///	Creates a new circle collision component.
+	///	Creates a new circle collision component. Sets the kind as "default".
 	///	\param actor The actor that the component will be attached to.
 	///	\param window The RenderWindow where the actor is (an SFML type, use Window::getWindow()).
-	///	\param radius The circle`s radius.
-	///	\param pos The collision`s position relative to the actor.
+	///	\param radius The circle\`s radius.
+	///	\param pos The collision\`s position relative to the actor.
 	////////////////////////////////////////////////////////////
 	CircleCollisionComponent(Actor* actor, sf::RenderWindow* window, float radius,
 							 Vector2f pos = Vector2f());
 
 	////////////////////////////////////////////////////////////
-	///	\brief The CircleCollisionComponent`s destructor.
+	///	\brief The CircleCollisionComponent\`s constructor.
+	///	
+	///	Creates a new circle collision component.
+	///	\param actor The actor that the component will be attached to.
+	///	\param window The RenderWindow where the actor is (an SFML type, use Window::getWindow()).
+	///	\param radius The circle\`s radius.
+	///	\param kind The collision\`s kind (for example, "character", "vehicle" or "wall").
+	///	\param pos The collision\`s position relative to the actor.
+	////////////////////////////////////////////////////////////
+	CircleCollisionComponent(Actor* actor, sf::RenderWindow* window, float radius,
+							 const std::string& kind, Vector2f pos = Vector2f());
+
+	////////////////////////////////////////////////////////////
+	///	\brief The CircleCollisionComponent\`s destructor.
 	///	
 	///	The destructor of CircleCollisionComponent class. Removes the collision from a statis 
 	///	collisions list.
@@ -44,7 +59,7 @@ public:
 	///	\brief Is called when the actor moves.
 	///	
 	///	This method must be called before the actor that the component is attached to is moved.
-	///	\param to The new actor`s position.
+	///	\param to The new actor\`s position.
 	////////////////////////////////////////////////////////////
 	virtual void actorMove(Vector2f to) override;
 
@@ -61,7 +76,7 @@ public:
 	///	\brief Returns the radius of the collision.
 	///	
 	///	Allows to get the radius of this collision component.
-	///	\return The collision`s radius.
+	///	\return The collision\`s radius.
 	////////////////////////////////////////////////////////////
 	float getRadius() const;
 

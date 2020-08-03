@@ -20,20 +20,35 @@ class RectCollisionComponent : public CollisionComponent
 {
 public:
 
+	static const std::string RECT_TYPE; ///< RectCollision\`s type.
+
 	////////////////////////////////////////////////////////////
-	///	\brief The RectCollisionComponent`s constructor.
+	///	\brief The RectCollisionComponent\`s constructor.
+	///	
+	///	Creates a new rectangle collision component. Sets the kind as "default".
+	///	\param actor The actor that the component will be attached to.
+	///	\param window The RenderWindow where the actor is (an SFML type, use Window::getWindow()).
+	///	\param size The collision\`s size.
+	///	\param pos The collision\`s position relative to the actor.
+	////////////////////////////////////////////////////////////
+	RectCollisionComponent(Actor* actor, sf::RenderWindow* window, Vector2f size,
+						   Vector2f pos = Vector2f());
+
+	////////////////////////////////////////////////////////////
+	///	\brief The RectCollisionComponent\`s constructor.
 	///	
 	///	Creates a new rectangle collision component.
 	///	\param actor The actor that the component will be attached to.
 	///	\param window The RenderWindow where the actor is (an SFML type, use Window::getWindow()).
-	///	\param size The collision`s size.
-	///	\param pos The collision`s position relative to the actor.
+	///	\param size The collision\`s size.
+	///	\param kind The collision\`s kind (for example, "character", "vehicle" or "wall").
+	///	\param pos The collision\`s position relative to the actor.
 	////////////////////////////////////////////////////////////
 	RectCollisionComponent(Actor* actor, sf::RenderWindow* window, Vector2f size,
-							 Vector2f pos = Vector2f());
+						   const std::string& kind, Vector2f pos = Vector2f());
 
 	////////////////////////////////////////////////////////////
-	///	\brief The RectCollisionComponent`s destructor.
+	///	\brief The RectCollisionComponent\`s destructor.
 	///	
 	///	The destructor of RectCollisionComponent class. Removes the collision from a statis 
 	///	collisions list.
@@ -44,7 +59,7 @@ public:
 	///	\brief Is called when the actor moves.
 	///	
 	///	This method must be called before the actor that the component is attached to is moved.
-	///	\param to The new actor`s position.
+	///	\param to The new actor\`s position.
 	////////////////////////////////////////////////////////////
 	virtual void actorMove(Vector2f to) override;
 
@@ -61,7 +76,7 @@ public:
 	///	\brief Returns the size of the collision.
 	///	
 	///	Allows to get the size of this collision component.
-	///	\return The collision`s size.
+	///	\return The collision\`s size.
 	////////////////////////////////////////////////////////////
 	Vector2f getSize() const;
 

@@ -46,7 +46,7 @@ public:
 	///	
 	///	Allows to check whether passed key is in the dictionary and get its ID.
 	///	\param key The key to searching.
-	///	\return Id of passed key or <b>-1</b> if this key doesn`t exits.
+	///	\return Id of passed key or <b>-1</b> if this key doesn\`t exits.
 	////////////////////////////////////////////////////////////
 	int findKey(const K& key) const;
 
@@ -55,7 +55,7 @@ public:
 	///	
 	///	Allows to get the key of the value.
 	///	\param value The value for searching.
-	///	\return The pointer to the key of the value, nullptr if the dictionary doesn`t contain
+	///	\return The pointer to the key of the value, nullptr if the dictionary doesn\`t contain
 	///	the value.
 	////////////////////////////////////////////////////////////
 	const K* find(const V& value) const;
@@ -168,7 +168,7 @@ public:
 	////////////////////////////////////////////////////////////
 	const V& getById(int id) const;
 
-protected:
+private:
 
 	ArrayList<K> keys_;
 	ArrayList<V> values_;

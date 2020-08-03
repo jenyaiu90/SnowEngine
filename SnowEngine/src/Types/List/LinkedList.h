@@ -25,8 +25,8 @@ class LinkedList : public IList<T>
 {
 public:
 
-	typedef typename std::list<T>::iterator listIterator;
-	typedef typename std::list<T>::const_iterator constListIterator;
+	typedef typename std::list<T>::iterator listIterator;			 ///< The type wrapper.
+	typedef typename std::list<T>::const_iterator constListIterator; ///< The type wrapper.
 
 	////////////////////////////////////////////////////////////
 	///	\brief The default constructor.
@@ -60,7 +60,7 @@ public:
 	bool isEmpty() const override;
 
 	////////////////////////////////////////////////////////////
-	///	\breif Adds a new element in the list.
+	///	\brief Adds a new element in the list.
 	///
 	///	This methos puts a new element in the end of the list.
 	///	\param item A new element.
@@ -84,8 +84,9 @@ public:
 	///	Allows to put a new element to the sorted list. The element will be added according to a
 	///	passed comparator.
 	///	\param item An element to put.
+	///	\param comparator A link to a comparator object.
 	///	\return <b>true</b> if an element was successfully added.
-	/// \warning Use this method only for sorted or empty list. The SnowEngine doesn`t control
+	/// \warning Use this method only for sorted or empty list. The SnowEngine doesn\`t control
 	///	this and work of this method for unsorted list may be wrong.
 	////////////////////////////////////////////////////////////
 	virtual bool add(const T& item, IComparator<T>& comparator) override;
@@ -113,7 +114,7 @@ public:
 	///	This method allows to find the value in the list.
 	///	\param value The value for searching.
 	///	\return The index of the first element that is equal to passed value or <b>-1</b> if the
-	///	list doesn`t contain it.
+	///	list doesn\`t contain it.
 	////////////////////////////////////////////////////////////
 	int find(const T& value) const override;
 
@@ -127,11 +128,11 @@ public:
 	bool contains(const T& value) const override;
 
 	////////////////////////////////////////////////////////////
-	///	\brief The method allows to fill the list with values from an array.
-	///
-	///	Clears the list and fills it with values from an array.
-	///	\param array The pointer to the array to copy.
-	///	\param size The size of the array.
+	///	\brief Sorts the list.
+	///	
+	///	Allows to sort the list according to a passed comparator. The smallest elements are moved
+	///	to the start of the list.
+	///	\param comparator An object of a class that implements the IComparator interface.
 	////////////////////////////////////////////////////////////
 	virtual void sort(IComparator<T>& comparator) override;
 
@@ -210,7 +211,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the iterator to the first element of the list.
 	///	
-	///	Is equivalent to the std::list`s begin() method.
+	///	Is equivalent to the std::list\`s begin() method.
 	///	\return The iterator to the first element.
 	////////////////////////////////////////////////////////////
 	listIterator begin();
@@ -218,7 +219,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the const iterator to the first element of the list.
 	///	
-	///	Is equivalent to the std::list`s begin() method.
+	///	Is equivalent to the std::list\`s begin() method.
 	///	\return The iterator to the first element.
 	////////////////////////////////////////////////////////////
 	constListIterator begin() const;
@@ -226,7 +227,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the iterator to the last element of the list.
 	///	
-	///	Is equivalent to the std::list`s end() method.
+	///	Is equivalent to the std::list\`s end() method.
 	///	\return The iterator to the last element.
 	////////////////////////////////////////////////////////////
 	listIterator end();
@@ -234,7 +235,7 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Returns the const iterator to the last element of the list.
 	///	
-	///	Is equivalent to the std::list`s end() method.
+	///	Is equivalent to the std::list\`s end() method.
 	///	\return The iterator to the last element.
 	////////////////////////////////////////////////////////////
 	constListIterator end() const;
@@ -259,7 +260,7 @@ public:
 
 protected:
 
-	std::list<T> list_;
+	std::list<T> list_; ///< The list with data.
 
 };
 

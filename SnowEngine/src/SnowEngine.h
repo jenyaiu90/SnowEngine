@@ -14,6 +14,7 @@
 #include "Component/Audio/MusicComponent.h"
 #include "Component/Audio/SoundComponent.h"
 #include "Component/Collision/CircleCollisionComponent.h"
+#include "Component/Collision/RectCollisionComponent.h"
 #include "Component/Visible/AnimationComponent.h"
 #include "Component/Visible/TextComponent.h"
 

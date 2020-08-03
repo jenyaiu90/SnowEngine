@@ -55,7 +55,7 @@ public:
 	///	\brief Saves a data.
 	///	
 	///	Puts passed data to the save file. You have to start saving before calling this method.
-	///	\param key The data`s unique key.
+	///	\param key The data\`s unique key.
 	///	\param data The data.
 	///	\return <b>true</b> if data was successfully saved.
 	////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ public:
 	///	\brief Stops the saving.
 	///	
 	///	This method must be called to close the save file.
-	///	\return <b>true</b> if saving was stopped. <b>false</b> if, for example, saving hasn`t
+	///	\return <b>true</b> if saving was stopped. <b>false</b> if, for example, saving hasn\`t
 	///	been started so cannot be stopped.
 	////////////////////////////////////////////////////////////
 	static bool stopSaving();
@@ -83,9 +83,8 @@ public:
 	///	\brief Loads a data.
 	///	
 	///	Returns the data from the save file. You have to start loading before calling this method.
-	///	\param key The data`s unique key.
-	///	\param data The object that the information will be loaded to.
-	///	\return The loaded data or the empty string if the data wasn`t loaded.
+	///	\param key The data\`s unique key.
+	///	\return The loaded data or the empty string if the data wasn\`t loaded.
 	////////////////////////////////////////////////////////////
 	static std::string load(const std::string& key);
 
@@ -93,7 +92,7 @@ public:
 	///	\brief Stops the loading.
 	///	
 	///	This method must be called to close the save file.
-	///	\return <b>true</b> if loading was stopped. <b>false</b> if, for example, loading hasn`t
+	///	\return <b>true</b> if loading was stopped. <b>false</b> if, for example, loading hasn\`t
 	///	been started so cannot be stopped.
 	////////////////////////////////////////////////////////////
 	static bool stopLoading();
@@ -103,7 +102,7 @@ private:
 	static ArrayList<std::string>* keys_;	///< The keys that was saved.
 	static std::ofstream* saveFile_;		///< The file for saving.
 	static std::ifstream* loadFile_;		///< The file for loading.
-	static std::string currentSave_;		///< The current save`s name.
+	static std::string currentSave_;		///< The current save\`s name.
 
 };
 

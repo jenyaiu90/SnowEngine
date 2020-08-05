@@ -143,7 +143,9 @@ void snow::Layer::setClickable(bool clickable)
 snow::Actor::Actor(Layer* layer, Vector2f pos) :
 	position_(pos),
 	components_(),
-	layer_(layer)
+	layer_(layer),
+	autoMoving_(true),
+	autoComponentsTicks_(true)
 {
 	layer->spawnActor(this);
 }

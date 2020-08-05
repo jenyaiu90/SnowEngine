@@ -12,38 +12,14 @@
 
 void snow::Actor::tick(const int& delta, sf::RenderWindow& window)
 {
-	if (speed_ != snow::Vector2f(0.f, 0.f))
+	if (autoMoving_)
 	{
-		snow::Vector2f newPos = position_ + speed_ * delta;
-		if (destination != nullptr &&
-			(((destination->x - position_.x < 0) ^ (destination->x - newPos.x < 0)) ||
-			((destination->y - position_.y < 0) ^ (destination->y - newPos.y < 0))))
-		{
-			setPosition(*destination);
-			delete destination;
-			destination = nullptr;
-			speed_ = snow::Vector2f(0.f, 0.f);
-		}
-		else
-		{
-			setPosition(newPos);
-		}
+		move_(delta);
 	}
 
-	// Goto was here. But I got rid of it!
-	// goto R.I.P. 2020-2020
-	std::lock_guard<std::recursive_mutex> lock(componentsMutex_);
-	for (auto i = components_.begin(); i != components_.end(); i++)
+	if (autoComponentsTicks_)
 	{
-		if (*i != nullptr)
-		{
-			(*i)->tick(delta, window);
-		}
-		else
-		{
-			i = components_.remove(i);
-			i--;
-		}
+		tick_(delta, window);
 	}
 }
 
@@ -63,11 +39,11 @@ void snow::Actor::move(snow::Vector2f to, int time)
 	else
 	{
 		speed_ = (to - position_) / time;
-		if (destination != nullptr)
+		if (destination_ != nullptr)
 		{
-			delete destination;
+			delete destination_;
 		}
-		destination = new snow::Vector2f(to);
+		destination_ = new snow::Vector2f(to);
 	}
 }
 
@@ -131,4 +107,44 @@ snow::Vector2f snow::Component::getWorldPosition() const
 snow::Actor* snow::Component::getActor()
 {
 	return actor_;
+}
+
+void snow::Actor::move_(const int& delta)
+{
+	if (speed_ != snow::Vector2f(0.f, 0.f))
+	{
+		snow::Vector2f newPos = position_ + speed_ * delta;
+		if (destination_ != nullptr &&
+			(((destination_->x - position_.x < 0) ^ (destination_->x - newPos.x < 0)) ||
+			((destination_->y - position_.y < 0) ^ (destination_->y - newPos.y < 0))))
+		{
+			setPosition(*destination_);
+			delete destination_;
+			destination_ = nullptr;
+			speed_ = snow::Vector2f(0.f, 0.f);
+		}
+		else
+		{
+			setPosition(newPos);
+		}
+	}
+}
+
+void snow::Actor::tick_(const int& delta, sf::RenderWindow& window)
+{
+	// Goto was here. But I got rid of it!
+	// goto R.I.P. 2020-2020
+	std::lock_guard<std::recursive_mutex> lock(componentsMutex_);
+	for (auto i = components_.begin(); i != components_.end(); i++)
+	{
+		if (*i != nullptr)
+		{
+			(*i)->tick(delta, window);
+		}
+		else
+		{
+			i = components_.remove(i);
+			i--;
+		}
+	}
 }

@@ -57,6 +57,8 @@ public:
 	///	\endcode
 	///	It isn\`t recommended to add any lengthly calculations in this method because it will affect
 	///	perfomance.
+	///	If autoMoving_ is true, this method calls move_(), if autoComponentsTick_ is true, this
+	///	this method calls tick_().
 	/// \param delta A duration of previous frame in milliseconds.
 	///	\param window A window for drawing (an SFML type).
 	////////////////////////////////////////////////////////////
@@ -81,7 +83,8 @@ public:
 	////////////////////////////////////////////////////////////
 	///	\brief Changes the actor\`s position.
 	///	
-	///	This method lets you to change the actor\`s position. Calls components\` actorMove() method.
+	///	This method lets you to change the actor\`s position. Calls components\` actorMove()
+	///	method.
 	///	\param position The new actor\`s position.
 	////////////////////////////////////////////////////////////
 	virtual void setPosition(Vector2f position);
@@ -119,11 +122,20 @@ public:
 
 protected:
 
-	Vector2f position_;	///< The actor\`s world position.
+	///	Set it false if you want to disable automatic moving every tick. You won`t be able to use
+	///	move() method with time parameter.
+	bool autoMoving_;
+	///	Set it false if you want to disable automatic calling components\` tick() methods.
+	bool autoComponentsTicks_;
+
+	Vector2f position_;		///< The actor\`s world position.
 	Vector2f speed_;		///< The actor\`s speed in px/ms.
 
 	/// The point that the actor moves to. If nullptr, the actor doesn\`t have a destination.
-	Vector2f* destination;
+	Vector2f* destination_;
+
+	void move_(const int& delta);			///< Moves the actor with the speed in speed_ variable.
+	void tick_(const int& delta, sf::RenderWindow& window);	///< Calls components` tick() method.
 
 private:
 	
